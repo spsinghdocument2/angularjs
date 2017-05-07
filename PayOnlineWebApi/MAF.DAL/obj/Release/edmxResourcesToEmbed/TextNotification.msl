@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TextNotificationContainerStoreContainer" CdmEntityContainer="TextNotificationEntities">
+    <FunctionImportMapping FunctionImportName="SBTGetSecurityToken" FunctionName="TextNotificationContainer.Store.SBTGetSecurityToken" />
+    <FunctionImportMapping FunctionImportName="SBTGetSubscriberByAccount" FunctionName="TextNotificationContainer.Store.SBTGetSubscriberByAccount">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TextNotificationContainer.SBTGetSubscriberByAccount_Result">
+          <ScalarProperty Name="SubscriberID" ColumnName="SubscriberID" />
+          <ScalarProperty Name="TextNumber" ColumnName="TextNumber" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DoNotText" ColumnName="DoNotText" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SBTInsertTextLog" FunctionName="TextNotificationContainer.Store.SBTInsertTextLog" />
+    <FunctionImportMapping FunctionImportName="SBTOptInSubscriber" FunctionName="TextNotificationContainer.Store.SBTOptInSubscriber" />
+    <FunctionImportMapping FunctionImportName="SBTOptOutSubscriber" FunctionName="TextNotificationContainer.Store.SBTOptOutSubscriber" />
+    <FunctionImportMapping FunctionImportName="SBTSaveSecurityToken" FunctionName="TextNotificationContainer.Store.SBTSaveSecurityToken" />
+    <FunctionImportMapping FunctionImportName="SBTGetAdditionalNotifications" FunctionName="TextNotificationContainer.Store.SBTGetAdditionalNotifications">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TextNotificationContainer.SBTGetAdditionalNotifications_Result">
+          <ScalarProperty Name="SubscriberID" ColumnName="SubscriberID" />
+          <ScalarProperty Name="IsPaymentReminderNotification" ColumnName="IsPaymentReminderNotification" />
+          <ScalarProperty Name="IsPaymentConfirmationNotification" ColumnName="IsPaymentConfirmationNotification" />
+          <ScalarProperty Name="IsPayByTextNotification" ColumnName="IsPayByTextNotification" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SBTUpdateAdditionalNotification" FunctionName="TextNotificationContainer.Store.SBTUpdateAdditionalNotification" />
+    <FunctionImportMapping FunctionImportName="SBTSaveCallBackUrlInfo" FunctionName="TextNotificationContainer.Store.SBTSaveCallBackUrlInfo" />
+    <FunctionImportMapping FunctionImportName="SBTSaveStatusUrlInfo" FunctionName="TextNotificationContainer.Store.SBTSaveStatusUrlInfo" />
+  </EntityContainerMapping>
+</Mapping>

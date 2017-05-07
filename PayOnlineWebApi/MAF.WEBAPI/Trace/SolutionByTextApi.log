@@ -1,0 +1,504 @@
+INFO 2016-07-15 17:11:47,666 [10]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-07-15 17:11:50,699 [10]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-07-15 17:11:53,591 [10]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-07-15 17:27:47,614 [17]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-07-15 17:27:49,936 [17]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-07-15 21:56:46,345 [40]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-07-15 21:56:48,344 [40]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-07-15 21:56:50,628 [40]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-07-18 22:20:00,202 [53]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-07-18 22:20:04,326 [53]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-07-18 22:20:06,222 [53]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-07-20 17:26:58,548 [242]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-07-20 17:27:01,167 [242]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-07-20 17:27:04,283 [242]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-08-02 22:11:39,195 [52]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-08-02 22:11:41,226 [52]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully
+INFO 2016-08-02 22:38:29,701 [6]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-08-02 22:38:31,863 [6]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-08-02 22:48:51,357 [9]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-08-02 22:50:23,905 [5]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-08-02 22:52:03,682 [13]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-08-02 22:56:57,789 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-08-02 22:58:09,369 [7]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-08-02 22:58:52,386 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-08-02 22:59:00,259 [8]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-08-02 23:00:53,267 [18]  MAF.SolutionByText.Logger - Pin does not exist
+INFO 2016-08-02 23:01:26,343 [17]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-08-02 23:01:48,727 [17]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-08-02 23:03:15,535 [22]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully
+INFO 2016-08-02 23:06:10,908 [23]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-08-02 23:06:13,185 [23]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-08-02 23:06:16,073 [23]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-08-02 23:06:51,460 [23]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-08-02 23:06:58,740 [23]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-08-02 23:09:48,007 [23]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully
+INFO 2016-08-02 23:10:10,121 [23]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-08-02 23:10:12,382 [23]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-08-02 23:10:34,447 [23]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-08-02 23:10:39,326 [23]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-08-02 23:12:39,115 [8]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully
+INFO 2016-08-02 23:16:19,355 [9]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-08-02 23:16:21,699 [9]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-08-02 23:16:53,953 [9]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-08-02 23:16:58,077 [9]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-08-02 23:17:32,939 [9]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully
+INFO 2016-08-03 17:56:54,031 [7]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully
+INFO 2016-09-05 19:52:24,897 [7]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-09-05 19:52:27,342 [7]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-09-07 15:44:07,054 [25]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-09-07 15:44:10,833 [25]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-09-13 17:45:08,819 [66]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-09-13 17:45:10,770 [66]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-09-13 18:45:42,570 [146]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-09-13 18:45:45,055 [146]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-09-13 18:45:46,675 [146]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-09-13 19:29:55,924 [66]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-08 20:50:59,170 [91]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-08 20:51:01,260 [91]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-08 20:51:02,266 [91]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-08 20:52:06,437 [90]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-08 20:52:11,330 [90]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-19 12:36:07,287 [9]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-19 12:36:41,780 [9]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-19 12:56:58,184 [8]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-19 12:58:11,666 [5]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-19 12:58:14,442 [5]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-10-19 12:59:23,534 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-19 12:59:25,777 [8]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-10-19 13:05:32,599 [8]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-19 13:06:00,991 [5]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-19 13:06:03,291 [5]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-10-19 16:16:36,542 [5]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-19 16:18:13,321 [5]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-19 17:01:02,175 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-19 17:01:48,491 [8]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-19 19:21:19,210 [10]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-19 19:24:27,935 [10]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-19 22:27:47,738 [11]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-20 11:18:23,050 [5]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-20 11:18:45,814 [5]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 12:09:19,364 [5]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-20 12:09:21,221 [5]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 12:45:39,699 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-20 12:45:55,666 [8]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 12:48:45,984 [8]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 12:51:41,380 [8]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 13:24:21,552 [6]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-20 13:24:49,559 [6]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 14:03:01,598 [9]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-20 14:03:03,471 [9]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 15:40:15,736 [7]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-20 15:40:27,742 [7]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 15:55:43,367 [8]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 16:06:27,318 [8]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 22:20:35,813 [51]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-20 22:20:37,670 [51]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 22:21:44,975 [57]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 22:22:18,171 [47]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 22:28:20,313 [66]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 22:33:55,867 [76]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-20 22:44:47,486 [51]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-21 13:06:29,178 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-21 13:07:34,827 [8]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-21 13:10:30,600 [7]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-21 13:14:27,650 [9]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-21 13:30:25,541 [9]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-21 13:48:52,747 [39]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-21 13:48:54,660 [39]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-21 16:19:40,862 [153]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-21 16:19:42,659 [153]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-21 16:48:48,095 [167]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 14:33:02,574 [9]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-22 14:33:04,441 [9]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 14:36:14,821 [9]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 14:39:28,452 [9]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 14:40:31,660 [14]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 14:57:39,755 [27]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 14:59:43,555 [27]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 15:05:09,712 [33]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-22 15:05:11,083 [33]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 15:16:18,704 [9]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 15:26:12,405 [18]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 15:28:24,450 [42]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 15:28:35,914 [42]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 15:41:43,094 [5]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-22 15:41:44,968 [5]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 15:44:51,232 [10]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 15:52:37,156 [5]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 17:25:39,399 [9]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-22 17:25:41,371 [9]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 17:57:09,453 [18]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-22 17:57:11,297 [18]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 17:57:51,239 [21]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 18:06:11,805 [25]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 18:06:37,126 [28]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 18:11:01,108 [18]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 18:12:28,948 [36]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 18:19:13,919 [42]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-22 18:20:08,727 [42]  MAF.SolutionByText.Logger - Verification details has been sent to Mobile
+INFO 2016-10-22 19:36:09,387 [73]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-22 19:36:10,891 [73]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 19:38:22,011 [79]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 20:15:09,411 [5]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-22 20:15:11,235 [5]  MAF.SolutionByText.Logger - Please enter valid Organization Code
+INFO 2016-10-22 20:33:37,491 [8]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully
+INFO 2016-10-22 20:34:07,172 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-22 20:34:08,569 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-22 20:34:53,238 [6]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-22 20:34:54,636 [6]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-22 20:36:25,078 [16]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-22 20:36:33,148 [16]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-22 20:37:48,708 [18]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-22 20:37:55,905 [18]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-22 20:49:35,186 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-22 20:49:37,114 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-22 20:49:38,513 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-24 12:25:39,582 [12]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-24 12:25:43,491 [12]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-24 12:25:50,963 [12]  MAF.SolutionByText.Logger - Verification details has been sent to Mobile
+INFO 2016-10-24 12:38:12,004 [30]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-24 12:40:16,232 [30]  MAF.SolutionByText.Logger - Verification details has been sent to Mobile
+INFO 2016-10-24 12:54:27,560 [17]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-24 12:57:21,981 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-24 12:57:44,878 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-24 13:27:13,324 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-24 13:36:00,880 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-24 13:39:41,634 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-24 14:44:42,106 [5]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-24 15:04:50,129 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-24 16:02:00,002 [9]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-24 16:02:02,693 [9]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-24 16:02:28,631 [9]  MAF.SolutionByText.Logger - Verification details has been sent to Mobile
+INFO 2016-10-24 16:19:51,756 [36]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-24 16:19:56,491 [36]  MAF.SolutionByText.Logger - Verification details has been sent to Mobile
+INFO 2016-10-24 16:21:28,043 [38]  MAF.SolutionByText.Logger - PIN has been verifed already
+INFO 2016-10-24 16:25:00,718 [39]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-24 16:25:05,422 [39]  MAF.SolutionByText.Logger - Verification details has been sent to Mobile
+INFO 2016-10-24 22:18:42,245 [158]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-24 22:18:47,679 [158]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-25 16:44:52,815 [249]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-25 16:44:55,273 [249]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-25 16:57:22,732 [249]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-25 17:12:44,134 [242]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-25 17:24:52,890 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-25 17:33:30,744 [11]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-25 17:34:04,192 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-25 18:06:18,597 [11]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-25 18:06:20,986 [11]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-25 18:10:15,049 [38]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-26 18:02:00,313 [5]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-26 18:02:02,261 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-26 18:05:23,076 [10]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-26 18:14:22,036 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-26 18:20:50,061 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-26 18:33:24,394 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-26 18:33:26,109 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-26 18:36:12,135 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-26 19:07:37,285 [6]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-26 19:07:39,518 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-26 19:29:12,753 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-27 22:43:01,780 [191]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-27 22:43:04,141 [191]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-27 22:43:07,482 [191]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-10-27 22:43:34,962 [200]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-27 22:43:38,273 [200]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-10-27 22:55:48,875 [207]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-27 22:55:51,097 [207]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-10-27 23:33:28,523 [15]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-27 23:33:30,520 [15]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-27 23:33:31,946 [15]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-28 16:39:08,710 [10]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-28 16:39:12,267 [10]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 17:59:17,424 [7]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-28 17:59:19,484 [7]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 18:05:19,204 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 18:14:58,229 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 18:42:56,317 [9]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-28 18:42:59,255 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 18:43:56,444 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 19:38:21,366 [5]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-28 19:38:23,256 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 19:46:00,202 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 20:12:47,194 [10]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-28 20:12:49,775 [10]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 20:14:57,942 [14]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-28 20:15:00,058 [14]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-10-28 20:19:57,143 [21]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 20:58:57,995 [10]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-28 20:58:59,858 [10]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 21:00:12,499 [10]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 21:00:52,421 [52]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 21:01:59,459 [10]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 21:37:37,568 [7]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-28 21:37:40,583 [7]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 21:38:02,935 [7]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 21:41:19,813 [17]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-28 21:48:22,142 [26]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-31 15:58:42,858 [17]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-31 15:58:47,373 [17]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-10-31 15:58:50,021 [17]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-10-31 17:44:07,421 [14]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-31 17:44:09,322 [14]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-31 19:15:27,996 [14]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-31 19:15:29,842 [14]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-31 19:21:40,260 [97]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-31 19:22:17,324 [98]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-31 19:22:32,855 [97]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-31 19:26:47,801 [14]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-31 19:29:14,517 [96]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-31 19:58:58,236 [15]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-31 19:59:00,103 [15]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-31 20:00:10,055 [17]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-31 20:02:18,434 [17]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-10-31 22:00:25,771 [6]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-10-31 22:00:27,637 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-01 22:06:41,434 [13]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-01 22:06:43,432 [13]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-01 22:08:01,939 [16]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-02 16:00:08,952 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-02 16:00:11,052 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 16:00:13,772 [8]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-11-02 16:01:32,995 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 16:01:36,254 [8]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-11-02 16:02:46,854 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 16:02:49,531 [8]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-11-02 16:10:44,599 [17]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 16:10:46,804 [17]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-02 16:11:24,370 [17]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-11-02 16:11:28,736 [17]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-11-02 16:12:19,264 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-02 16:13:34,688 [17]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 16:13:36,880 [17]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-02 16:15:06,313 [17]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 16:15:08,497 [17]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-02 16:23:29,937 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 16:23:33,313 [8]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-02 16:24:15,727 [27]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-11-02 16:24:21,230 [27]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-11-02 16:24:45,844 [27]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-02 16:25:42,143 [29]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-02 16:29:18,098 [30]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-02 16:30:35,516 [26]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-02 16:48:11,860 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-02 16:48:15,056 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 16:48:17,262 [8]  MAF.SolutionByText.Logger - Subscriber information already exists
+INFO 2016-11-02 16:48:51,306 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 16:48:53,465 [8]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-02 16:49:19,632 [14]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-11-02 16:49:24,318 [14]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-11-02 16:51:40,654 [20]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-02 16:53:23,563 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 16:53:25,736 [8]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-02 16:54:50,183 [22]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-11-02 16:54:54,400 [22]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-11-02 17:07:26,421 [32]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-02 17:19:30,300 [26]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-02 17:19:32,245 [26]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 17:19:34,376 [26]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-02 19:12:05,490 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-02 21:53:15,203 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-02 21:53:17,291 [8]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully
+INFO 2016-11-02 21:54:44,593 [229]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-02 21:54:46,702 [229]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-02 21:55:14,899 [229]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-11-02 21:55:19,051 [229]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-11-02 22:04:27,731 [232]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 14:20:02,921 [14]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-04 14:20:04,840 [14]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 14:39:35,923 [14]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 15:18:28,343 [20]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-04 15:18:30,349 [20]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 17:35:38,739 [56]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-04 17:35:40,878 [56]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 20:00:18,689 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 20:20:06,198 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 20:26:02,350 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-04 20:26:04,247 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 20:26:19,315 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 20:33:34,596 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 21:25:38,949 [5]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-04 21:25:40,829 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 21:28:21,355 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 22:02:28,387 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-04 22:02:30,294 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 22:07:48,409 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-04 22:09:01,394 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-05 12:55:48,346 [10]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-05 12:55:50,091 [10]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-05 15:37:31,997 [106]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-05 15:37:34,046 [106]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-05 15:37:36,623 [106]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-05 15:39:16,672 [106]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-11-05 15:39:20,712 [106]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-11-05 20:59:18,527 [174]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully
+INFO 2016-11-05 20:59:33,133 [174]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-05 20:59:35,226 [174]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-05 20:59:51,506 [172]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-11-05 20:59:56,015 [172]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-11-05 21:00:13,052 [180]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully
+INFO 2016-11-05 21:00:37,659 [180]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-05 21:00:39,701 [180]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-05 21:00:58,805 [180]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-11-05 21:01:02,759 [180]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-11-07 13:54:58,398 [75]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-07 13:55:00,258 [75]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 13:55:02,338 [75]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 15:37:04,238 [9]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-07 15:37:06,172 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 15:37:08,307 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:45:42,996 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:45:45,136 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:47:59,207 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:48:01,381 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:53:11,074 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:53:14,385 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:53:49,046 [7]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:53:51,102 [7]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:55:02,324 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:55:04,481 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:56:32,324 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:56:34,662 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:59:41,040 [10]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 17:59:43,239 [10]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 18:04:28,591 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-07 18:04:30,351 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 18:04:32,542 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 18:08:06,359 [11]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 18:08:08,503 [11]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 18:10:12,971 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 18:10:15,826 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 18:13:55,732 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 18:13:57,876 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 18:38:54,720 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-07 18:38:56,616 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 18:59:55,233 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 18:59:58,531 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 19:00:26,821 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 19:00:28,969 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 20:25:30,108 [6]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-07 20:25:32,003 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 20:25:34,153 [6]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 21:02:38,688 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-07 21:02:40,542 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 21:08:23,628 [13]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 21:12:45,668 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 21:12:47,834 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 21:15:23,695 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 21:16:33,029 [11]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-07 21:16:35,187 [11]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:26:11,073 [8]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-08 13:26:13,077 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-08 13:26:15,683 [8]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-08 13:26:50,483 [12]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-11-08 13:26:54,633 [12]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-11-08 13:27:48,743 [10]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:27:50,460 [10]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:29:12,516 [13]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:29:14,595 [13]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:30:42,848 [14]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:30:44,910 [14]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:32:26,708 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:32:28,784 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:34:49,965 [16]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:34:52,021 [16]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:37:13,493 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:37:15,546 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:42:35,538 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:42:37,729 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:44:31,914 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:44:33,959 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:45:03,095 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:45:05,131 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:45:57,475 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:45:59,487 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:46:35,841 [11]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:46:37,846 [11]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:55:41,114 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:55:43,215 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:57:23,921 [12]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-08 13:57:25,732 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:57:27,806 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:59:02,556 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 13:59:04,595 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 14:00:24,814 [15]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 14:00:26,888 [15]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 14:01:49,704 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 14:01:51,720 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 15:47:40,542 [107]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-08 15:47:42,419 [107]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-08 15:47:44,496 [107]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:04:04,902 [37]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:04:10,848 [37]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:10:01,483 [35]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-09 20:10:03,449 [35]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:10:05,619 [35]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:12:41,287 [34]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:12:44,218 [34]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:19:27,523 [29]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:19:29,760 [29]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:24:59,484 [26]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:25:06,532 [26]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:25:57,568 [26]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:26:00,344 [26]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:40:16,524 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 20:40:18,790 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:04:41,883 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:04:45,305 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:12:04,147 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:12:06,419 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:12:29,907 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:12:32,187 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:22:43,500 [18]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:22:45,732 [18]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:23:16,206 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:23:18,433 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:23:41,774 [18]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:23:45,158 [18]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:25:08,164 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:25:10,352 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:25:59,270 [18]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:26:01,583 [18]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:26:53,674 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:26:57,247 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:33:32,649 [13]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-09 22:33:34,592 [13]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:33:36,826 [13]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:33:57,693 [18]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:33:59,992 [18]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:34:49,214 [18]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:34:51,457 [18]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:43:46,941 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-09 22:43:49,185 [12]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 16:15:50,509 [11]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-10 16:15:53,085 [11]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 16:16:45,028 [5]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 17:12:25,045 [27]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-10 17:12:27,076 [27]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-10 17:12:29,230 [27]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-10 17:13:10,315 [24]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-11-10 17:13:14,609 [24]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-11-10 17:14:23,746 [27]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 17:14:49,947 [27]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 17:19:06,117 [27]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 17:20:10,354 [17]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 17:21:19,142 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 17:21:32,558 [19]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 17:22:35,104 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 17:22:57,358 [19]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 17:33:36,567 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 17:39:19,252 [8]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 20:00:18,987 [23]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 20:01:26,618 [23]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 20:58:20,388 [9]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-10 20:58:22,264 [9]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 20:58:24,271 [9]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully
+INFO 2016-11-10 20:58:46,174 [9]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-10 20:58:48,373 [9]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-10 21:03:46,241 [8]  MAF.SolutionByText.Logger - Resolve carrier executed successfully
+INFO 2016-11-10 21:03:48,926 [8]  MAF.SolutionByText.Logger - Subscriber and Verification Details Inserted Successfully
+INFO 2016-11-10 21:04:31,293 [9]  MAF.SolutionByText.Logger - Pin verified successfully
+INFO 2016-11-10 21:04:35,941 [9]  MAF.SolutionByText.Logger - Subscriber information saved successfully
+INFO 2016-11-10 21:53:38,775 [40]  MAF.SolutionByText.Logger - Successfully generated securitytoken
+INFO 2016-11-10 21:53:41,310 [40]  MAF.SolutionByText.Logger - Message sent successfully
+INFO 2016-11-10 21:53:43,391 [40]  MAF.SolutionByText.Logger - Subscriber unsubscribed successfully

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReservesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblOnlineUsers">
+    <Key>
+      <PropertyRef Name="AcctNo" />
+    </Key>
+    <Property Name="AcctNo" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="20" />
+    <Property Name="SecurityID" Type="tinyint" />
+    <Property Name="Answer" Type="varchar" MaxLength="50" />
+    <Property Name="CCAuthorized" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="SecurityID2" Type="tinyint" />
+    <Property Name="Answer2" Type="varchar" MaxLength="50" />
+    <Property Name="SecurityID3" Type="tinyint" />
+    <Property Name="Answer3" Type="varchar" MaxLength="50" />
+    <Property Name="ProfilePicture" Type="varchar" MaxLength="200" />
+    <Property Name="BitReset" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <Function Name="sp_CheckDuplicatePayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_DeleteSavedAchDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+    <Parameter Name="ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GetAchDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_GetAlerts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="accountNumber" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_GetInsuranceInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_GetPayByTextSetup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PayOnlineABA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ABA" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PayOnlineChange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NewOne" Type="varchar" Mode="In" />
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+    <Parameter Name="BitReset" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PayOnlineForgot" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PayOnlineLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+    <Parameter Name="Username" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PayOnlinePayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Confirmation" Type="varchar" Mode="In" />
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+    <Parameter Name="TranPayment" Type="money" Mode="In" />
+    <Parameter Name="TranFee" Type="money" Mode="In" />
+    <Parameter Name="BankABA" Type="varchar" Mode="In" />
+    <Parameter Name="BankAcctNo" Type="varchar" Mode="In" />
+    <Parameter Name="BankName" Type="varchar" Mode="In" />
+    <Parameter Name="BankHolder" Type="varchar" Mode="In" />
+    <Parameter Name="BankAcctType" Type="varchar" Mode="In" />
+    <Parameter Name="UpdatedPhone" Type="varchar" Mode="In" />
+    <Parameter Name="UpdatedPhoneDate" Type="datetime" Mode="In" />
+    <Parameter Name="SaveAccountFuture" Type="varchar" Mode="In" />
+    <Parameter Name="BankAccountName" Type="varchar" Mode="In" />
+    <Parameter Name="FuturePaymentDate" Type="date" Mode="In" />
+    <Parameter Name="ScheduleMethod" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PayOnlineRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+    <Parameter Name="FullName" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="SecurityID" Type="tinyint" Mode="In" />
+    <Parameter Name="Answer" Type="varchar" Mode="In" />
+    <Parameter Name="SecurityID2" Type="tinyint" Mode="In" />
+    <Parameter Name="Answer2" Type="varchar" Mode="In" />
+    <Parameter Name="SecurityID3" Type="tinyint" Mode="In" />
+    <Parameter Name="Answer3" Type="varchar" Mode="In" />
+    <Parameter Name="BitReset" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_PayOnlineVerify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+    <Parameter Name="LastName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_updateSecurityQuestions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+    <Parameter Name="SecurityID" Type="tinyint" Mode="In" />
+    <Parameter Name="Answer" Type="varchar" Mode="In" />
+    <Parameter Name="SecurityID2" Type="tinyint" Mode="In" />
+    <Parameter Name="Answer2" Type="varchar" Mode="In" />
+    <Parameter Name="SecurityID3" Type="tinyint" Mode="In" />
+    <Parameter Name="Answer3" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_GetPaymentSchedule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Acctno" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ReservesModelStoreContainer">
+    <EntitySet Name="tblOnlineUsers" EntityType="Self.tblOnlineUsers" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

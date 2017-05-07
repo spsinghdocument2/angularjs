@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://SBTService/ServiceContracts/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://SBTService/ServiceContracts/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://SBTService/ServiceContracts/Imports">
+      <xsd:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/MessageWSService.svc?xsd=xsd0" namespace="http://SBTService/ServiceContracts/" />
+      <xsd:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/MessageWSService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/MessageWSService.svc?xsd=xsd2" namespace="http://SBTAPIService/DataContract/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMessage_GetMessageStatusByNote_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMessageStatusByNote" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_GetMessageStatusByNote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMessageStatusByNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_GetMessageStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMessageStatus" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_GetMessageStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMessageStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_ConfirmVBT_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmVBT" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_ConfirmVBT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmVBTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_RequestVBT_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestVBT" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_RequestVBT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestVBTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_RequireVBT_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequireVBT" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_RequireVBT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequireVBTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_SendMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_SendMessageToOrg_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToOrg" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_SendMessageToOrg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToOrgResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_SendTemplateMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendTemplateMessage" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_SendTemplateMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendTemplateMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_ScheduleSendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleSendMessage" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_ScheduleSendMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleSendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_ScheduleSendTemplateMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleSendTemplateMessage" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_ScheduleSendTemplateMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleSendTemplateMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_ScheduleSendMessageToOrg_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleSendMessageToOrg" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_ScheduleSendMessageToOrg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleSendMessageToOrgResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_ScheduleSendTemplateMessageToOrg_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleSendTemplateMessageToOrg" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_ScheduleSendTemplateMessageToOrg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleSendTemplateMessageToOrgResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_SendTemplateMessageToOrg_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendTemplateMessageToOrg" />
+  </wsdl:message>
+  <wsdl:message name="IMessage_SendTemplateMessageToOrg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendTemplateMessageToOrgResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMessage">
+    <wsdl:operation name="GetMessageStatusByNote">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/GetMessageStatusByNote" message="tns:IMessage_GetMessageStatusByNote_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/GetMessageStatusByNoteResponse" message="tns:IMessage_GetMessageStatusByNote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageStatus">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/GetMessageStatus" message="tns:IMessage_GetMessageStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/GetMessageStatusResponse" message="tns:IMessage_GetMessageStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmVBT">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/ConfirmVBT" message="tns:IMessage_ConfirmVBT_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/ConfirmVBTResponse" message="tns:IMessage_ConfirmVBT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestVBT">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/RequestVBT" message="tns:IMessage_RequestVBT_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/RequestVBTResponse" message="tns:IMessage_RequestVBT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequireVBT">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/RequireVBT" message="tns:IMessage_RequireVBT_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/RequireVBTResponse" message="tns:IMessage_RequireVBT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/SendMessage" message="tns:IMessage_SendMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/SendMessageResponse" message="tns:IMessage_SendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessageToOrg">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/SendMessageToOrg" message="tns:IMessage_SendMessageToOrg_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/SendMessageToOrgResponse" message="tns:IMessage_SendMessageToOrg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendTemplateMessage">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/SendTemplateMessage" message="tns:IMessage_SendTemplateMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/SendTemplateMessageResponse" message="tns:IMessage_SendTemplateMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleSendMessage">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/ScheduleSendMessage" message="tns:IMessage_ScheduleSendMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/ScheduleSendMessageResponse" message="tns:IMessage_ScheduleSendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleSendTemplateMessage">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/ScheduleSendTemplateMessage" message="tns:IMessage_ScheduleSendTemplateMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/ScheduleSendTemplateMessageResponse" message="tns:IMessage_ScheduleSendTemplateMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleSendMessageToOrg">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/ScheduleSendMessageToOrg" message="tns:IMessage_ScheduleSendMessageToOrg_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/ScheduleSendMessageToOrgResponse" message="tns:IMessage_ScheduleSendMessageToOrg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleSendTemplateMessageToOrg">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/ScheduleSendTemplateMessageToOrg" message="tns:IMessage_ScheduleSendTemplateMessageToOrg_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/ScheduleSendTemplateMessageToOrgResponse" message="tns:IMessage_ScheduleSendTemplateMessageToOrg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendTemplateMessageToOrg">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IMessage/SendTemplateMessageToOrg" message="tns:IMessage_SendTemplateMessageToOrg_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IMessage/SendTemplateMessageToOrgResponse" message="tns:IMessage_SendTemplateMessageToOrg_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

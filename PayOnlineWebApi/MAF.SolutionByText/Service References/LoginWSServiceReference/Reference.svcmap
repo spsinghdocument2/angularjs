@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="eea2eba7-70f0-4659-8c3a-fa4d62699260" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://test.solutionsbytext.com/SBT.App.SetUp/WSServices/LoginAPIService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LoginAPIService.disco" MetadataType="Disco" ID="7c4270c1-a0c3-43ab-9dee-25a0810c655f" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/LoginAPIService.svc?disco" />
+    <MetadataFile FileName="LoginAPIService.wsdl" MetadataType="Wsdl" ID="09746acf-a715-46a4-b604-2e5ee90c4b8e" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/LoginAPIService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="LoginWSService.wsdl" MetadataType="Wsdl" ID="cf309ead-13e2-43a2-b97b-b51c5ba953c8" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/LoginAPIService.svc?wsdl" />
+    <MetadataFile FileName="LoginAPIService.xsd" MetadataType="Schema" ID="ddccb058-2331-4350-b349-bd3dff030629" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/LoginAPIService.svc?xsd=xsd2" />
+    <MetadataFile FileName="LoginAPIService1.xsd" MetadataType="Schema" ID="6494c280-38a7-4119-9489-1dc297ff39f9" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/LoginAPIService.svc?xsd=xsd1" />
+    <MetadataFile FileName="LoginAPIService2.xsd" MetadataType="Schema" ID="23d09e9d-7e14-48be-a4d5-83dbbb7471ec" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/LoginAPIService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

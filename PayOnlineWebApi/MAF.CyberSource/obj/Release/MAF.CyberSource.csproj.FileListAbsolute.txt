@@ -1,0 +1,9 @@
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.CyberSource\bin\Release\MAF.CyberSource.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.CyberSource\bin\Release\MAF.CyberSource.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.CyberSource\bin\Release\MAF.CyberSource.Client.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.CyberSource\bin\Release\MAF.ENTITY.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.CyberSource\bin\Release\MAF.CyberSource.Client.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.CyberSource\bin\Release\MAF.ENTITY.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.CyberSource\obj\Release\MAF.CyberSource.csprojResolveAssemblyReference.cache
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.CyberSource\obj\Release\MAF.CyberSource.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.CyberSource\obj\Release\MAF.CyberSource.pdb

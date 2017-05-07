@@ -1,0 +1,17 @@
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\bin\Release\MAF.SolutionByText.dll.config
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\bin\Release\MAF.SolutionByText.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\bin\Release\MAF.SolutionByText.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\bin\Release\log4net.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\bin\Release\MAF.DAL.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\bin\Release\MAF.ENTITY.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\bin\Release\EntityFramework.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\bin\Release\MAF.DAL.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\bin\Release\MAF.ENTITY.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\bin\Release\log4net.xml
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\bin\Release\EntityFramework.xml
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\obj\Release\MAF.SolutionByText.csprojResolveAssemblyReference.cache
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\obj\Release\MAF.SolutionByText.Resources.ErrorCodes.resources
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\obj\Release\MAF.SolutionByText.Resources.Common.resources
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\obj\Release\MAF.SolutionByText.csproj.GenerateResource.Cache
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\obj\Release\MAF.SolutionByText.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.SolutionByText\obj\Release\MAF.SolutionByText.pdb

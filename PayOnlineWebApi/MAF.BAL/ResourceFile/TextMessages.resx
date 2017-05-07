@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AutoPayAgreement" xml:space="preserve">
+    <value>Dear MAF Customer, You have initiated an AutoPay Enrollment of MAF acct # {0}. Your web confirmation # is {1}. For info reply HELP</value>
+  </data>
+  <data name="AutoPayEnrollment" xml:space="preserve">
+    <value>Dear MAF Customer, Your AutoPay Recurring Pmt Enrollment is successful for MAF acct # {0} w/ pmt method ending {1}. Confirmation # is {2}. For info reply HELP or to cancel reply AUTOPAY OFF</value>
+  </data>
+  <data name="CancelSchedule" xml:space="preserve">
+    <value>Dear MAF Customer, Your scheduled pmt of ${0} for MAF acct # {1} on {2}  has been canceled. For info reply HELP</value>
+  </data>
+  <data name="DeleteAutoPay" xml:space="preserve">
+    <value>Dear MAF Customer, Your AutoPay Enrollment for MAF acct # {0} has been canceled. For info reply HELP</value>
+  </data>
+  <data name="DeletePayByText" xml:space="preserve">
+    <value>Dear MAF Customer, Your Pay By Text on MAF acct # {0} has been canceled. For info reply HELP</value>
+  </data>
+  <data name="DisableChatByText" xml:space="preserve">
+    <value>Dear MAF Customer, You have opted out from Chat By Text service from Mid-Atlantic Finance. For info reply HELP</value>
+  </data>
+  <data name="DisablePaymentConfirmation" xml:space="preserve">
+    <value>Dear MAF Customer, You have opted out to rcv Payment Confirmation msgs from Mid-Atlantic Finance. For info reply HELP</value>
+  </data>
+  <data name="DisablePaymentReminder" xml:space="preserve">
+    <value>Dear MAF Customer, You have opted out to rcv Payment Reminder msgs from Mid-Atlantic Finance. For info reply HELP</value>
+  </data>
+  <data name="EnableChatByText" xml:space="preserve">
+    <value>Dear MAF Customer, You have opted in for Chat By Text service from Mid-Atlantic Finance. For info reply HELP</value>
+  </data>
+  <data name="EnablePaymentConfirmation" xml:space="preserve">
+    <value>Dear MAF Customer, You have opted in to rcv Payment Confirmation msgs from Mid-Atlantic Finance. For info reply HELP</value>
+  </data>
+  <data name="EnablePaymentReminder" xml:space="preserve">
+    <value>Dear MAF Customer, You have opted in to rcv Payment Reminder msgs from Mid-Atlantic Finance. For info reply HELP</value>
+  </data>
+  <data name="FuturePay" xml:space="preserve">
+    <value>Dear MAF Customer, You have  scheduled future pmt of ${0} for MAF acct # {1} on {2}. Confirmation # is {3}. For info reply HELP</value>
+  </data>
+  <data name="NotificationsByTextOptOut" xml:space="preserve">
+    <value>Dear MAF Customer, You have successfully unsubscribed from all Notifications By Text Services and will no longer receive msgs. For info reply HELP</value>
+  </data>
+  <data name="PayByTextConfirm" xml:space="preserve">
+    <value>Dear MAF Customer, You've requested to make a pmt of ${0} w/ pmt method ending {1}. To complete approval reply CONFIRM. For info reply HELP or to cancel reply PAYBYTEXT OFF</value>
+  </data>
+  <data name="PayByTextEnrollment" xml:space="preserve">
+    <value>Dear MAF Customer, Your Pay By Text enrollment is successful for MAF acct # {0} w/ pmt method ending {1}. Confirmation # is {2}. For info reply HELP or to cancel reply PAYBYTEXT OFF</value>
+  </data>
+  <data name="PayByTextNotProcess" xml:space="preserve">
+    <value>Dear MAF Customer, Your pmt of ${0} via Pay By Text cannot be processed. Please call Customer Service @ 800-793-9661 ext 600.</value>
+  </data>
+  <data name="PayByTextPay" xml:space="preserve">
+    <value>Dear MAF Customer, MAF Acct #: {0} AmountDue: ${1} Due Date: {2} . Replay PAY or HELP or  or to cancel reply PAYBYTEXT OFF</value>
+  </data>
+  <data name="ScheduledPaymentNotProcess" xml:space="preserve">
+    <value>Dear MAF Customer, Your scheduled pmt of ${0} cannot be processed. Please call Customer Service @ 800-793-9661 ext 600.</value>
+  </data>
+  <data name="SuccessfulPayment" xml:space="preserve">
+    <value>Dear MAF Customer, Payment of ${0} has been received on MAF acct # {1}. Your confirmation # is {2}. For info reply HELP</value>
+  </data>
+  <data name="SuccessfulScheduledPayment" xml:space="preserve">
+    <value>Dear MAF Customer, Your scheduled payment of ${0} has been received on MAF account # {1}. Confirmation # is {2}. For info reply HELP</value>
+  </data>
+  <data name="UnsuccessfulPayment" xml:space="preserve">
+    <value>Dear MAF Customer, Payment of ${0} was unsuccessful on MAF acct # {1}. {2}For info reply HELP</value>
+  </data>
+  <data name="UnsuccessfulScheduledPayment" xml:space="preserve">
+    <value>Dear MAF Customer, Your scheduled payment of ${0} was unsuccessful on MAF account # {1}. Confirmation # is {2}. {reason}For info reply HELP</value>
+  </data>
+</root>

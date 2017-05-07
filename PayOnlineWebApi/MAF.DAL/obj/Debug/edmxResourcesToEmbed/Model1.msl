@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ReservesModelStoreContainer" CdmEntityContainer="ReservesEntities1">
+    <EntitySetMapping Name="tblOnlineUsers">
+      <EntityTypeMapping TypeName="ReservesModel.tblOnlineUser">
+        <MappingFragment StoreEntitySet="tblOnlineUsers">
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="SecurityID" ColumnName="SecurityID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="CCAuthorized" ColumnName="CCAuthorized" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineLogin" FunctionName="ReservesModel.Store.sp_PayOnlineLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineLogin_Result">
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="SecurityID" ColumnName="SecurityID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="CCAuthorized" ColumnName="CCAuthorized" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineVerify" FunctionName="ReservesModel.Store.sp_PayOnlineVerify">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineVerify_Result">
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="AcctCurrentBal" ColumnName="AcctCurrentBal" />
+          <ScalarProperty Name="AcctRegPayAmt" ColumnName="AcctRegPayAmt" />
+          <ScalarProperty Name="AcctPastDueAmt" ColumnName="AcctPastDueAmt" />
+          <ScalarProperty Name="VehYear" ColumnName="VehYear" />
+          <ScalarProperty Name="VehModel" ColumnName="VehModel" />
+          <ScalarProperty Name="VehType" ColumnName="VehType" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="DlrAcctNo" ColumnName="DlrAcctNo" />
+          <ScalarProperty Name="UpdatedPhone" ColumnName="UpdatedPhone" />
+          <ScalarProperty Name="UpdatedPhoneDate" ColumnName="UpdatedPhoneDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineRegister" FunctionName="ReservesModel.Store.sp_PayOnlineRegister" />
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineForgot" FunctionName="ReservesModel.Store.sp_PayOnlineForgot">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineForgot_Result">
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="SecurityID" ColumnName="SecurityID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="CCAuthorized" ColumnName="CCAuthorized" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineChange" FunctionName="ReservesModel.Store.sp_PayOnlineChange" />
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineABA" FunctionName="ReservesModel.Store.sp_PayOnlineABA" />
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineABA1" FunctionName="ReservesModel.Store.sp_PayOnlineABA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineABA1_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

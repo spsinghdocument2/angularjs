@@ -1,0 +1,12 @@
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\bin\Release\MAF.DAL.dll.config
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\bin\Release\MAF.DAL.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\bin\Release\MAF.DAL.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\bin\Release\EntityFramework.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\bin\Release\EntityFramework.SqlServer.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\bin\Release\MAF.ENTITY.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\bin\Release\MAF.ENTITY.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\bin\Release\EntityFramework.xml
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\bin\Release\EntityFramework.SqlServer.xml
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\obj\Release\MAF.DAL.csprojResolveAssemblyReference.cache
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\obj\Release\MAF.DAL.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.DAL\obj\Release\MAF.DAL.pdb

@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ReservesModelStoreContainer" CdmEntityContainer="ReservesEntities1">
+    <EntitySetMapping Name="tblOnlineUsers">
+      <EntityTypeMapping TypeName="ReservesModel.tblOnlineUser">
+        <MappingFragment StoreEntitySet="tblOnlineUsers">
+          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+          <ScalarProperty Name="BitReset" ColumnName="BitReset" />
+          <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+          <ScalarProperty Name="SecurityID3" ColumnName="SecurityID3" />
+          <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+          <ScalarProperty Name="SecurityID2" ColumnName="SecurityID2" />
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="SecurityID" ColumnName="SecurityID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="CCAuthorized" ColumnName="CCAuthorized" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineVerify" FunctionName="ReservesModel.Store.sp_PayOnlineVerify">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineVerify_Result">
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="AcctCurrentBal" ColumnName="AcctCurrentBal" />
+          <ScalarProperty Name="AcctRegPayAmt" ColumnName="AcctRegPayAmt" />
+          <ScalarProperty Name="AcctPastDueAmt" ColumnName="AcctPastDueAmt" />
+          <ScalarProperty Name="VehYear" ColumnName="VehYear" />
+          <ScalarProperty Name="VehModel" ColumnName="VehModel" />
+          <ScalarProperty Name="VehType" ColumnName="VehType" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="DlrAcctNo" ColumnName="DlrAcctNo" />
+          <ScalarProperty Name="UpdatedPhone" ColumnName="UpdatedPhone" />
+          <ScalarProperty Name="UpdatedPhoneDate" ColumnName="UpdatedPhoneDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineABA" FunctionName="ReservesModel.Store.sp_PayOnlineABA" />
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineABA1" FunctionName="ReservesModel.Store.sp_PayOnlineABA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineABA1_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineForgot" FunctionName="ReservesModel.Store.sp_PayOnlineForgot">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineForgot_Result">
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="SecurityID" ColumnName="SecurityID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="CCAuthorized" ColumnName="CCAuthorized" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="SecurityID2" ColumnName="SecurityID2" />
+          <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+          <ScalarProperty Name="SecurityID3" ColumnName="SecurityID3" />
+          <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_updateSecurityQuestions" FunctionName="ReservesModel.Store.sp_updateSecurityQuestions" />
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineLogin" FunctionName="ReservesModel.Store.sp_PayOnlineLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineLogin_Result">
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="SecurityID" ColumnName="SecurityID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="CCAuthorized" ColumnName="CCAuthorized" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="SecurityID2" ColumnName="SecurityID2" />
+          <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+          <ScalarProperty Name="SecurityID3" ColumnName="SecurityID3" />
+          <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+          <ScalarProperty Name="BitReset" ColumnName="BitReset" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineChange" FunctionName="ReservesModel.Store.sp_PayOnlineChange" />
+    <FunctionImportMapping FunctionImportName="sp_PayOnlineRegister" FunctionName="ReservesModel.Store.sp_PayOnlineRegister" />
+    <FunctionImportMapping FunctionImportName="USP_GetPaymentSchedule" FunctionName="ReservesModel.Store.USP_GetPaymentSchedule">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.USP_GetPaymentSchedule_Result">
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="ScheduleMethod" ColumnName="ScheduleMethod" />
+          <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+          <ScalarProperty Name="TotalAmountDue" ColumnName="TotalAmountDue" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_CheckDuplicatePayment" FunctionName="ReservesModel.Store.sp_CheckDuplicatePayment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_CheckDuplicatePayment_Result">
+          <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+          <ScalarProperty Name="ScheduleMethod" ColumnName="ScheduleMethod" />
+          <ScalarProperty Name="IsSchedule" ColumnName="IsSchedule" />
+          <ScalarProperty Name="IsReccuring" ColumnName="IsReccuring" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetAchDetail" FunctionName="ReservesModel.Store.SP_GetAchDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.SP_GetAchDetail_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ConfirmationID" ColumnName="ConfirmationID" />
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="TranDate" ColumnName="TranDate" />
+          <ScalarProperty Name="TranPayment" ColumnName="TranPayment" />
+          <ScalarProperty Name="TranFee" ColumnName="TranFee" />
+          <ScalarProperty Name="BankABA" ColumnName="BankABA" />
+          <ScalarProperty Name="BankAcctNo" ColumnName="BankAcctNo" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="BankHolder" ColumnName="BankHolder" />
+          <ScalarProperty Name="BankAcctType" ColumnName="BankAcctType" />
+          <ScalarProperty Name="SaveAccountFuture" ColumnName="SaveAccountFuture" />
+          <ScalarProperty Name="BankAccountName" ColumnName="BankAccountName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_DeleteSavedAchDetail" FunctionName="ReservesModel.Store.sp_DeleteSavedAchDetail" />
+    <FunctionImportMapping FunctionImportName="sp_GetInsuranceInformation" FunctionName="ReservesModel.Store.sp_GetInsuranceInformation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_GetInsuranceInformation_Result">
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="InsPolicyNo" ColumnName="InsPolicyNo" />
+          <ScalarProperty Name="InsEffDate" ColumnName="InsEffDate" />
+          <ScalarProperty Name="InsExpDate" ColumnName="InsExpDate" />
+          <ScalarProperty Name="VehVin" ColumnName="VehVin" />
+          <ScalarProperty Name="VehYear" ColumnName="VehYear" />
+          <ScalarProperty Name="VehModel" ColumnName="VehModel" />
+          <ScalarProperty Name="VehType" ColumnName="VehType" />
+          <ScalarProperty Name="InsuranceCompanyName" ColumnName="InsuranceCompanyName" />
+          <ScalarProperty Name="InsuranceCompanyAddress" ColumnName="InsuranceCompanyAddress" />
+          <ScalarProperty Name="InsuranceCompanyCity" ColumnName="InsuranceCompanyCity" />
+          <ScalarProperty Name="InsuranceCompanyState" ColumnName="InsuranceCompanyState" />
+          <ScalarProperty Name="InsuranceCompanyZip" ColumnName="InsuranceCompanyZip" />
+          <ScalarProperty Name="InsuranceAgencyName" ColumnName="InsuranceAgencyName" />
+          <ScalarProperty Name="InsuranceAgencyAddress" ColumnName="InsuranceAgencyAddress" />
+          <ScalarProperty Name="InsuranceAgencyCity" ColumnName="InsuranceAgencyCity" />
+          <ScalarProperty Name="InsuranceAgencyState" ColumnName="InsuranceAgencyState" />
+          <ScalarProperty Name="InsuranceAgencyZip" ColumnName="InsuranceAgencyZip" />
+          <ScalarProperty Name="InsuredName" ColumnName="InsuredName" />
+          <ScalarProperty Name="InsuredAddress" ColumnName="InsuredAddress" />
+          <ScalarProperty Name="InsuredCity" ColumnName="InsuredCity" />
+          <ScalarProperty Name="InsuredState" ColumnName="InsuredState" />
+          <ScalarProperty Name="InsuredZip" ColumnName="InsuredZip" />
+          <ScalarProperty Name="InsuranceCardPath" ColumnName="InsuranceCardPath" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetAlerts" FunctionName="ReservesModel.Store.sp_GetAlerts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_GetAlerts_Result">
+          <ScalarProperty Name="Head" ColumnName="Head" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetPayByTextSetup" FunctionName="ReservesModel.Store.sp_GetPayByTextSetup">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ReservesModel.sp_GetPayByTextSetup_Result">
+          <ScalarProperty Name="PayByTextId" ColumnName="PayByTextId" />
+          <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+          <ScalarProperty Name="ConfirmationNumber" ColumnName="ConfirmationNumber" />
+          <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="BankABA" ColumnName="BankABA" />
+          <ScalarProperty Name="BankAcctNo" ColumnName="BankAcctNo" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="BankHolder" ColumnName="BankHolder" />
+          <ScalarProperty Name="BankAcctType" ColumnName="BankAcctType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

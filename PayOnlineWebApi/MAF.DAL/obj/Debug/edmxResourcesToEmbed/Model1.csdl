@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReservesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblOnlineUser">
+    <Key>
+      <PropertyRef Name="AcctNo" />
+    </Key>
+    <Property Name="AcctNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SecurityID" Type="Byte" />
+    <Property Name="Answer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CCAuthorized" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="ReservesEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblOnlineUsers" EntityType="Self.tblOnlineUser" />
+    <FunctionImport Name="sp_PayOnlineLogin" ReturnType="Collection(ReservesModel.sp_PayOnlineLogin_Result)">
+      <Parameter Name="AcctNo" Mode="In" Type="String" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PayOnlineVerify" ReturnType="Collection(ReservesModel.sp_PayOnlineVerify_Result)">
+      <Parameter Name="AcctNo" Mode="In" Type="String" />
+      <Parameter Name="LastName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PayOnlineRegister">
+      <Parameter Name="AcctNo" Mode="In" Type="String" />
+      <Parameter Name="FullName" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="SecurityID" Mode="In" Type="Byte" />
+      <Parameter Name="Answer" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PayOnlineForgot" ReturnType="Collection(ReservesModel.sp_PayOnlineForgot_Result)">
+      <Parameter Name="AcctNo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PayOnlineChange">
+      <Parameter Name="NewOne" Mode="In" Type="String" />
+      <Parameter Name="AcctNo" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PayOnlineABA" ReturnType="Collection(String)">
+      <Parameter Name="ABA" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PayOnlineABA1" ReturnType="Collection(ReservesModel.sp_PayOnlineABA1_Result)">
+      <Parameter Name="ABA" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_PayOnlineLogin_Result">
+    <Property Type="String" Name="AcctNo" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="20" />
+    <Property Type="Byte" Name="SecurityID" Nullable="true" />
+    <Property Type="String" Name="Answer" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CCAuthorized" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_PayOnlineVerify_Result">
+    <Property Type="String" Name="AcctNo" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="FullName" Nullable="true" MaxLength="61" />
+    <Property Type="Decimal" Name="AcctCurrentBal" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="AcctRegPayAmt" Nullable="true" Precision="19" />
+    <Property Type="Decimal" Name="AcctPastDueAmt" Nullable="true" Precision="19" />
+    <Property Type="Int32" Name="VehYear" Nullable="true" />
+    <Property Type="String" Name="VehModel" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="VehType" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="State" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="DlrAcctNo" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="UpdatedPhone" Nullable="true" MaxLength="12" />
+    <Property Type="DateTime" Name="UpdatedPhoneDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_PayOnlineForgot_Result">
+    <Property Type="String" Name="AcctNo" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="20" />
+    <Property Type="Byte" Name="SecurityID" Nullable="true" />
+    <Property Type="String" Name="Answer" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CCAuthorized" Nullable="false" MaxLength="1" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="sp_PayOnlineABA1_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TextNotificationContainer.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="SBTGetAdditionalNotifications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SBTGetSecurityToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SBTGetSubscriberByAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SBTInsertTextLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountNumber" Type="varchar" Mode="In" />
+    <Parameter Name="TextNumber" Type="varchar" Mode="In" />
+    <Parameter Name="TextLogType" Type="varchar" Mode="In" />
+    <Parameter Name="TextLogEntry" Type="nvarchar" Mode="In" />
+    <Parameter Name="TextLogUserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SBTOptInSubscriber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="TextNumber" Type="varchar" Mode="In" />
+    <Parameter Name="OptInIPAddress" Type="varchar" Mode="In" />
+    <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsPaymentReminderNotification" Type="bit" Mode="In" />
+    <Parameter Name="IsPaymentConfirmationNotification" Type="bit" Mode="In" />
+    <Parameter Name="IsPayByTextNotification" Type="bit" Mode="In" />
+    <Parameter Name="IsCommunicationByTextNotification" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="SBTOptOutSubscriber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubscriberId" Type="int" Mode="In" />
+    <Parameter Name="OptOutIPAddress" Type="varchar" Mode="In" />
+    <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SBTSaveCallBackUrlInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+    <Parameter Name="ShortCode" Type="varchar" Mode="In" />
+    <Parameter Name="Message" Type="varchar" Mode="In" />
+    <Parameter Name="Phone" Type="varchar" Mode="In" />
+    <Parameter Name="Carrier" Type="varchar" Mode="In" />
+    <Parameter Name="Keyword" Type="varchar" Mode="In" />
+    <Parameter Name="Group" Type="varchar" Mode="In" />
+    <Parameter Name="Note" Type="varchar" Mode="In" />
+    <Parameter Name="UniqueId" Type="varchar" Mode="In" />
+    <Parameter Name="Default_Keyword" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SBTSaveSecurityToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SecurityToken" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="TokenExpireInMinutes" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SBTSaveStatusUrlInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="varchar" Mode="In" />
+    <Parameter Name="Message" Type="varchar" Mode="In" />
+    <Parameter Name="SendTo" Type="varchar" Mode="In" />
+    <Parameter Name="OrgCode" Type="varchar" Mode="In" />
+    <Parameter Name="Status" Type="varchar" Mode="In" />
+    <Parameter Name="Ticket" Type="varchar" Mode="In" />
+    <Parameter Name="Note" Type="varchar" Mode="In" />
+    <Parameter Name="UniqueId" Type="varchar" Mode="In" />
+    <Parameter Name="MessageCategory" Type="varchar" Mode="In" />
+    <Parameter Name="MessageSubCategory" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SBTUpdateAdditionalNotification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubscriberId" Type="int" Mode="In" />
+    <Parameter Name="IsPaymentReminderNotification" Type="bit" Mode="In" />
+    <Parameter Name="IsPaymentConfirmationNotification" Type="bit" Mode="In" />
+    <Parameter Name="IsPayByTextNotification" Type="bit" Mode="In" />
+    <Parameter Name="IsCommunicationByTextNotification" Type="bit" Mode="In" />
+  </Function>
+  <EntityContainer Name="TextNotificationContainerStoreContainer" />
+</Schema>

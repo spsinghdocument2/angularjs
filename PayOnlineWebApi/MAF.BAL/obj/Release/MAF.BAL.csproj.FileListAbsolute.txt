@@ -1,0 +1,14 @@
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\bin\Release\MAF.BAL.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\bin\Release\MAF.BAL.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\bin\Release\MAF.DAL.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\bin\Release\MAF.ENTITY.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\bin\Release\MAF.DAL.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\bin\Release\MAF.ENTITY.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\obj\Release\MAF.BAL.csprojResolveAssemblyReference.cache
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\obj\Release\MAF.BAL.ResourceFile.Common.resources
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\obj\Release\MAF.BAL.csproj.GenerateResource.Cache
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\obj\Release\MAF.BAL.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\obj\Release\MAF.BAL.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\bin\Release\log4net.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\bin\Release\log4net.xml
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.BAL\obj\Release\MAF.BAL.ResourceFile.TextMessages.resources

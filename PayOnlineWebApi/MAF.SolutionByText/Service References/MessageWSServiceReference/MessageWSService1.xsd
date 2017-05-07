@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://SBTService/ServiceContracts/" elementFormDefault="qualified" targetNamespace="http://SBTService/ServiceContracts/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/MessageWSService.svc?xsd=xsd2" namespace="http://SBTAPIService/DataContract/" />
+  <xs:element name="GetMessageStatusByNote">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sentTo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMessageStatusByNoteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://SBTAPIService/DataContract/" minOccurs="0" name="GetMessageStatusByNoteResult" nillable="true" type="q1:WSTransactionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMessageStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="transactionTicketId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sentTo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMessageStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://SBTAPIService/DataContract/" minOccurs="0" name="GetMessageStatusResult" nillable="true" type="q2:WSTransactionResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfirmVBT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="phone" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="pin" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfirmVBTResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://SBTAPIService/DataContract/" minOccurs="0" name="ConfirmVBTResult" nillable="true" type="q3:WSVerificationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RequestVBT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="phone" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RequestVBTResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://SBTAPIService/DataContract/" minOccurs="0" name="RequestVBTResult" nillable="true" type="q4:WSVerificationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RequireVBT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="phone" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="statusUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RequireVBTResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://SBTAPIService/DataContract/" minOccurs="0" name="RequireVBTResult" nillable="true" type="q5:WSVerificationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+        <xs:element xmlns:q6="http://SBTAPIService/DataContract/" minOccurs="0" name="sendTo" nillable="true" type="q6:ArrayOfWSRecipient" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="statusUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://SBTAPIService/DataContract/" minOccurs="0" name="SendMessageResult" nillable="true" type="q7:WSMessageResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessageToOrg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+        <xs:element xmlns:q8="http://SBTAPIService/DataContract/" minOccurs="0" name="orgCode" nillable="true" type="q8:ArrayOfWSOrgRecipient" />
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="statusUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessageToOrgResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://SBTAPIService/DataContract/" minOccurs="0" name="SendMessageToOrgResult" nillable="true" type="q9:WSMessageResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendTemplateMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="templateID" type="xs:int" />
+        <xs:element xmlns:q10="http://SBTAPIService/DataContract/" minOccurs="0" name="sendTo" nillable="true" type="q10:ArrayOfWSRecipient" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="statusUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendTemplateMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://SBTAPIService/DataContract/" minOccurs="0" name="SendTemplateMessageResult" nillable="true" type="q11:WSMessageResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScheduleSendMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+        <xs:element xmlns:q12="http://SBTAPIService/DataContract/" minOccurs="0" name="sendTo" nillable="true" type="q12:ArrayOfWSRecipient" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="scheduleDateTime" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="timeZone" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="statusUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScheduleSendMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://SBTAPIService/DataContract/" minOccurs="0" name="ScheduleSendMessageResult" nillable="true" type="q13:WSMessageResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScheduleSendTemplateMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="templateID" type="xs:int" />
+        <xs:element xmlns:q14="http://SBTAPIService/DataContract/" minOccurs="0" name="sendTo" nillable="true" type="q14:ArrayOfWSRecipient" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="scheduleDateTime" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="timeZone" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="statusUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScheduleSendTemplateMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://SBTAPIService/DataContract/" minOccurs="0" name="ScheduleSendTemplateMessageResult" nillable="true" type="q15:WSMessageResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScheduleSendMessageToOrg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+        <xs:element xmlns:q16="http://SBTAPIService/DataContract/" minOccurs="0" name="orgCode" nillable="true" type="q16:ArrayOfWSOrgRecipient" />
+        <xs:element minOccurs="0" name="scheduleDateTime" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="timeZone" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="statusUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScheduleSendMessageToOrgResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://SBTAPIService/DataContract/" minOccurs="0" name="ScheduleSendMessageToOrgResult" nillable="true" type="q17:WSMessageResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScheduleSendTemplateMessageToOrg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="templateID" type="xs:int" />
+        <xs:element xmlns:q18="http://SBTAPIService/DataContract/" minOccurs="0" name="orgCode" nillable="true" type="q18:ArrayOfWSOrgRecipient" />
+        <xs:element minOccurs="0" name="scheduleDateTime" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="timeZone" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="statusUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScheduleSendTemplateMessageToOrgResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://SBTAPIService/DataContract/" minOccurs="0" name="ScheduleSendTemplateMessageToOrgResult" nillable="true" type="q19:WSMessageResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendTemplateMessageToOrg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="templateID" type="xs:int" />
+        <xs:element xmlns:q20="http://SBTAPIService/DataContract/" minOccurs="0" name="orgCode" nillable="true" type="q20:ArrayOfWSOrgRecipient" />
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="statusUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendTemplateMessageToOrgResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://SBTAPIService/DataContract/" minOccurs="0" name="SendTemplateMessageToOrgResult" nillable="true" type="q21:WSMessageResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

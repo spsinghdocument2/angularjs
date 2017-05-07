@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://SBTService/ServiceContracts/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://SBTService/ServiceContracts/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://SBTService/ServiceContracts/Imports">
+      <xsd:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?xsd=xsd0" namespace="http://SBTService/ServiceContracts/" />
+      <xsd:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?xsd=xsd3" namespace="http://SBTAPIService/DataContract/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGroup_GetCellularCarrier_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCellularCarrier" />
+  </wsdl:message>
+  <wsdl:message name="IGroup_GetCellularCarrier_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCellularCarrierResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGroup_GetCarrierLookup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCarrierLookup" />
+  </wsdl:message>
+  <wsdl:message name="IGroup_GetCarrierLookup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCarrierLookupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGroup_GetOrgTree_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrgTree" />
+  </wsdl:message>
+  <wsdl:message name="IGroup_GetOrgTree_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrgTreeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGroup_ReadVerificationType_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadVerificationType" />
+  </wsdl:message>
+  <wsdl:message name="IGroup_ReadVerificationType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadVerificationTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGroup_ReverseLookup_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReverseLookup" />
+  </wsdl:message>
+  <wsdl:message name="IGroup_ReverseLookup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReverseLookupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGroup_GetCustomerID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerID" />
+  </wsdl:message>
+  <wsdl:message name="IGroup_GetCustomerID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerIDResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IGroup">
+    <wsdl:operation name="GetCellularCarrier">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IGroup/GetCellularCarrier" message="tns:IGroup_GetCellularCarrier_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IGroup/GetCellularCarrierResponse" message="tns:IGroup_GetCellularCarrier_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarrierLookup">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IGroup/GetCarrierLookup" message="tns:IGroup_GetCarrierLookup_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IGroup/GetCarrierLookupResponse" message="tns:IGroup_GetCarrierLookup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrgTree">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IGroup/GetOrgTree" message="tns:IGroup_GetOrgTree_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IGroup/GetOrgTreeResponse" message="tns:IGroup_GetOrgTree_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadVerificationType">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IGroup/ReadVerificationType" message="tns:IGroup_ReadVerificationType_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IGroup/ReadVerificationTypeResponse" message="tns:IGroup_ReadVerificationType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReverseLookup">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IGroup/ReverseLookup" message="tns:IGroup_ReverseLookup_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IGroup/ReverseLookupResponse" message="tns:IGroup_ReverseLookup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerID">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/IGroup/GetCustomerID" message="tns:IGroup_GetCustomerID_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/IGroup/GetCustomerIDResponse" message="tns:IGroup_GetCustomerID_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

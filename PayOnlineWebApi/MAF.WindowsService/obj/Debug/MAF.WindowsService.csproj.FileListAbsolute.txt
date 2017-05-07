@@ -1,0 +1,9 @@
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.WindowsService\bin\Debug\MAF.WindowsService.exe.config
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.WindowsService\bin\Debug\MAF.WindowsService.exe
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.WindowsService\bin\Debug\MAF.WindowsService.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.WindowsService\obj\Debug\MAF.WindowsService.csprojResolveAssemblyReference.cache
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.WindowsService\obj\Debug\MAF.WindowsService.ACHService.resources
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.WindowsService\obj\Debug\MAF.WindowsService.ProjectInstaller.resources
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.WindowsService\obj\Debug\MAF.WindowsService.csproj.GenerateResource.Cache
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.WindowsService\obj\Debug\MAF.WindowsService.exe
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.WindowsService\obj\Debug\MAF.WindowsService.pdb

@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ReservesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblOnlineUsers">
+          <Key>
+            <PropertyRef Name="AcctNo" />
+          </Key>
+          <Property Name="AcctNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="SecurityID" Type="tinyint" />
+          <Property Name="Answer" Type="varchar" MaxLength="50" />
+          <Property Name="CCAuthorized" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="SecurityID2" Type="tinyint" />
+          <Property Name="Answer2" Type="varchar" MaxLength="50" />
+          <Property Name="SecurityID3" Type="tinyint" />
+          <Property Name="Answer3" Type="varchar" MaxLength="50" />
+          <Property Name="ProfilePicture" Type="varchar" MaxLength="200" />
+          <Property Name="BitReset" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Function Name="sp_CheckDuplicatePayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_DeleteSavedAchDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+          <Parameter Name="ID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GetAchDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_GetAlerts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountNumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_GetInsuranceInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_GetPayByTextSetup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_PayOnlineABA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ABA" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_PayOnlineChange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NewOne" Type="varchar" Mode="In" />
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+          <Parameter Name="BitReset" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_PayOnlineForgot" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_PayOnlineLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_PayOnlinePayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Confirmation" Type="varchar" Mode="In" />
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+          <Parameter Name="TranPayment" Type="money" Mode="In" />
+          <Parameter Name="TranFee" Type="money" Mode="In" />
+          <Parameter Name="BankABA" Type="varchar" Mode="In" />
+          <Parameter Name="BankAcctNo" Type="varchar" Mode="In" />
+          <Parameter Name="BankName" Type="varchar" Mode="In" />
+          <Parameter Name="BankHolder" Type="varchar" Mode="In" />
+          <Parameter Name="BankAcctType" Type="varchar" Mode="In" />
+          <Parameter Name="UpdatedPhone" Type="varchar" Mode="In" />
+          <Parameter Name="UpdatedPhoneDate" Type="datetime" Mode="In" />
+          <Parameter Name="SaveAccountFuture" Type="varchar" Mode="In" />
+          <Parameter Name="BankAccountName" Type="varchar" Mode="In" />
+          <Parameter Name="FuturePaymentDate" Type="date" Mode="In" />
+          <Parameter Name="ScheduleMethod" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_PayOnlineRegister" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+          <Parameter Name="FullName" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="SecurityID" Type="tinyint" Mode="In" />
+          <Parameter Name="Answer" Type="varchar" Mode="In" />
+          <Parameter Name="SecurityID2" Type="tinyint" Mode="In" />
+          <Parameter Name="Answer2" Type="varchar" Mode="In" />
+          <Parameter Name="SecurityID3" Type="tinyint" Mode="In" />
+          <Parameter Name="Answer3" Type="varchar" Mode="In" />
+          <Parameter Name="BitReset" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_PayOnlineVerify" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+          <Parameter Name="LastName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_updateSecurityQuestions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AcctNo" Type="varchar" Mode="In" />
+          <Parameter Name="SecurityID" Type="tinyint" Mode="In" />
+          <Parameter Name="Answer" Type="varchar" Mode="In" />
+          <Parameter Name="SecurityID2" Type="tinyint" Mode="In" />
+          <Parameter Name="Answer2" Type="varchar" Mode="In" />
+          <Parameter Name="SecurityID3" Type="tinyint" Mode="In" />
+          <Parameter Name="Answer3" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_GetPaymentSchedule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Acctno" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ReservesModelStoreContainer">
+          <EntitySet Name="tblOnlineUsers" EntityType="Self.tblOnlineUsers" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ReservesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblOnlineUser">
+          <Key>
+            <PropertyRef Name="AcctNo" />
+          </Key>
+          <Property Name="AcctNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SecurityID" Type="Byte" />
+          <Property Name="Answer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CCAuthorized" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="SecurityID2" Type="Byte" />
+          <Property Name="Answer2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SecurityID3" Type="Byte" />
+          <Property Name="Answer3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BitReset" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="ReservesEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblOnlineUsers" EntityType="Self.tblOnlineUser" />
+          <FunctionImport Name="sp_PayOnlineVerify" ReturnType="Collection(ReservesModel.sp_PayOnlineVerify_Result)">
+            <Parameter Name="AcctNo" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PayOnlineABA" ReturnType="Collection(String)">
+          <Parameter Name="ABA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PayOnlineABA1" ReturnType="Collection(ReservesModel.sp_PayOnlineABA1_Result)">
+          <Parameter Name="ABA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PayOnlinePayment">
+            <Parameter Name="Confirmation" Mode="In" Type="String" />
+            <Parameter Name="AcctNo" Mode="In" Type="String" />
+            <Parameter Name="TranPayment" Mode="In" Type="Decimal" />
+            <Parameter Name="TranFee" Mode="In" Type="Decimal" />
+            <Parameter Name="BankABA" Mode="In" Type="String" />
+            <Parameter Name="BankAcctNo" Mode="In" Type="String" />
+            <Parameter Name="BankName" Mode="In" Type="String" />
+            <Parameter Name="BankHolder" Mode="In" Type="String" />
+            <Parameter Name="BankAcctType" Mode="In" Type="String" />
+            <Parameter Name="UpdatedPhone" Mode="In" Type="String" />
+            <Parameter Name="UpdatedPhoneDate" Mode="In" Type="DateTime" />
+            <Parameter Name="RecurringPayment" Mode="In" Type="String" />
+            <Parameter Name="SaveAccountFuture" Mode="In" Type="String" />
+            <Parameter Name="BankAccountName" Mode="In" Type="String" />
+            <Parameter Name="FuturePaymentDate" Mode="In" Type="DateTime" />
+            <Parameter Name="ScheduleMethod" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetUserProfile" ReturnType="Collection(ReservesModel.SP_GetUserProfile_Result)">
+          <Parameter Name="accountNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UpdateUserProfile">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="CellNumber" Mode="In" Type="String" />
+            <Parameter Name="TextNumber" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="AccountNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PayOnlineForgot" ReturnType="Collection(ReservesModel.sp_PayOnlineForgot_Result)">
+          <Parameter Name="AcctNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_updateSecurityQuestions">
+            <Parameter Name="AcctNo" Mode="In" Type="String" />
+            <Parameter Name="SecurityID" Mode="In" Type="Byte" />
+            <Parameter Name="Answer" Mode="In" Type="String" />
+            <Parameter Name="SecurityID2" Mode="In" Type="Byte" />
+            <Parameter Name="Answer2" Mode="In" Type="String" />
+            <Parameter Name="SecurityID3" Mode="In" Type="Byte" />
+            <Parameter Name="Answer3" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PayOnlineLogin" ReturnType="Collection(ReservesModel.sp_PayOnlineLogin_Result)">
+            <Parameter Name="AcctNo" Mode="In" Type="String" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PayOnlineChange">
+            <Parameter Name="NewOne" Mode="In" Type="String" />
+            <Parameter Name="AcctNo" Mode="In" Type="String" />
+            <Parameter Name="BitReset" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PayOnlineRegister">
+            <Parameter Name="AcctNo" Mode="In" Type="String" />
+            <Parameter Name="FullName" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="SecurityID" Mode="In" Type="Byte" />
+            <Parameter Name="Answer" Mode="In" Type="String" />
+            <Parameter Name="SecurityID2" Mode="In" Type="Byte" />
+            <Parameter Name="Answer2" Mode="In" Type="String" />
+            <Parameter Name="SecurityID3" Mode="In" Type="Byte" />
+            <Parameter Name="Answer3" Mode="In" Type="String" />
+            <Parameter Name="BitReset" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetPaymentSchedule" ReturnType="Collection(ReservesModel.USP_GetPaymentSchedule_Result)">
+          <Parameter Name="Acctno" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetUserProfile_1" ReturnType="Collection(ReservesModel.SP_GetUserProfile_1_Result)">
+          <Parameter Name="accountNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UpdateUserProfile_1">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="CellNumber" Mode="In" Type="String" />
+            <Parameter Name="TextNumber" Mode="In" Type="String" />
+            <Parameter Name="TextNumber2" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="AccountNumber" Mode="In" Type="String" />
+            <Parameter Name="ProfilePicture" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CheckDuplicatePayment" ReturnType="Collection(ReservesModel.sp_CheckDuplicatePayment_Result)">
+          <Parameter Name="AcctNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetAchDetail" ReturnType="Collection(ReservesModel.SP_GetAchDetail_Result)">
+          <Parameter Name="AcctNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_DeleteSavedAchDetail">
+            <Parameter Name="AcctNo" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsuranceInformation" ReturnType="Collection(ReservesModel.sp_InsuranceInformation_Result)">
+            <Parameter Name="AcctNo" Mode="In" Type="String" />
+            <Parameter Name="InsuranceCompanyName" Mode="In" Type="String" />
+            <Parameter Name="InsuranceAddress" Mode="In" Type="String" />
+            <Parameter Name="InsuranceCity" Mode="In" Type="String" />
+            <Parameter Name="InsuranceState" Mode="In" Type="String" />
+            <Parameter Name="InsuranceZip" Mode="In" Type="String" />
+            <Parameter Name="AgencyCompanyName" Mode="In" Type="String" />
+            <Parameter Name="AgencyAddress" Mode="In" Type="String" />
+            <Parameter Name="AgencyCity" Mode="In" Type="String" />
+            <Parameter Name="AgencyState" Mode="In" Type="String" />
+            <Parameter Name="AgencyZip" Mode="In" Type="String" />
+            <Parameter Name="InsuredName" Mode="In" Type="String" />
+            <Parameter Name="InsuredAddress" Mode="In" Type="String" />
+            <Parameter Name="InsuredCity" Mode="In" Type="String" />
+            <Parameter Name="InsuredState" Mode="In" Type="String" />
+            <Parameter Name="InsuredZip" Mode="In" Type="String" />
+            <Parameter Name="DocumentPath" Mode="In" Type="String" />
+            <Parameter Name="InsPolicyNo" Mode="In" Type="String" />
+            <Parameter Name="InsEffDate" Mode="In" Type="DateTime" />
+            <Parameter Name="InsExpDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Filter" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetInsuranceInformation" ReturnType="Collection(ReservesModel.sp_GetInsuranceInformation_Result)">
+          <Parameter Name="AcctNo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetAlerts" ReturnType="Collection(ReservesModel.sp_GetAlerts_Result)">
+          <Parameter Name="accountNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetPayByTextSetup" ReturnType="Collection(ReservesModel.sp_GetPayByTextSetup_Result)">
+            <Parameter Name="AcctNo" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sp_PayOnlineVerify_Result">
+          <Property Type="String" Name="AcctNo" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="61" />
+          <Property Type="Decimal" Name="AcctCurrentBal" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="AcctRegPayAmt" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="AcctPastDueAmt" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="VehYear" Nullable="true" />
+          <Property Type="String" Name="VehModel" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VehType" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="DlrAcctNo" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="UpdatedPhone" Nullable="true" MaxLength="12" />
+          <Property Type="DateTime" Name="UpdatedPhoneDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_PayOnlineABA1_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GetUserProfile_Result">
+          <Property Type="String" Name="AcctNo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="20" />
+          <Property Type="Byte" Name="SecurityID" Nullable="true" />
+          <Property Type="String" Name="Answer" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CCAuthorized" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_PayOnlineForgot_Result">
+          <Property Type="String" Name="AcctNo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="20" />
+          <Property Type="Byte" Name="SecurityID" Nullable="true" />
+          <Property Type="String" Name="Answer" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CCAuthorized" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Byte" Name="SecurityID2" Nullable="true" />
+          <Property Type="String" Name="Answer2" Nullable="true" MaxLength="50" />
+          <Property Type="Byte" Name="SecurityID3" Nullable="true" />
+          <Property Type="String" Name="Answer3" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_PayOnlineLogin_Result">
+          <Property Type="String" Name="AcctNo" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="20" />
+          <Property Type="Byte" Name="SecurityID" Nullable="true" />
+          <Property Type="String" Name="Answer" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CCAuthorized" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Byte" Name="SecurityID2" Nullable="true" />
+          <Property Type="String" Name="Answer2" Nullable="true" MaxLength="50" />
+          <Property Type="Byte" Name="SecurityID3" Nullable="true" />
+          <Property Type="String" Name="Answer3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BitReset" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="USP_GetPaymentSchedule_Result">
+          <Property Type="Int32" Name="AccountNumber" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DueDate" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="ScheduleMethod" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="ScheduleDate" Nullable="false" />
+          <Property Type="Decimal" Name="TotalAmountDue" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="SP_GetUserProfile_1_Result">
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="AccountNumber" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="Model" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Make" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="DaysPastDue" Nullable="true" />
+          <Property Type="Decimal" Name="PastDueAmount" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="LastPaymentAmount" Nullable="false" Precision="19" />
+          <Property Type="String" Name="CellNumber" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="TextNumber" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="TextNumber2" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="PaymentFrequency" Nullable="true" MaxLength="1" />
+          <Property Type="Byte" Name="SecurityID" Nullable="false" />
+          <Property Type="Byte" Name="SecurityID2" Nullable="false" />
+          <Property Type="Byte" Name="SecurityID3" Nullable="false" />
+          <Property Type="String" Name="Answer" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Answer2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Answer3" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_CheckDuplicatePayment_Result">
+          <Property Type="Int32" Name="ScheduleId" Nullable="false" />
+          <Property Type="Int32" Name="AcctNo" Nullable="false" />
+          <Property Type="DateTime" Name="ScheduleDate" Nullable="true" />
+          <Property Type="String" Name="ScheduleMethod" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="IsSchedule" Nullable="false" />
+          <Property Type="Boolean" Name="IsReccuring" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAchDetail_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="ConfirmationID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="AcctNo" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="TranDate" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="TranPayment" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="TranFee" Nullable="true" Precision="19" />
+          <Property Type="String" Name="BankABA" Nullable="true" MaxLength="9" />
+          <Property Type="String" Name="BankAcctNo" Nullable="true" MaxLength="17" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BankHolder" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BankAcctType" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="SaveAccountFuture" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BankAccountName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_InsuranceInformation_Result">
+          <Property Type="String" Name="InsuranceCompanyName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsuranceAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsuranceCity" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsuranceState" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsuranceZip" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AgencyCompanyName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AgencyAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AgencyCity" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AgencyState" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AgencyZip" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsuredName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsuredAddress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsuredCity" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsuredState" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsuredZip" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DocumentPath" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AcctNo" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="InsPolicyNo" Nullable="true" MaxLength="25" />
+          <Property Type="DateTime" Name="InsEffDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="InsExpDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="VehVin" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="VehYear" Nullable="true" />
+          <Property Type="String" Name="VehModel" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VehType" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_GetInsuranceInformation_Result">
+          <Property Type="String" Name="AcctNo" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="InsPolicyNo" Nullable="true" MaxLength="25" />
+          <Property Type="DateTime" Name="InsEffDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="InsExpDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="VehVin" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="VehYear" Nullable="true" />
+          <Property Type="String" Name="VehModel" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VehType" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="InsuranceCompanyName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="InsuranceCompanyAddress" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="InsuranceCompanyCity" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="InsuranceCompanyState" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="InsuranceCompanyZip" Nullable="false" />
+          <Property Type="String" Name="InsuranceAgencyName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsuranceAgencyAddress" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="InsuranceAgencyCity" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="InsuranceAgencyState" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="InsuranceAgencyZip" Nullable="true" />
+          <Property Type="String" Name="InsuredName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsuredAddress" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="InsuredCity" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="InsuredState" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="InsuredZip" Nullable="true" />
+          <Property Type="String" Name="InsuranceCardPath" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAlerts_Result">
+          <Property Type="String" Name="Head" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="sp_GetPayByTextSetup_Result">
+          <Property Type="Int32" Name="PayByTextId" Nullable="false" />
+          <Property Type="String" Name="SubscriptionId" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ConfirmationNumber" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="AcctNo" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="BankABA" Nullable="true" MaxLength="9" />
+          <Property Type="String" Name="BankAcctNo" Nullable="true" MaxLength="17" />
+          <Property Type="String" Name="BankName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BankHolder" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BankAcctType" Nullable="false" MaxLength="10" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ReservesModelStoreContainer" CdmEntityContainer="ReservesEntities1">
+          <EntitySetMapping Name="tblOnlineUsers">
+            <EntityTypeMapping TypeName="ReservesModel.tblOnlineUser">
+              <MappingFragment StoreEntitySet="tblOnlineUsers">
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="BitReset" ColumnName="BitReset" />
+                <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+                <ScalarProperty Name="SecurityID3" ColumnName="SecurityID3" />
+                <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+                <ScalarProperty Name="SecurityID2" ColumnName="SecurityID2" />
+                <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SecurityID" ColumnName="SecurityID" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="CCAuthorized" ColumnName="CCAuthorized" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_PayOnlineVerify" FunctionName="ReservesModel.Store.sp_PayOnlineVerify">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineVerify_Result">
+                <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="AcctCurrentBal" ColumnName="AcctCurrentBal" />
+                <ScalarProperty Name="AcctRegPayAmt" ColumnName="AcctRegPayAmt" />
+                <ScalarProperty Name="AcctPastDueAmt" ColumnName="AcctPastDueAmt" />
+                <ScalarProperty Name="VehYear" ColumnName="VehYear" />
+                <ScalarProperty Name="VehModel" ColumnName="VehModel" />
+                <ScalarProperty Name="VehType" ColumnName="VehType" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="DlrAcctNo" ColumnName="DlrAcctNo" />
+                <ScalarProperty Name="UpdatedPhone" ColumnName="UpdatedPhone" />
+                <ScalarProperty Name="UpdatedPhoneDate" ColumnName="UpdatedPhoneDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PayOnlineABA" FunctionName="ReservesModel.Store.sp_PayOnlineABA" />
+          <FunctionImportMapping FunctionImportName="sp_PayOnlineABA1" FunctionName="ReservesModel.Store.sp_PayOnlineABA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineABA1_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PayOnlineForgot" FunctionName="ReservesModel.Store.sp_PayOnlineForgot">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineForgot_Result">
+                <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SecurityID" ColumnName="SecurityID" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="CCAuthorized" ColumnName="CCAuthorized" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SecurityID2" ColumnName="SecurityID2" />
+                <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+                <ScalarProperty Name="SecurityID3" ColumnName="SecurityID3" />
+                <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_updateSecurityQuestions" FunctionName="ReservesModel.Store.sp_updateSecurityQuestions" />
+          <FunctionImportMapping FunctionImportName="sp_PayOnlineLogin" FunctionName="ReservesModel.Store.sp_PayOnlineLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservesModel.sp_PayOnlineLogin_Result">
+                <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SecurityID" ColumnName="SecurityID" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="CCAuthorized" ColumnName="CCAuthorized" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="SecurityID2" ColumnName="SecurityID2" />
+                <ScalarProperty Name="Answer2" ColumnName="Answer2" />
+                <ScalarProperty Name="SecurityID3" ColumnName="SecurityID3" />
+                <ScalarProperty Name="Answer3" ColumnName="Answer3" />
+                <ScalarProperty Name="BitReset" ColumnName="BitReset" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PayOnlineChange" FunctionName="ReservesModel.Store.sp_PayOnlineChange" />
+          <FunctionImportMapping FunctionImportName="sp_PayOnlineRegister" FunctionName="ReservesModel.Store.sp_PayOnlineRegister" />
+          <FunctionImportMapping FunctionImportName="USP_GetPaymentSchedule" FunctionName="ReservesModel.Store.USP_GetPaymentSchedule">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservesModel.USP_GetPaymentSchedule_Result">
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="ScheduleMethod" ColumnName="ScheduleMethod" />
+                <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+                <ScalarProperty Name="TotalAmountDue" ColumnName="TotalAmountDue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_CheckDuplicatePayment" FunctionName="ReservesModel.Store.sp_CheckDuplicatePayment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservesModel.sp_CheckDuplicatePayment_Result">
+                <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+                <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+                <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+                <ScalarProperty Name="ScheduleMethod" ColumnName="ScheduleMethod" />
+                <ScalarProperty Name="IsSchedule" ColumnName="IsSchedule" />
+                <ScalarProperty Name="IsReccuring" ColumnName="IsReccuring" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAchDetail" FunctionName="ReservesModel.Store.SP_GetAchDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservesModel.SP_GetAchDetail_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ConfirmationID" ColumnName="ConfirmationID" />
+                <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+                <ScalarProperty Name="TranDate" ColumnName="TranDate" />
+                <ScalarProperty Name="TranPayment" ColumnName="TranPayment" />
+                <ScalarProperty Name="TranFee" ColumnName="TranFee" />
+                <ScalarProperty Name="BankABA" ColumnName="BankABA" />
+                <ScalarProperty Name="BankAcctNo" ColumnName="BankAcctNo" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankHolder" ColumnName="BankHolder" />
+                <ScalarProperty Name="BankAcctType" ColumnName="BankAcctType" />
+                <ScalarProperty Name="SaveAccountFuture" ColumnName="SaveAccountFuture" />
+                <ScalarProperty Name="BankAccountName" ColumnName="BankAccountName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_DeleteSavedAchDetail" FunctionName="ReservesModel.Store.sp_DeleteSavedAchDetail" />
+          <FunctionImportMapping FunctionImportName="sp_GetInsuranceInformation" FunctionName="ReservesModel.Store.sp_GetInsuranceInformation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservesModel.sp_GetInsuranceInformation_Result">
+                <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+                <ScalarProperty Name="InsPolicyNo" ColumnName="InsPolicyNo" />
+                <ScalarProperty Name="InsEffDate" ColumnName="InsEffDate" />
+                <ScalarProperty Name="InsExpDate" ColumnName="InsExpDate" />
+                <ScalarProperty Name="VehVin" ColumnName="VehVin" />
+                <ScalarProperty Name="VehYear" ColumnName="VehYear" />
+                <ScalarProperty Name="VehModel" ColumnName="VehModel" />
+                <ScalarProperty Name="VehType" ColumnName="VehType" />
+                <ScalarProperty Name="InsuranceCompanyName" ColumnName="InsuranceCompanyName" />
+                <ScalarProperty Name="InsuranceCompanyAddress" ColumnName="InsuranceCompanyAddress" />
+                <ScalarProperty Name="InsuranceCompanyCity" ColumnName="InsuranceCompanyCity" />
+                <ScalarProperty Name="InsuranceCompanyState" ColumnName="InsuranceCompanyState" />
+                <ScalarProperty Name="InsuranceCompanyZip" ColumnName="InsuranceCompanyZip" />
+                <ScalarProperty Name="InsuranceAgencyName" ColumnName="InsuranceAgencyName" />
+                <ScalarProperty Name="InsuranceAgencyAddress" ColumnName="InsuranceAgencyAddress" />
+                <ScalarProperty Name="InsuranceAgencyCity" ColumnName="InsuranceAgencyCity" />
+                <ScalarProperty Name="InsuranceAgencyState" ColumnName="InsuranceAgencyState" />
+                <ScalarProperty Name="InsuranceAgencyZip" ColumnName="InsuranceAgencyZip" />
+                <ScalarProperty Name="InsuredName" ColumnName="InsuredName" />
+                <ScalarProperty Name="InsuredAddress" ColumnName="InsuredAddress" />
+                <ScalarProperty Name="InsuredCity" ColumnName="InsuredCity" />
+                <ScalarProperty Name="InsuredState" ColumnName="InsuredState" />
+                <ScalarProperty Name="InsuredZip" ColumnName="InsuredZip" />
+                <ScalarProperty Name="InsuranceCardPath" ColumnName="InsuranceCardPath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetAlerts" FunctionName="ReservesModel.Store.sp_GetAlerts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservesModel.sp_GetAlerts_Result">
+                <ScalarProperty Name="Head" ColumnName="Head" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetPayByTextSetup" FunctionName="ReservesModel.Store.sp_GetPayByTextSetup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservesModel.sp_GetPayByTextSetup_Result">
+                <ScalarProperty Name="PayByTextId" ColumnName="PayByTextId" />
+                <ScalarProperty Name="SubscriptionId" ColumnName="SubscriptionId" />
+                <ScalarProperty Name="ConfirmationNumber" ColumnName="ConfirmationNumber" />
+                <ScalarProperty Name="AcctNo" ColumnName="AcctNo" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BankABA" ColumnName="BankABA" />
+                <ScalarProperty Name="BankAcctNo" ColumnName="BankAcctNo" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankHolder" ColumnName="BankHolder" />
+                <ScalarProperty Name="BankAcctType" ColumnName="BankAcctType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

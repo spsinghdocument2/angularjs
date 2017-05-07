@@ -1,0 +1,5 @@
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.ENTITY\bin\Release\MAF.ENTITY.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.ENTITY\bin\Release\MAF.ENTITY.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.ENTITY\obj\Release\MAF.ENTITY.dll
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.ENTITY\obj\Release\MAF.ENTITY.pdb
+E:\TFS\PayOnline\PayOnlineWebApi\MAF.ENTITY\obj\Release\MAF.ENTITY.csprojResolveAssemblyReference.cache

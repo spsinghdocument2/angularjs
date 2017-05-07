@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SBTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblSBTCallBackUrlInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Title" Type="varchar" MaxLength="250" />
+    <Property Name="Code" Type="varchar" MaxLength="250" />
+    <Property Name="ShortCode" Type="varchar" MaxLength="250" />
+    <Property Name="Message" Type="varchar" MaxLength="250" />
+    <Property Name="Phone" Type="varchar" MaxLength="250" />
+    <Property Name="Carrier" Type="varchar" MaxLength="250" />
+    <Property Name="Keyword" Type="varchar" MaxLength="250" />
+    <Property Name="Group" Type="varchar" MaxLength="250" />
+    <Property Name="Note" Type="varchar" MaxLength="250" />
+    <Property Name="UniqueId" Type="varchar" MaxLength="250" />
+    <Property Name="Default_Keyword" Type="varchar" MaxLength="250" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblSBTStatusUrlInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Code" Type="varchar" MaxLength="255" />
+    <Property Name="Message" Type="varchar" MaxLength="255" />
+    <Property Name="SendTo" Type="varchar" MaxLength="255" />
+    <Property Name="OrgCode" Type="varchar" MaxLength="255" />
+    <Property Name="Status" Type="varchar" MaxLength="255" />
+    <Property Name="Ticket" Type="varchar" MaxLength="255" />
+    <Property Name="Note" Type="varchar" MaxLength="255" />
+    <Property Name="UniqueId" Type="varchar" MaxLength="255" />
+    <Property Name="MessageCategory" Type="varchar" MaxLength="255" />
+    <Property Name="MessageSubCategory" Type="varchar" MaxLength="255" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="SBTModelStoreContainer">
+    <EntitySet Name="tblSBTCallBackUrlInfo" EntityType="Self.tblSBTCallBackUrlInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSBTStatusUrlInfo" EntityType="Self.tblSBTStatusUrlInfo" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

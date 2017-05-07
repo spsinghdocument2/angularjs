@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BB058E76-38CA-4A96-BA8D-6DFA7BFE17B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MAF.SolutionByText</RootNamespace>
+    <AssemblyName>MAF.SolutionByText</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataContext.cs" />
+    <Compile Include="GeneralService.cs" />
+    <Compile Include="IDataContext.cs" />
+    <Compile Include="IGeneralService.cs" />
+    <Compile Include="IMessageService.cs" />
+    <Compile Include="ISubscriberService.cs" />
+    <Compile Include="MessageService.cs" />
+    <Compile Include="Resources\ErrorCodes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorCodes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ILoginService.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="LoginService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Common.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Common.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResponseMessage.cs" />
+    <Compile Include="Service References\GeneralWSServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\LoginWSServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\MessageWSServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SubscriberWSServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SubscriberService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Service References\GeneralWSServiceReference\GeneralWSService.wsdl" />
+    <None Include="Service References\GeneralWSServiceReference\GeneralWSService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GeneralWSServiceReference\GeneralWSService1.wsdl" />
+    <None Include="Service References\GeneralWSServiceReference\GeneralWSService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GeneralWSServiceReference\GeneralWSService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GeneralWSServiceReference\GeneralWSService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GeneralWSServiceReference\MAF.SolutionByText.GeneralWSServiceReference.WSCarrierLookupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GeneralWSServiceReference\MAF.SolutionByText.GeneralWSServiceReference.WSCustomerIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GeneralWSServiceReference\MAF.SolutionByText.GeneralWSServiceReference.WSOrganizationTreeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GeneralWSServiceReference\MAF.SolutionByText.GeneralWSServiceReference.WSReportInboundMessagesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GeneralWSServiceReference\MAF.SolutionByText.GeneralWSServiceReference.WSReverseLookupResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GeneralWSServiceReference\MAF.SolutionByText.GeneralWSServiceReference.WSVerificationTypeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LoginWSServiceReference\LoginAPIService.wsdl" />
+    <None Include="Service References\LoginWSServiceReference\LoginAPIService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoginWSServiceReference\LoginAPIService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoginWSServiceReference\LoginAPIService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LoginWSServiceReference\LoginWSService.wsdl" />
+    <None Include="Service References\LoginWSServiceReference\MAF.SolutionByText.LoginWSServiceReference.WSLoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MessageWSServiceReference\MAF.SolutionByText.MessageWSServiceReference.WSMessageResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MessageWSServiceReference\MAF.SolutionByText.MessageWSServiceReference.WSTransactionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MessageWSServiceReference\MAF.SolutionByText.MessageWSServiceReference.WSVerificationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MessageWSServiceReference\MessageWSService.wsdl" />
+    <None Include="Service References\MessageWSServiceReference\MessageWSService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MessageWSServiceReference\MessageWSService1.wsdl" />
+    <None Include="Service References\MessageWSServiceReference\MessageWSService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MessageWSServiceReference\MessageWSService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SubscriberWSServiceReference\MAF.SolutionByText.SubscriberWSServiceReference.WSSubscriberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SubscriberWSServiceReference\MAF.SolutionByText.SubscriberWSServiceReference.WSSubscribersStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SubscriberWSServiceReference\MAF.SolutionByText.SubscriberWSServiceReference.WSUnsubscriberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\SubscriberWSServiceReference\SubscriberWSService.wsdl" />
+    <None Include="Service References\SubscriberWSServiceReference\SubscriberWSService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SubscriberWSServiceReference\SubscriberWSService1.wsdl" />
+    <None Include="Service References\SubscriberWSServiceReference\SubscriberWSService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SubscriberWSServiceReference\SubscriberWSService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SubscriberWSServiceReference\SubscriberWSService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GeneralWSServiceReference\" />
+    <WCFMetadataStorage Include="Service References\LoginWSServiceReference\" />
+    <WCFMetadataStorage Include="Service References\MessageWSServiceReference\" />
+    <WCFMetadataStorage Include="Service References\SubscriberWSServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LoginWSServiceReference\LoginAPIService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LoginWSServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LoginWSServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LoginWSServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GeneralWSServiceReference\GeneralWSService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GeneralWSServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GeneralWSServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GeneralWSServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MessageWSServiceReference\MessageWSService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MessageWSServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MessageWSServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MessageWSServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SubscriberWSServiceReference\SubscriberWSService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SubscriberWSServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SubscriberWSServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SubscriberWSServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ErrorCodes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorCodes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Common.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Common.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MAF.DAL\MAF.DAL.csproj">
+      <Project>{bb12cb22-516f-477e-8883-eb66a0ad6b06}</Project>
+      <Name>MAF.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MAF.ENTITY\MAF.ENTITY.csproj">
+      <Project>{cc4f2f51-293f-4407-aaf2-23a8f5a2454e}</Project>
+      <Name>MAF.ENTITY</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

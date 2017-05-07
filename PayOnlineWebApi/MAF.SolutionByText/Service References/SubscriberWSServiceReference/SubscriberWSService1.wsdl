@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://SBTService/ServiceContracts/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://SBTService/ServiceContracts/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://SBTService/ServiceContracts/Imports">
+      <xsd:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/SubscriberWSService.svc?xsd=xsd0" namespace="http://SBTService/ServiceContracts/" />
+      <xsd:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/SubscriberWSService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/SubscriberWSService.svc?xsd=xsd2" namespace="http://SBTAPIService/DataContract/" />
+      <xsd:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/SubscriberWSService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISubscriber_Subscribe_InputMessage">
+    <wsdl:part name="parameters" element="tns:Subscribe" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriber_Subscribe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriber_UnSubscribe_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnSubscribe" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriber_UnSubscribe_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnSubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriber_GetSubscribersStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubscribersStatus" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriber_GetSubscribersStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubscribersStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriber_UpdateSubscriber_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubscriber" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriber_UpdateSubscriber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubscriberResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriber_UpdateSubscriberByOrg_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubscriberByOrg" />
+  </wsdl:message>
+  <wsdl:message name="ISubscriber_UpdateSubscriberByOrg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSubscriberByOrgResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISubscriber">
+    <wsdl:operation name="Subscribe">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/ISubscriber/Subscribe" message="tns:ISubscriber_Subscribe_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/ISubscriber/SubscribeResponse" message="tns:ISubscriber_Subscribe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnSubscribe">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/ISubscriber/UnSubscribe" message="tns:ISubscriber_UnSubscribe_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/ISubscriber/UnSubscribeResponse" message="tns:ISubscriber_UnSubscribe_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubscribersStatus">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/ISubscriber/GetSubscribersStatus" message="tns:ISubscriber_GetSubscribersStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/ISubscriber/GetSubscribersStatusResponse" message="tns:ISubscriber_GetSubscribersStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSubscriber">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/ISubscriber/UpdateSubscriber" message="tns:ISubscriber_UpdateSubscriber_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/ISubscriber/UpdateSubscriberResponse" message="tns:ISubscriber_UpdateSubscriber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSubscriberByOrg">
+      <wsdl:input wsaw:Action="http://SBTService/ServiceContracts/ISubscriber/UpdateSubscriberByOrg" message="tns:ISubscriber_UpdateSubscriberByOrg_InputMessage" />
+      <wsdl:output wsaw:Action="http://SBTService/ServiceContracts/ISubscriber/UpdateSubscriberByOrgResponse" message="tns:ISubscriber_UpdateSubscriberByOrg_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

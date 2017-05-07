@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d77b53bb-327c-4972-936f-e156cf8e48a7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GeneralWSService.disco" MetadataType="Disco" ID="d8d63d2c-5394-4c63-b9f1-17e23489f812" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?disco" />
+    <MetadataFile FileName="GeneralWSService.wsdl" MetadataType="Wsdl" ID="0066ffed-f89b-4528-9c9c-408345b8e843" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="GeneralWSService.xsd" MetadataType="Schema" ID="9d01149c-73bd-46cc-a552-353e40e358bb" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?xsd=xsd1" />
+    <MetadataFile FileName="GeneralWSService1.xsd" MetadataType="Schema" ID="3d4d47ea-94c3-45e2-91d7-bd1645c434f3" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?xsd=xsd2" />
+    <MetadataFile FileName="GeneralWSService2.xsd" MetadataType="Schema" ID="68642268-1246-42dc-a987-7f9e9e108695" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GeneralWSService3.xsd" MetadataType="Schema" ID="45fa6eb3-4f2d-496c-96b6-d8f651ef6f0d" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?xsd=xsd3" />
+    <MetadataFile FileName="GeneralWSService1.wsdl" MetadataType="Wsdl" ID="78219ab1-9ef0-496e-b05c-5da0b683e204" SourceId="1" SourceUrl="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

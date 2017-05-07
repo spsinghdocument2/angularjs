@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://SBTService/ServiceContracts/" elementFormDefault="qualified" targetNamespace="http://SBTService/ServiceContracts/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/SubscriberWSService.svc?xsd=xsd2" namespace="http://SBTAPIService/DataContract/" />
+  <xs:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/SubscriberWSService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="Subscribe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://SBTAPIService/DataContract/" minOccurs="0" name="subscriber" nillable="true" type="q1:SubscriberDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubscribeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://SBTAPIService/DataContract/" minOccurs="0" name="SubscribeResult" nillable="true" type="q2:WSSubscriberResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnSubscribe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element xmlns:q3="http://SBTAPIService/DataContract/" minOccurs="0" name="subscriber" nillable="true" type="q3:SubscriberDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnSubscribeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://SBTAPIService/DataContract/" minOccurs="0" name="UnSubscribeResult" nillable="true" type="q4:WSUnsubscriberResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubscribersStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="phone" nillable="true" type="q5:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubscribersStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://SBTAPIService/DataContract/" minOccurs="0" name="GetSubscribersStatusResult" nillable="true" type="q6:WSSubscribersStatusResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSubscriber">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element xmlns:q7="http://SBTAPIService/DataContract/" minOccurs="0" name="subscriber" nillable="true" type="q7:SubscriberInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSubscriberResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://SBTAPIService/DataContract/" minOccurs="0" name="UpdateSubscriberResult" nillable="true" type="q8:WSSubscriberResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSubscriberByOrg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element xmlns:q9="http://SBTAPIService/DataContract/" minOccurs="0" name="subscriber" nillable="true" type="q9:SubscriberInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSubscriberByOrgResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://SBTAPIService/DataContract/" minOccurs="0" name="UpdateSubscriberByOrgResult" nillable="true" type="q10:WSSubscriberResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

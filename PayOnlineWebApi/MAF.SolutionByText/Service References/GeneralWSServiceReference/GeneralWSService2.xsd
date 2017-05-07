@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://SBTService/ServiceContracts/" elementFormDefault="qualified" targetNamespace="http://SBTService/ServiceContracts/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/GeneralWSService.svc?xsd=xsd3" namespace="http://SBTAPIService/DataContract/" />
+  <xs:element name="GetCellularCarrier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="phone" nillable="true" type="q1:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCellularCarrierResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://SBTAPIService/DataContract/" minOccurs="0" name="GetCellularCarrierResult" nillable="true" type="q2:WSReportInboundMessagesResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCarrierLookup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="phone" nillable="true" type="q3:ArrayOfstring" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCarrierLookupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://SBTAPIService/DataContract/" minOccurs="0" name="GetCarrierLookupResult" nillable="true" type="q4:WSCarrierLookupResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrgTree">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrgTreeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://SBTAPIService/DataContract/" minOccurs="0" name="GetOrgTreeResult" nillable="true" type="q5:WSOrganizationTreeResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadVerificationType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadVerificationTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://SBTAPIService/DataContract/" minOccurs="0" name="ReadVerificationTypeResult" nillable="true" type="q6:WSVerificationTypeResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReverseLookup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="phone" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReverseLookupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://SBTAPIService/DataContract/" minOccurs="0" name="ReverseLookupResult" nillable="true" type="q7:WSReverseLookupResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomerID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="securityToken" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orgCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="phone" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomerIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://SBTAPIService/DataContract/" minOccurs="0" name="GetCustomerIDResult" nillable="true" type="q8:WSCustomerIDResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

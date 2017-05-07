@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://SBTService/ServiceContracts/" elementFormDefault="qualified" targetNamespace="http://SBTService/ServiceContracts/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://test.solutionsbytext.com/SBT.App.SetUp/WSServices/LoginAPIService.svc?xsd=xsd2" namespace="http://SBTAPIService/DataContract/" />
+  <xs:element name="AuthenticateAPIKey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://SBTAPIService/DataContract/" minOccurs="0" name="loginRequest" nillable="true" type="q1:LoginRequestDetails" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthenticateAPIKeyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://SBTAPIService/DataContract/" minOccurs="0" name="AuthenticateAPIKeyResult" nillable="true" type="q2:WSLoginResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

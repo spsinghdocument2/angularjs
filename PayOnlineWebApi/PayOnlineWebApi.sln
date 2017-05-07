@@ -1,0 +1,101 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAF.BAL", "MAF.BAL\MAF.BAL.csproj", "{10D70325-6154-41C5-82A0-B78C5B50B9E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAF.DAL", "MAF.DAL\MAF.DAL.csproj", "{BB12CB22-516F-477E-8883-EB66A0AD6B06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAF.WEBAPI", "MAF.WEBAPI\MAF.WEBAPI.csproj", "{F0F6E2BD-B6DE-453D-88D8-044CAA4D4582}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAF.ENTITY", "MAF.ENTITY\MAF.ENTITY.csproj", "{CC4F2F51-293F-4407-AAF2-23A8F5A2454E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAF.SolutionByText", "MAF.SolutionByText\MAF.SolutionByText.csproj", "{BB058E76-38CA-4A96-BA8D-6DFA7BFE17B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAF.CyberSource.Client", "MAF.CyberSource.Client\MAF.CyberSource.Client.csproj", "{930FAE98-B130-4193-BF40-EEABA04DEE68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAF.CyberSource", "MAF.CyberSource\MAF.CyberSource.csproj", "{E3F6C978-9523-45C5-965A-4923649760F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAF.AutoPaymentProcessor", "MAF.AutoPaymentProcessor\MAF.AutoPaymentProcessor.csproj", "{C3A0B885-A1FE-491F-9976-70C17EB76518}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MAF.AutoPaymentProcessorSetup", "MAF.AutoPaymentProcessorSetup\MAF.AutoPaymentProcessorSetup.vdproj", "{DFAB8F7E-F5A1-464F-BB00-E03123ACF91F}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs01:8080/tfs/chetuprojects
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = MAF.BAL\\MAF.BAL.csproj
+		SccProjectName1 = MAF.BAL
+		SccLocalPath1 = MAF.BAL
+		SccProjectUniqueName2 = MAF.DAL\\MAF.DAL.csproj
+		SccProjectName2 = MAF.DAL
+		SccLocalPath2 = MAF.DAL
+		SccProjectUniqueName3 = MAF.WEBAPI\\MAF.WEBAPI.csproj
+		SccProjectName3 = MAF.WEBAPI
+		SccLocalPath3 = MAF.WEBAPI
+		SccProjectUniqueName4 = MAF.ENTITY\\MAF.ENTITY.csproj
+		SccProjectName4 = MAF.ENTITY
+		SccLocalPath4 = MAF.ENTITY
+		SccProjectUniqueName5 = MAF.SolutionByText\\MAF.SolutionByText.csproj
+		SccProjectName5 = MAF.SolutionByText
+		SccLocalPath5 = MAF.SolutionByText
+		SccProjectUniqueName6 = MAF.CyberSource.Client\\MAF.CyberSource.Client.csproj
+		SccProjectName6 = MAF.CyberSource.Client
+		SccLocalPath6 = MAF.CyberSource.Client
+		SccProjectUniqueName7 = MAF.CyberSource\\MAF.CyberSource.csproj
+		SccProjectName7 = MAF.CyberSource
+		SccLocalPath7 = MAF.CyberSource
+		SccProjectUniqueName8 = MAF.AutoPaymentProcessor\\MAF.AutoPaymentProcessor.csproj
+		SccProjectName8 = MAF.AutoPaymentProcessor
+		SccLocalPath8 = MAF.AutoPaymentProcessor
+		SccProjectUniqueName9 = MAF.AutoPaymentProcessorSetup\\MAF.AutoPaymentProcessorSetup.vdproj
+		SccProjectName9 = MAF.AutoPaymentProcessorSetup
+		SccLocalPath9 = MAF.AutoPaymentProcessorSetup
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10D70325-6154-41C5-82A0-B78C5B50B9E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10D70325-6154-41C5-82A0-B78C5B50B9E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10D70325-6154-41C5-82A0-B78C5B50B9E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10D70325-6154-41C5-82A0-B78C5B50B9E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB12CB22-516F-477E-8883-EB66A0AD6B06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB12CB22-516F-477E-8883-EB66A0AD6B06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB12CB22-516F-477E-8883-EB66A0AD6B06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB12CB22-516F-477E-8883-EB66A0AD6B06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0F6E2BD-B6DE-453D-88D8-044CAA4D4582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0F6E2BD-B6DE-453D-88D8-044CAA4D4582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0F6E2BD-B6DE-453D-88D8-044CAA4D4582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0F6E2BD-B6DE-453D-88D8-044CAA4D4582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC4F2F51-293F-4407-AAF2-23A8F5A2454E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC4F2F51-293F-4407-AAF2-23A8F5A2454E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC4F2F51-293F-4407-AAF2-23A8F5A2454E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC4F2F51-293F-4407-AAF2-23A8F5A2454E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB058E76-38CA-4A96-BA8D-6DFA7BFE17B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB058E76-38CA-4A96-BA8D-6DFA7BFE17B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB058E76-38CA-4A96-BA8D-6DFA7BFE17B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB058E76-38CA-4A96-BA8D-6DFA7BFE17B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{930FAE98-B130-4193-BF40-EEABA04DEE68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{930FAE98-B130-4193-BF40-EEABA04DEE68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{930FAE98-B130-4193-BF40-EEABA04DEE68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{930FAE98-B130-4193-BF40-EEABA04DEE68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3F6C978-9523-45C5-965A-4923649760F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3F6C978-9523-45C5-965A-4923649760F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3F6C978-9523-45C5-965A-4923649760F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3F6C978-9523-45C5-965A-4923649760F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3A0B885-A1FE-491F-9976-70C17EB76518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3A0B885-A1FE-491F-9976-70C17EB76518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A0B885-A1FE-491F-9976-70C17EB76518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A0B885-A1FE-491F-9976-70C17EB76518}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFAB8F7E-F5A1-464F-BB00-E03123ACF91F}.Debug|Any CPU.ActiveCfg = Debug
+		{DFAB8F7E-F5A1-464F-BB00-E03123ACF91F}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

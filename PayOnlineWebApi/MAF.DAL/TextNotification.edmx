@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TextNotificationContainer.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="SBTGetAdditionalNotifications" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SBTGetSecurityToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SBTGetSubscriberByAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SBTInsertTextLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountNumber" Type="varchar" Mode="In" />
+          <Parameter Name="TextNumber" Type="varchar" Mode="In" />
+          <Parameter Name="TextLogType" Type="varchar" Mode="In" />
+          <Parameter Name="TextLogEntry" Type="nvarchar" Mode="In" />
+          <Parameter Name="TextLogUserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SBTOptInSubscriber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="TextNumber" Type="varchar" Mode="In" />
+          <Parameter Name="OptInIPAddress" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="nvarchar" Mode="In" />
+          <Parameter Name="IsPaymentReminderNotification" Type="bit" Mode="In" />
+          <Parameter Name="IsPaymentConfirmationNotification" Type="bit" Mode="In" />
+          <Parameter Name="IsPayByTextNotification" Type="bit" Mode="In" />
+          <Parameter Name="IsCommunicationByTextNotification" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SBTOptOutSubscriber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubscriberId" Type="int" Mode="In" />
+          <Parameter Name="OptOutIPAddress" Type="varchar" Mode="In" />
+          <Parameter Name="ModifiedBy" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SBTSaveCallBackUrlInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="Code" Type="varchar" Mode="In" />
+          <Parameter Name="ShortCode" Type="varchar" Mode="In" />
+          <Parameter Name="Message" Type="varchar" Mode="In" />
+          <Parameter Name="Phone" Type="varchar" Mode="In" />
+          <Parameter Name="Carrier" Type="varchar" Mode="In" />
+          <Parameter Name="Keyword" Type="varchar" Mode="In" />
+          <Parameter Name="Group" Type="varchar" Mode="In" />
+          <Parameter Name="Note" Type="varchar" Mode="In" />
+          <Parameter Name="UniqueId" Type="varchar" Mode="In" />
+          <Parameter Name="Default_Keyword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SBTSaveSecurityToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SecurityToken" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="TokenExpireInMinutes" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SBTSaveStatusUrlInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="varchar" Mode="In" />
+          <Parameter Name="Message" Type="varchar" Mode="In" />
+          <Parameter Name="SendTo" Type="varchar" Mode="In" />
+          <Parameter Name="OrgCode" Type="varchar" Mode="In" />
+          <Parameter Name="Status" Type="varchar" Mode="In" />
+          <Parameter Name="Ticket" Type="varchar" Mode="In" />
+          <Parameter Name="Note" Type="varchar" Mode="In" />
+          <Parameter Name="UniqueId" Type="varchar" Mode="In" />
+          <Parameter Name="MessageCategory" Type="varchar" Mode="In" />
+          <Parameter Name="MessageSubCategory" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SBTUpdateAdditionalNotification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SubscriberId" Type="int" Mode="In" />
+          <Parameter Name="IsPaymentReminderNotification" Type="bit" Mode="In" />
+          <Parameter Name="IsPaymentConfirmationNotification" Type="bit" Mode="In" />
+          <Parameter Name="IsPayByTextNotification" Type="bit" Mode="In" />
+          <Parameter Name="IsCommunicationByTextNotification" Type="bit" Mode="In" />
+        </Function>
+        <EntityContainer Name="TextNotificationContainerStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TextNotificationContainer" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TextNotificationEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="GetSecurityToken" ReturnType="Collection(String)" />
+          <FunctionImport Name="InsertTextLog">
+            <Parameter Name="AccountNumber" Mode="In" Type="String" />
+            <Parameter Name="TextNumber" Mode="In" Type="String" />
+            <Parameter Name="TextLogType" Mode="In" Type="String" />
+            <Parameter Name="TextLogEntry" Mode="In" Type="String" />
+            <Parameter Name="TextLogUserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="OptInSubscriber">
+            <Parameter Name="AccountNumber" Mode="In" Type="String" />
+            <Parameter Name="TextNumber" Mode="In" Type="String" />
+            <Parameter Name="OptInIPAddress" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="OptOutSubscriber">
+            <Parameter Name="SubscriberId" Mode="In" Type="Int32" />
+            <Parameter Name="OptOutIPAddress" Mode="In" Type="String" />
+            <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SaveSecurityToken">
+            <Parameter Name="SecurityToken" Mode="In" Type="String" />
+            <Parameter Name="TokenExpireInMinutes" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSubscriberByAccount" ReturnType="Collection(TextNotificationContainer.GetSubscriberByAccount_Result)">
+            <Parameter Name="AccountNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SBTGetSecurityToken" ReturnType="Collection(String)" />
+          <FunctionImport Name="SBTGetSubscriberByAccount" ReturnType="Collection(TextNotificationContainer.SBTGetSubscriberByAccount_Result)">
+          <Parameter Name="AccountNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SBTInsertTextLog">
+            <Parameter Name="AccountNumber" Mode="In" Type="String" />
+            <Parameter Name="TextNumber" Mode="In" Type="String" />
+            <Parameter Name="TextLogType" Mode="In" Type="String" />
+            <Parameter Name="TextLogEntry" Mode="In" Type="String" />
+            <Parameter Name="TextLogUserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SBTOptInSubscriber">
+            <Parameter Name="AccountNumber" Mode="In" Type="String" />
+            <Parameter Name="TextNumber" Mode="In" Type="String" />
+            <Parameter Name="OptInIPAddress" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="IsPaymentReminderNotification" Mode="In" Type="Boolean" />
+            <Parameter Name="IsPaymentConfirmationNotification" Mode="In" Type="Boolean" />
+            <Parameter Name="IsPayByTextNotification" Mode="In" Type="Boolean" />
+            <Parameter Name="IsCommunicationByTextNotification" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="SBTOptOutSubscriber">
+            <Parameter Name="SubscriberId" Mode="In" Type="Int32" />
+            <Parameter Name="OptOutIPAddress" Mode="In" Type="String" />
+            <Parameter Name="ModifiedBy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SBTSaveSecurityToken">
+            <Parameter Name="SecurityToken" Mode="In" Type="String" />
+            <Parameter Name="TokenExpireInMinutes" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SBTGetAdditionalNotifications" ReturnType="Collection(TextNotificationContainer.SBTGetAdditionalNotifications_Result)">
+          <Parameter Name="AccountNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SBTUpdateAdditionalNotification">
+            <Parameter Name="SubscriberId" Mode="In" Type="Int32" />
+            <Parameter Name="IsPaymentReminderNotification" Mode="In" Type="Boolean" />
+            <Parameter Name="IsPaymentConfirmationNotification" Mode="In" Type="Boolean" />
+            <Parameter Name="IsPayByTextNotification" Mode="In" Type="Boolean" />
+            <Parameter Name="IsCommunicationByTextNotification" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="SBTSaveCallBackUrlInfo">
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="ShortCode" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Carrier" Mode="In" Type="String" />
+            <Parameter Name="Keyword" Mode="In" Type="String" />
+            <Parameter Name="Group" Mode="In" Type="String" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="UniqueId" Mode="In" Type="String" />
+            <Parameter Name="Default_Keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SBTSaveStatusUrlInfo">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Message" Mode="In" Type="String" />
+            <Parameter Name="SendTo" Mode="In" Type="String" />
+            <Parameter Name="OrgCode" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+            <Parameter Name="Ticket" Mode="In" Type="String" />
+            <Parameter Name="Note" Mode="In" Type="String" />
+            <Parameter Name="UniqueId" Mode="In" Type="String" />
+            <Parameter Name="MessageCategory" Mode="In" Type="String" />
+            <Parameter Name="MessageSubCategory" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetSubscriberByAccount_Result">
+          <Property Type="Int32" Name="SubscriberID" Nullable="false" />
+          <Property Type="String" Name="TextNumber" Nullable="false" MaxLength="15" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Boolean" Name="DoNotText" Nullable="false" />
+          <Property Type="String" Name="CreatedBy" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SBTGetSubscriberByAccount_Result">
+          <Property Type="Int32" Name="SubscriberID" Nullable="false" />
+          <Property Type="String" Name="TextNumber" Nullable="false" MaxLength="15" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Boolean" Name="DoNotText" Nullable="false" />
+          <Property Type="String" Name="CreatedBy" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SBTGetAdditionalNotifications_Result">
+          <Property Type="Int32" Name="SubscriberID" Nullable="false" />
+          <Property Type="Boolean" Name="IsPaymentReminderNotification" Nullable="false" />
+          <Property Type="Boolean" Name="IsPaymentConfirmationNotification" Nullable="false" />
+          <Property Type="Boolean" Name="IsPayByTextNotification" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TextNotificationContainerStoreContainer" CdmEntityContainer="TextNotificationEntities" >
+          <FunctionImportMapping FunctionImportName="SBTGetSecurityToken" FunctionName="TextNotificationContainer.Store.SBTGetSecurityToken" />
+          <FunctionImportMapping FunctionImportName="SBTGetSubscriberByAccount" FunctionName="TextNotificationContainer.Store.SBTGetSubscriberByAccount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TextNotificationContainer.SBTGetSubscriberByAccount_Result">
+                <ScalarProperty Name="SubscriberID" ColumnName="SubscriberID" />
+                <ScalarProperty Name="TextNumber" ColumnName="TextNumber" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DoNotText" ColumnName="DoNotText" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SBTInsertTextLog" FunctionName="TextNotificationContainer.Store.SBTInsertTextLog" />
+          <FunctionImportMapping FunctionImportName="SBTOptInSubscriber" FunctionName="TextNotificationContainer.Store.SBTOptInSubscriber" />
+          <FunctionImportMapping FunctionImportName="SBTOptOutSubscriber" FunctionName="TextNotificationContainer.Store.SBTOptOutSubscriber" />
+          <FunctionImportMapping FunctionImportName="SBTSaveSecurityToken" FunctionName="TextNotificationContainer.Store.SBTSaveSecurityToken" />
+          <FunctionImportMapping FunctionImportName="SBTGetAdditionalNotifications" FunctionName="TextNotificationContainer.Store.SBTGetAdditionalNotifications">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TextNotificationContainer.SBTGetAdditionalNotifications_Result">
+                <ScalarProperty Name="SubscriberID" ColumnName="SubscriberID" />
+                <ScalarProperty Name="IsPaymentReminderNotification" ColumnName="IsPaymentReminderNotification" />
+                <ScalarProperty Name="IsPaymentConfirmationNotification" ColumnName="IsPaymentConfirmationNotification" />
+                <ScalarProperty Name="IsPayByTextNotification" ColumnName="IsPayByTextNotification" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SBTUpdateAdditionalNotification" FunctionName="TextNotificationContainer.Store.SBTUpdateAdditionalNotification" />
+          <FunctionImportMapping FunctionImportName="SBTSaveCallBackUrlInfo" FunctionName="TextNotificationContainer.Store.SBTSaveCallBackUrlInfo" />
+          <FunctionImportMapping FunctionImportName="SBTSaveStatusUrlInfo" FunctionName="TextNotificationContainer.Store.SBTSaveStatusUrlInfo" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
