@@ -1,0 +1,94 @@
+﻿<script type="text/javascript">
+
+    if (typeof app === 'undefined')
+    {
+
+        document.location.href = "../../Index.html";
+    }
+</script>
+
+
+    <div ng-controller="AccountInformationController">
+        <style>
+            input.ng-invalid.ng-dirty {
+        border: 1px solid red;
+            }
+    </style>
+
+         <section class="content">
+        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+            <div class="container_acinfo">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 left_col">
+                        <div class="login_bg">
+                            <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0"><span class="padrtlt_10 bdr_btmgrn"> Account Information</span></h2>
+                            <div class="clearfix"></div>
+                            <span style="color:red">{{MainError}}</span>
+                            <span style="color:red">{{MessageError}}</span>
+                            <h5>You can make an online payment using your checking/savings account.</h5>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0 accunt_ifotxt">
+                                <label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Account Number</label>
+                                <label class="col-lg-8 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{accountNumberGet}}</label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0 accunt_ifotxt">
+                                <label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Account Holder</label>
+                                <label class="col-lg-8 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{AccountHolder}}</label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0 accunt_ifotxt">
+                                <label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Current Balance</label>
+                                <label class="col-lg-8 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{CurrentBalance}} (<span class="font_red">*</span>)</label>
+                            </div>
+                            <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0 accunt_ifotxt">
+                                <label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Amount Past Due</label>
+                                <label class="col-lg-8 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{AmountPastDue}}</label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0 accunt_ifotxt">
+                                <label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Regular Amount Due</label>
+                                <label class="col-lg-8 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{RegularAmountDue}}</label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0 accunt_ifotxt">
+                                <label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Last Payment Mode</label>
+                                <label class="col-lg-8 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">  {{lastPaymentMade}} </label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0 accunt_ifotxt">
+                                <label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Last Payment</label>
+                                <label class="col-lg-8 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">  {{LastTotalamount}} </label>
+                            </div>
+                            <div ng-show="loading" class="loadingOverlay"></div>
+                            <p class="font12 mar_btm0">(<span class="font_red">*</span>) Understand this is not a payoff balance. The debit for last monthly payment may be more or less than the scheduled payment, please contact MAF at 800.793.9661 ext. 600 to determine final payment amount and make final payment arrangements.</p>
+                            <!--<div class="col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 mar_top10">
+                                <div vc-recaptcha theme="light" key="publicKey" on-create="setRecaptchaId(widgetId)"></div>
+
+                                <div vc-recaptcha
+                                     theme="'light'"
+                                     key="publicKey"
+                                     on-create="setWidgetId(widgetId)"
+                                     on-success="setResponse(response)"
+                                     on-expire="cbExpiration()"></div>
+                            </div>-->
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mobile_martp10">
+                        <div class="login_bg pay_balanceht">
+                            <h4 class="mar_top0">Pay-off Balance & Certified Funds </h4>
+                            <p>The National Automated Clearing House Association (NACHA) regulations allow the originator of ACH transactions to dispute or return the item to the bank for 60 days. As a result, if you have made any prior payments by telephone check or web check within the last 60 days, your title will be mailed 60 days after the last payment telephone or web check.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="text-right mar_top20">
+                <button type="button" ng-click="MAFPayment()" class="btn btn-default btn_miniwidth100 mar_btm10">Cancel</button>
+                <button type="button" ng-click="Recaptchasignup()" class="btn btn-default btn_miniwidth100 btn_green mar_btm10">Continue</button>
+            </div>
+        </div>
+
+
+
+</section>
+
+
+
+</div>
+

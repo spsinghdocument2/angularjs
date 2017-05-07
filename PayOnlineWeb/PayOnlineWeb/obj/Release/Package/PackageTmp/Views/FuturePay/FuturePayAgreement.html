@@ -1,0 +1,70 @@
+﻿
+<div ng-controller="paymentAgreementController">
+    <script type="text/javascript">
+
+        if (typeof app === 'undefined') {
+
+            document.location.href = "../../Index.html";
+        }
+    </script>
+    <section class="content">
+        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+            <div class="login_bg">
+                <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0"><span class="padrtlt_10 bdr_btmgrn"> Payment Agreement</span></h2>
+
+                <div class="clearfix"></div>
+                <h5 class="font_color1 mar_btm20">To make your payments online, please read the information below carefully.</h5>
+                <span style="color:red">{{Error}}</span>
+                <div class="agreement_bg">
+                    <p class="mar_top0">Thank you for choosing CallPass Tech Payment Processing System.</p>
+                    <p>There is a convenience fee of <b>{{fee}}</b>  that will be charged to your account by CallPass Tech. This fee will be included in your payment and will not show as a separate transaction on your statement.</p>
+                    <p class="mar_btm0">By agreeing you also state that you are 18 years of age or older and are permitted to make payments using the account entered.</p>
+                </div>
+                <div ng-show="loading" class="loadingOverlay"></div>
+                <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20 mar_top20 mar_btm10">
+                    <input ng-change="termsAndConditionsErrorRemove()" ng-model="checkboxTermsConditions.value" type="checkbox" id="c1">
+                    <label for="c1" class="font_color1">I agree to the terms and conditions above.</label>
+                    <span style="color:red;">{{termsAndConditionsError}}</span>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="text-right mar_top20">
+                <button type="button" ng-click="FuturePayAgreementContinue()" class="btn btn-default btn_miniwidth100 btn_green mar_btm10" ng-disabled="BtnAchPaymentAgreementContinue">Continue</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal3" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" ng-click="cancel();AccountOperationFirst()" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color:red">Duplicate Payment Alert </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p ng-show="ShowOneTime">
+                            Our system shows that you have enrolled in a recurring payment schedule.
+                        </p>
+                        <p ng-show="ShowScheduled">
+                            Our system shows that you already have made this payment before.
+                        </p>
+                        Continuing with this payment may result in over pay. Do you want to proceed with the
+                        current payment ?
+                    </div>
+                </div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="cancel();AccountOperationFirst()" class="btn btn-default btn_miniwidth100" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btncontinue" data-dismiss="modal" class="btn btn-default btn_miniwidth100  btn_green">Continue</button>
+                    <!--<button type="button" ng-click="MAFAgreement()" class="btn btn-default width100" data-dismiss={{ModalDismiss}}>Continue</button>-->
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

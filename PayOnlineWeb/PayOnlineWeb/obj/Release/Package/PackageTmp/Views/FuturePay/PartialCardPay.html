@@ -1,0 +1,274 @@
+﻿<form class="" name="">
+    <div class="row mar_top10">
+        <div class="col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+
+            <h4 class="font_color2 mar_btm0 mar_top0 col-lg-2 col-md-3 col-sm-4">
+                Pay With:
+            </h4>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 pad_lt0" ng-show="PaymentTypeCard">
+                <input type="radio" name="radio_selectCCDBpay" id="radioSaveCCDB" class="css-checkbox" ng-change="SelectCardTypeValue.name='SavedCard';SelectCardType();" ng-model="SelectCardTypeValue.name" value="SavedCard">
+                <label for="radioSaveCCDB" class="css-label"> Saved Debit and Credit Card</label>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 pad_lt0">
+                <input type="radio" name="radio_selectCCDBpay" id="radioNewCard" class="css-checkbox" ng-change="SelectCardTypeValue.name='NewCard';SelectCardType();" ng-model="SelectCardTypeValue.name" value="NewCard">
+                <label for="radioNewCard" class="css-label"> New Debit and Credit Card</label>
+            </div>
+        </div>
+
+
+        <div class="col-xs-12 mar_btm15 mar_top10" ng-show="SavedCard">
+            <div class="accinfo_containerbg">
+                <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                    <div id="no-more-tables">
+                        <table class="col-md-12 table tabel_debit table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                            <thead class="cf">
+                                <tr>
+                                    <th>Saved Card</th>
+                                    <th>Name on Card</th>
+                                    <th>Expires on</th>
+                                    <th class="width100">
+                                        CVV<a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" data-html="true"
+                                              title="" data-original-title="
+                                            <img src='images/cvv.png' class='' />"
+                                            class="red-tooltip" style="text-decoration:none;">
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                        </a>
+                                        <span class="font_red font12 line_ht0">*</span>
+                                    </th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in savedCards">
+                                    <td data-title="Saved Card">
+                                        <input type="hidden" value="{{data.TokenId}}" />
+                                        <input type="radio" name="radio_savedcard" id="radio{{data.TokenId}}" ng-checked="data.Selected" ng-click="radioSavedCard(data)" class="css-checkbox tabel_radio">
+                                        <label for="radio{{data.TokenId}}" class="css-label"><img src=images/{{data.CardType}}.jpg width="50"></label>
+                                        <label class="">XXXX-XXXX-XXXX-{{data.CardNumber}}</label>
+                                    </td>
+                                    <td data-title="Name on Card">{{data.CardName}}</td>
+                                    <td data-title="Expires on">{{data.CardExpiry}}</td>
+                                    <td data-title="CVV"><input type="text" placeholder="CVV" ng-disabled="!data.Selected" class="width100 padrtlt_10 form-control" id="SavedCvNumber" maxlength="3" ng-model="data.CVV" ng-change="updateSavedCardCVV(data)" onkeypress="return isNumber(event);"></td>
+                                    <td data-title="Delete"><a href="" ng-click="DeleteConfirm(data)" class="font_red"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-xs-12  mar_top10" ng-show="NewCard">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                    <div class="payment_detaiHead">
+                        <label>New Debit/Credit Card</label>
+                    </div>
+
+                    <div class="accinfo_containerbg">
+                        <div class="row">
+                            <div class="col-xs-12 mar_btm20">
+                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 pad_lt0">
+                                    <input type="radio" name="radiog_dark" id="radioVisa" checked="checked" ng-model="$parent.CardType.Name" value="V" class="css-checkbox">
+                                    <label for="radioVisa" class="css-label"><img src="images/visa_icon.jpg" width="50px;"></label>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 pad_lt0">
+                                    <input type="radio" name="radiog_dark" id="radioMaster" value="M" ng-model="$parent.CardType.Name" class="css-checkbox">
+                                    <label for="radioMaster" class="css-label"><img src="images/master_card.jpg" width="50px;"></label>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">Name on Card<span class="font_red font12 line_ht0">*</span></label>
+                                <input type="text" class="form-control" id="CardName" ng-model="$parent.CardName">
+                                <span style="color:red">{{errorCardName}}</span>
+                            </div>
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">Card Number<span class="font_red font12 line_ht0">*</span></label>
+                                <input type="text" class="form-control card_typeimg" id="CardNumber" maxlength="16" ng-model="$parent.CardNumber" onkeypress="return isNumber(event);">
+                                <span style=" color:red">{{errorCardNumber}}</span>
+                            </div>
+
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">Expiry Date<span class="font_red font12 line_ht0">*</span></label>
+                                <div class="clearfix"></div>
+                                <div class="form-group col-xs-6 pad_lt0 pad_rt0">
+                                    <select class="form-control" id="ExpiryDate" ng-model="$parent.ExpiryMonth">
+                                        <option value="">MM</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                    <span style=" color:red">{{errorExpiryMonth}}</span>
+                                </div>
+                                <div class="form-group col-xs-6 pad_rt0">
+                                    <select class="form-control" id="ExpiryYear" ng-model="$parent.ExpiryYear">
+                                        <option value="">YY</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2028">2028</option>
+                                        <option value="2029">2029</option>
+                                        <option value="2030">2030</option>
+                                        <option value="2031">2031</option>
+                                        <option value="2032">2032</option>
+                                        <option value="2033">2033</option>
+                                        <option value="2034">2034</option>
+                                        <option value="2035">2035</option>
+                                        <option value="2036">2036</option>
+                                        <option value="2037">2037</option>
+                                        <option value="2038">2038</option>
+                                        <option value="2039">2039</option>
+                                        <option value="2040">2040</option>
+                                    </select>
+                                    <span style=" color:red">{{errorExpiryYear}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">CVV<span class="font_red font12 line_ht0">*</span></label>
+                                <div class="clearfix"></div>
+                                <input type="text" class="form-control width_70 pull-left mar_rt10" id="CvNumber" maxlength="3" ng-model="$parent.CvNumber" onkeypress="return isNumber(event);">
+                                <img src="images/cvv.png" class="">
+                                <span style=" color:red">{{errorCVVNumber}}</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="col-xs-12 mobile_martp10 mar_top10">
+            <div class="payment_detaiHead">
+                <label>Billing Address Detail</label>
+            </div>
+
+            <div id="Save_billingaddress" class="accinfo_containerbg" ng-show="SavedAddress">
+                <div class="row mar_top0">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7 mobile_pdlt0 mobile_pdrt0">
+                        <h3 class="ng-binding mar_top0">{{FirstName}} {{LastName}}</h3>
+                        <p title="Address" ><i class="fa fa-map-marker mar_rt10 font_color1" aria-hidden="true"></i>{{Address}} {{City}} {{State}} {{Zip}}</p>
+                        <p title="Email" ><i class="fa fa-envelope-o mar_rt10 font_color1" aria-hidden="true"></i>{{CardEmail}}</p>
+                        <p title="Primary Phone Number" ><i class="fa fa-phone mar_rt10 font_color1" aria-hidden="true"></i>{{PrimaryNumber | tel}}</p>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 mobile_pdlt0 mobile_pdrt0  text-right">
+                        <button class="btn btn-default width100"  ng-click="EditAddress()" type="button">Edit</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="Edit_billingaddress" class="accinfo_containerbg" ng-show="NewAddress">
+                <div class="row mar_top0">
+                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 pad_rt0">
+                        <div class=" custom_check form-group col-xs-12 pad_lt20">
+                            <input type="checkbox" id="chkuseraddress" ng-change="GetAddress()" ng-model="$parent.chkuserProfileaddress"><label for="chkuseraddress" class="font_color1"> User Profile Address</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 pad_rt0">
+                        <div class=" custom_check form-group col-xs-12 pad_rt0 pad_lt20">
+                            <input type="checkbox" ng-change="GetAddress()" ng-model="$parent.chkLastBillAddress" id="chkLastbilling"><label for="chkLastbilling" class="font_color1"> Last Billing Address</label>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">First Name<span class="font_red font12 line_ht0">*</span></label>
+                                <input type="text" class="form-control" maxlength="50" id="FirstName" ng-model="$parent.FirstName">
+                                <span style=" color:red">{{errorFirstName}}</span>
+
+                            </div>
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">Last Name<span class="font_red font12 line_ht0">*</span></label>
+                                <input type="text" class="form-control" maxlength="50" id="LastName" ng-model="$parent.LastName">
+                                <span style=" color:red">{{errorLastName}}</span>
+                            </div>
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">Primary Number<span class="font_red font12 line_ht0">*</span></label>
+                                <input type="text" class="form-control" id="PrimaryNumber" maxlength="12" ng-model="$parent.PrimaryNumber" phone-input>
+                                <span style=" color:red">{{errorPrimaryNumber}}</span>
+                            </div>
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">Email<span class="font_red font12 line_ht0">*</span></label>
+                                <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right"
+                                   title="" data-original-title="This email will be used for payment confirmation"
+                                   class="red-tooltip">
+                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                </a>
+                                <input type="text" class="form-control" id="Email" maxlength="100" ng-model="$parent.CardEmail">
+                                <span style="color:red">{{ errorCardEmail}}</span>
+
+                                <script>
+
+                                    $(document).ready(function () {
+                                        $('[data-toggle="tooltip"]').tooltip();
+                                    });
+
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">ADDRESS<span class="font_red font12 line_ht0">*</span></label>
+                                <input type="text" class="form-control" id="Address" ng-model="$parent.Address">
+                                <span style=" color:red">{{errorAddress}}</span>
+                            </div>
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">City<span class="font_red font12 line_ht0">*</span></label>
+                                <input type="text" class="form-control" maxlength="50" id="City" ng-model="$parent.City">
+                                <span style=" color:red">{{errorCity}}</span>
+                            </div>
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">State<span class="font_red font12 line_ht0">*</span></label>
+
+
+                                <ui-select ng-model="$parent.$parent.selectedState" theme="bootstrap">
+                                    <ui-select-match placeholder="Select or search state">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="item in $parent.StateList | filter: $select.search">
+                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span style="color:red; ">{{errorselectedState}}</span>
+                            </div>
+                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                <label class="font_we500">Zip<span class="font_red font12 line_ht0">*</span></label>
+                                <input type="text" class="form-control" id="Zip" ng-model="$parent.Zip">
+                                <span style=" color:red">{{errorZip}}</span>
+                            </div>
+
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+</form>
+

@@ -1,0 +1,114 @@
+﻿<script type="text/javascript">
+
+    if (typeof app === 'undefined') {
+
+        document.location.href = "../../Index.html";
+    }
+</script>
+
+<div ng-controller="userProfileController">
+
+    <section class="content">
+        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 acc_serv">
+                    <div class="login_bg">
+                        <div class="accinfo_containerbg">
+                            <form name="form" class="">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                    <h3 class="font_we300 font_color2 mar_btm20 mar_topbig0 mar_btmbig10 text-uppercase">Update Your Security Questions</h3>
+                                    <p class=" mar_btm20 line_ht25 mar_btmbig10">
+                                        This password recovery question are stored with your answer in your profile. In the future, if you forget your password.
+                                        you can obtain a temporary password by providing your user name and the correct answer to your password recovery question.
+                                    </p>
+
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  mobile_pdlt0 mobile_pdrt0 mar_btm30 mar_btmbig10">
+                                    <label class="mar_rt10">Instructions : &nbsp; Answer must meet the following requirements:</label>
+
+                                    <p><i class="fa fa-caret-right" aria-hidden="true"></i> Your answer must contain atleast 2 characters and no more than 50</p>
+                                    <p>
+                                        <i class="fa fa-caret-right" aria-hidden="true"></i> Your answer can contain only 2 consecutive repetitive characters. For example "aa", "ll" or "bb".
+                                        The series "ccc" or "2222" are not allowed.
+                                    </p>
+                                    <span style="color:red;">{{ErrorMessage}}</span>
+                                    <span style="color:green;">{{message}}</span>
+                                </div>
+                                <div ng-show="loading" class="loadingOverlay"></div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0">
+                                    <label>SELECT YOUR SECURITY QUESTION 1<span class="font_red font12 line_ht0">*</span></label>
+
+
+                                    <select class="form-control required" name="singleSelectFirst" id="singleSelectFirst" ng-model="SecurityID" required>
+                                        <option value="">---Please select---</option> <!-- not selected / blank option -->
+                                        <option ng-repeat="x in GetSecurityQuestionsData" value={{x.value}}>{{x.SecurityQuestions}}</option>
+                                    </select>
+                                    <span style="color:red" ng-show="form.singleSelectFirst.$dirty && form.singleSelectFirst.$error.required">Please SELECT YOUR SECURITY QUESTION 1</span>
+
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                    <label>ANSWER</label>
+                                    <input ng-model="Answer" ng-click="validateErrorRemove()" name="securityAnswer" type="text" class="form-control" id="securityAnswer" required>
+                                    <span style="color:red" ng-show="form.securityAnswer.$dirty && form.securityAnswer.$error.required">Please Enter Security Answer</span>
+                                    <span style="color:red">{{validateError}}</span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0">
+                                    <label>SELECT YOUR SECURITY QUESTION 2</label>
+
+                                    <select ng-click="ErrorRemoveQuestionFirst()" class="form-control required" name="singleSelectSecond" id="singleSelectsecond" ng-model="SecurityID2" required>
+                                        <option value="">---Please select---</option> <!-- not selected / blank option -->
+                                        <option ng-repeat="x in GetSecurityQuestionsData" value={{x.value}}>{{x.SecurityQuestions}}</option>
+                                    </select>
+                                    <span style="color:red" ng-show="form.singleSelectSecond.$dirty && form.singleSelectSecond.$error.required">Please SELECT YOUR SECURITY QUESTION 2</span>
+                                    <span style="color:red">{{QuestionError2}}</span>
+                                    <!--<label style="color:red;">{{QuestionError2}}</label>-->
+                                    <!--<span style="color:red;">{{QuestionError2}}</span>-->
+
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                    <label>ANSWER</label>
+                                    <input ng-click="validateErrorRemove2()" type="text" name="securityAnswer2" ng-model="Answer2" class="form-control" id="" required>
+                                    <span style="color:red" ng-show="form.securityAnswer2.$dirty && form.securityAnswer2.$error.required">Please Enter Security Answer</span>
+                                    <span style="color:red">{{validateError2}}</span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0">
+
+                                    <label>SELECT YOUR SECURITY QUESTION 3</label>
+
+                                    <select ng-click="ErrorRemoveQuestionSecond()" class="form-control required" name="singleSelectThird" id="singleSelectThird" ng-model="SecurityID3" required>
+                                        <option value="">Please Select</option> <!-- not selected / blank option -->
+                                        <option ng-repeat="x in GetSecurityQuestionsData" value={{x.value}}>{{x.SecurityQuestions}}</option>
+                                    </select>
+                                    <span style="color:red" ng-show="form.singleSelectThird.$dirty && form.singleSelectThird.$error.required">Please SELECT YOUR SECURITY QUESTION 3</span>
+
+                                    <!--<span style="color:red;">{{QuestionError3}}</span>-->
+                                    <span style="color:red;">{{QuestionError3}}</span>
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                    <label>ANSWER</label>
+                                    <input type="text" ng-click="validateErrorRemove3()" name="securityAnswer3" ng-model="Answer3" class="form-control" id="" required>
+                                    <span style="color:red" ng-show="form.securityAnswer3.$dirty && form.securityAnswer3.$error.required">Please Enter Security Answer</span>
+                                    <span style="color:red">{{validateError3}}</span>
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </form>
+                        </div>
+                        </div>
+                    <div class="clearfix"></div>
+                    <div class="text-right mar_top20 ">
+                        <button ng-click="cancel();AccountOperationFirst()" class="btn btn-default btn_miniwidth100" type="button">Cancel</button>
+                        <button ng-disabled="form.$invalid || btnDisble" ng-click="updateQuestions()" class="btn btn-default btn_miniwidth100 btn_green" type="button">
+                            
+                            Save
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

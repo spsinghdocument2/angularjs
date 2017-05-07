@@ -1,0 +1,93 @@
+﻿<script>
+    if (typeof app === 'undefined') {
+
+        document.location.href = "../../Index.html";
+    }
+</script>
+<style>
+    .form-group {
+        margin-bottom: 8px;
+    }
+</style>
+<div ng-controller="manageSavedPaymentDetailsController">
+    <div ng-show="loading" class="loadingOverlay"></div>
+    <section class="content">
+        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0 ">
+            <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                    <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0 mar_btm30"><span class="padrtlt_10 bdr_btmgrn">Manage My ACH</span></h2>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="login_bg">
+                <div class="row">
+                    <div ng-show="savedACHBlank" style="color:red;">No Data Available!</div>
+                    <div class="col-xs-12 mar_btm15 mar_top10" ng-show="savedACH">
+                        <div class="payment_detaiHead">
+                            <label>Saved ACH</label>
+                        </div>
+                        <div class="accinfo_containerbg">
+                            <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                <div id="no-more-tables">
+                                    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                        <div id="no-more-tables">
+                                            <table class="col-md-12 table tabel_debit table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                                <thead class="cf">
+                                                    <tr>
+                                                        <th>Account Type</th>
+                                                        <th>Account Holder Name</th>
+                                                        <th>Bank Account Name</th>
+                                                        <th>{{AchGrid}} Account Number</th>
+                                                        <th>Bank Routing Number</th>
+                                                        <th>Delete</th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="data in savedAch">
+                                                        <td data-title="Account Type">
+                                                            <input type="radio" ng-click="radioSavedAch(data)" ng-checked="data.Selected" name="radiog_dark" id=radioSavedAch{{data.counter}} class="css-checkbox tabel_radio">
+                                                            <label for=radioSavedAch{{data.counter}} class="css-label">{{data.BankAcctType}}</label>
+                                                        </td>
+                                                        <td data-title="Account Holder Name">{{data.BankHolder}}</td>
+                                                        <td data-title="Bank Account Name">{{data.BankAccountName}}</td>
+                                                        <td data-title="Account Number">{{data.BankAcctNoView}}</td>
+                                                        <td data-title="Bank Routing Number">{{data.BankABA}}</td>
+                                                        <td data-title="Delete"><span><a href="" ng-click="ACHDeleteConfirm(data);" class="font_red"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="modal fade" id="ACHConfirmModal" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button><h4 class="modal-title" style="color:red">Delete confirmation </h4>
+                </div>
+                <div class="modal-body"><div class="form-group"><p>Are you sure to delete this ACH?</p></div></div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="DeleteACH()" class="btn btn-default btn_miniwidth100">Yes</button>
+                    <button type="button" class="btn btn-default btn_miniwidth100" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div><
+    </div>
+</div>
+

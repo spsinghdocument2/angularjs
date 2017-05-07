@@ -1,0 +1,222 @@
+﻿
+<script type="text/javascript">
+
+    if (typeof app === 'undefined') {
+
+        document.location.href = "../../Index.html";
+    }
+</script>
+
+<div ng-controller="userProfileController">
+    <section class="content">    
+        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 acc_serv">
+                    <div class="login_bg">
+                        <form class="" name="from">
+                            <div class="accinfo_containerbg pad_top0" ng-show="MainPanel">
+                    
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7 mobile_pdlt0 mobile_pdrt0">
+                                    <h3>{{FullName}}</h3>
+                                    <p title="Email"><i class="fa fa-envelope-o mar_rt10 font_color1" aria-hidden="true"></i>{{Email}}</p>
+                                    <p title="Primary Number" ng-show="PrimaryNumberVisible"><i class="fa fa-phone mar_rt10 font_color1" aria-hidden="true"></i>{{CellNumber | tel}}</p>
+                                    <p title="Primary Text Number" ng-show="TextNumberVisible"><i class="fa fa-commenting mar_rt10 font_color1" aria-hidden="true"></i>{{TextNumber | tel}}</p>
+                                    <p title="Secondary Text Number" ng-show="TextNumber2Visible"><i class="fa fa-commenting mar_rt10 font_color1" aria-hidden="true"></i>{{TextNumber2 | tel}}</p>
+                                    <p title="Address" ng-show="AddressVisible"><i class="fa fa-map-marker mar_rt10 font_color1" aria-hidden="true"></i>{{Address1}} {{City}} {{State}} {{ZipCode}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 mobile_pdlt0 mobile_pdrt0  text-right mar_top20">
+                                    <button class="btn btn-default width100" ng-click="EditDetails()" type="button">Edit</button>
+                                </div>
+
+                                </div>
+
+
+                            <div class="accinfo_containerbg" ng-show="EditPanel">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0">
+                                    <h3 class="font_we300 font_color2 mar_btm20 mar_topbig0 mar_btmbig10">PERSONAL DETAIL</h3>
+                                    <span style="color:red">{{ErrorMessage }}</span>
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" id="" ng-model="FullName" disabled>
+                                </div>                                
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                    <label class=" text-uppercase">UPLOAD PROFILE PICTURE</label>
+                                    <div class="input-group image-preview">
+                                        <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                                        <!-- don't give a name === doesn't send on POST/GET -->
+                                        <span class="input-group-btn">
+                                            <!-- image-preview-clear button -->
+                                            <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
+                                            <!-- image-preview-input -->
+                                            <div class="btn btn-default image-preview-input">
+                                                <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
+                                                <input type="file" accept="image/png, image/jpeg, image/jpg" name="input-file-preview" fileread="ImgFile" />
+                                                <!-- rename it -->
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <span class="image-error" style="display:none;color:red;">Error Message</span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>Primary Number<span class="font_red font12 line_ht0">*</span></label>
+                                    <input type="text" name="CellNumber" class="form-control" id="" ng-model="CellNumber" phone-input required maxlength="12" ng-pattern="/^[0-9+-]{10,12}$/">
+                                    <span style="color:red" ng-show="from.CellNumber.$dirty && from.CellNumber.$error.required">Please Enter Valid Primary Phone Number</span>
+                                    <span style="color:Red" ng-show="from.CellNumber.$error.pattern">Invalid primary phone number</span>
+                                </div>
+                               
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>Email<span class="font_red font12 line_ht0">*</span></label>
+                                    <input type="email" class="form-control" name="email" id="" ng-model="Email" required>
+                                    <span style="color:red" ng-show="from.email.$dirty && from.email.$error.email">Email Not Valid!</span>
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>Primary TEXT Number<span class="font12 sub_text">(If it's different than Primary Number)</span> </label>
+                                    <input type="text" name="TextNumber" class="form-control" id="" ng-model="TextNumber" phone-input maxlength="12" ng-pattern="/^[0-9+-]{10,12}$/" ng-disabled="disableTextNumber">
+                                    <span style="color:Red" ng-show="from.TextNumber.$dirty && from.TextNumber.$error.pattern">Invalid primary text number</span>
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>Secondary TEXT Number<span class="font12 sub_text"></span> </label>
+                                    <input type="text" name="TextNumber2" class="form-control" id="" ng-model="TextNumber2" phone-input maxlength="12" ng-pattern="/^[0-9+-]{10,12}$/" ng-disabled="disableTextNumber2">
+                                    <span style="color:Red" ng-show="from.TextNumber2.$error.pattern">Invalid secondary text number</span>
+                                </div>     
+                                
+                                <div class="clearfix"></div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0">
+                                    <label>ADDRESS 1<span class="font_red font12 line_ht0">*</span></label>
+                                    <input type="text" class="form-control" ng-model="Address1" required />
+                                </div>                     
+                                
+
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>ADDRESS 2</label>
+                                    <input type="text" class="form-control" id="" ng-model="Address2" />
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>CITY<span class="font_red font12 line_ht0">*</span></label>
+                                    <input type="text" class="form-control" id="" name="City" ng-model="City" maxlength="50" required />
+                                </div>
+                                
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>STATE<span class="font_red font12 line_ht0">*</span></label>
+                                    <ui-select ng-model="$parent.selectedState" theme="bootstrap" ng-change="removeStateError()">
+                                        <ui-select-match placeholder="Select or search a state in the list...">{{$select.selected.name}}</ui-select-match>
+                                        <ui-select-choices repeat="item in $parent.StateList | filter: $select.search">
+                                            <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                        </ui-select-choices>
+                                    </ui-select> 
+                                    <span style="color:red">{{ErrorState}}</span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>ZIP CODE<span class="font_red font12 line_ht0">*</span></label>
+                                    <input type="text" class="form-control" id="" name="ZipCode" ng-model="ZipCode"  ng-pattern="/^(\d{5}-\d{4}|\d{5})$/" required>
+                                    <span style="color:Red" ng-show="from.ZipCode.$error.pattern">Invalid Zip Code</span>                                                                        
+
+                                </div>
+                             
+                                <div class="form-group mar_top20 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                    <span style="color:green; font-size:12px; padding-left:10px;">{{confirmation}}</span><span style="color:red; font-size:12px;">{{error}}</span>
+                                    <button class="btn btn-default width100 pull-left" type="button" ng-click="CancelDetails()">Cancel</button>
+                                    <button class="btn btn-default width100 btn_green pull-right" type="button" ng-disabled="from.$invalid" ng-click="submit()">Save</button>
+                                   
+                                </div>
+                            </div>
+
+                                <div ng-show="loading" class="loadingOverlay"></div>
+                            <div class="accinfo_containerbg mar_top10" >
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0 ">
+                                    <h3 class="font_we300 font_color2 mar_btm20 mar_topbig0 mar_btmbig10">ACCOUNT DETAIL</h3>
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0">
+                                    <label>ACCOUNT NUMBER</label>
+                                    <input type="text" class="form-control" id="" disabled ng-model="AccountNumber">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>YEAR</label>
+                                    <input type="text" class="form-control" id="" disabled ng-model="Year">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>MAKE</label>
+                                    <input type="text" class="form-control" id="" disabled ng-model="Make">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>MODEL</label>
+                                    <input type="text" class="form-control" id="" disabled ng-model="Model">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>LAST PAYMENT AMOUNT</label>
+                                    <input type="text" class="form-control" id="" disabled ng-model="LastPaymentAmount">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>AMOUNT PAST DUE</label>
+                                    <input type="text" class="form-control" id="" disabled ng-model="PastDueAmount">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>DAYS PAST DUE</label>
+                                    <input type="text" class="form-control" id="" disabled ng-model="DaysPastDue">
+                                </div>
+                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 text-uppercase">
+                                    <label>PAYMENT FREQUENCY</label>
+                                    <input type="text" class="form-control" id="" disabled ng-model="PaymentFrequency">
+                                </div>
+                            </div>
+                                <div class="clearfix"></div>
+
+                                <div class="panel-group mar_top10" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" ng-click="toggleAccordian()">
+                                            <h4 class="panel-title"> <a class="accordion-toggle collapsed" id="accordianAnchor" href="javascript:void;">SECURITY QUESTION</a> </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse">
+                                            <div class="panel-body">
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0" ng-show="Qstn1">
+                                                    <label>SECURITY QUESTION 1</label>
+                                                    <p>{{SecurityIdFirst}}</p>
+
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0" ng-show="Qstn1">
+                                                    <label>ANSWER</label>
+                                                    <p>{{Answer}}</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0" ng-show="Qstn2">
+                                                    <label>SECURITY QUESTION 2</label>
+                                                    <p>{{SecurityIdSecond}}</p>
+
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0" ng-show="Qstn2">
+                                                    <label>ANSWER</label>
+                                                    <p>{{Answer2}}</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0" ng-show="Qstn3">
+                                                    <label>SECURITY QUESTION 3</label>
+                                                    <p>{{SecurityIdThird}}</p>
+
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0" ng-show="Qstn3">
+                                                    <label>ANSWER</label>
+                                                    <p>{{Answer3}}</p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+</form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

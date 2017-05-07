@@ -1,0 +1,318 @@
+﻿<script type="text/javascript">
+    if (typeof app === 'undefined') {
+        document.location.href = "../../Index.html";
+    }
+</script>
+
+<div ng-controller="textNotificationController">
+    <style type="text/css">
+        .cursor-style .toggle-group .btn {
+            cursor: no-drop;
+        }
+        .red-tooltip .cursor-style .toggle-group .btn {
+            cursor: pointer;
+        }
+        div.popuptoggle div.ios {
+            width: 40% !important;
+        }
+
+        .btn-height34 {
+            height: 34px;
+        }
+
+        a.cursor {
+            cursor: pointer;
+        }
+    </style>
+
+    <div ng-show="loading" class="loadingOverlay"></div>
+    <section class="content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2 class="font_color2 mar_top0 text-center pad_top10 pad_topbig0 text-uppercase mar_btm30"><span class="padrtlt_10 bdr_btmgrn">Notifications By Text</span></h2>
+        </div>
+        <div class="col-lg-12 mobile_pdlt0 mobile_pdrt0">
+            <div class="notification_bg  col-lg-12 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0" ng-show="showErrorMessage">
+                    <label style="color:red;">{{errorMessage}}</label>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0" ng-show="showSuccessMessage">
+                    <label style="color:green;">{{successMessage}}</label>
+                </div>
+                <div class="clearfix"></div>
+                <div id="no-more-tables">
+                    <table class="table table-bordered table-striped table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                        <thead class="cf">
+                            <tr>
+                                <th>Text Number</th>
+                                <th>
+                                    Payment Reminder<a href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
+                                                       title="" data-original-title="You will receive Payment Reminder text messages."
+                                                       class="red-tooltip">
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                    </a>
+                                </th>
+                                <th>
+                                    Payment Confirmation<a href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
+   title="" data-original-title="You will receive Payment Confirmation text messages."
+   class="red-tooltip">
+    <i class="fa fa-question-circle" aria-hidden="true"></i>
+</a>
+                                </th>
+                                <th>
+                                    Chat By Text<a href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
+   title="" data-original-title="Please text Mid-Atlantic Finance at (219) 213-3712 for all text communications regarding your account."
+   class="red-tooltip">
+    <i class="fa fa-question-circle" aria-hidden="true"></i>
+</a>
+                                </th>
+                                <th>
+                                    Pay By Text<a href="javascript:void(0)" data-toggle="tooltip" data-placement="top"
+   title="" data-original-title="You will receive text messages regarding Pay By Text. And, you can enable only one text number for Pay By Text."
+   class="red-tooltip">
+    <i class="fa fa-question-circle" aria-hidden="true"></i>
+</a>
+                                </th>
+                                <th class="">Manage/Opt-Out</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in optedInTextNumber ">
+                                <td data-title="Text Number" class="text-center">{{data.textNumber | tel}}</td>
+                                <td data-title="Payment Reminder" class="text-center cursor-style">
+                                    <input id=c1{{data.counter}} type="checkbox" data-toggle="toggle" data-style="ios cursor-style" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="data.paymentReminder" ng-disabled="true">
+                       
+                                </td>
+                                <td data-title="Payment Confirmation" class="text-center cursor-style">
+                                    <input id=c2{{data.counter}} type="checkbox" data-toggle="toggle" data-style="ios cursor-style" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="data.paymentConfirmation" ng-disabled="true">
+                                </td>
+                                <td data-title="Chat By Text" class="text-center cursor-style">
+                                    <input id=c3{{data.counter}} type="checkbox" data-toggle="toggle" data-style="ios" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="data.communicationByText" ng-disabled="true">
+                                </td>
+                                <td data-title="Pay By Text" class="text-center cursor-style">
+                                    <a href="javascript:void();" ng-click="redirectToPayByText();PayByTextOperation()" data-toggle="tooltip" data-placement="top"
+                                       title="" data-original-title="Click here to modify or setup Pay By Text else choose edit to disable Pay By Text."
+                                       class="red-tooltip">
+                                        <input id=c4{{data.counter}} type="checkbox" data-toggle="toggle" data-style="ios" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="data.payByText" ng-disabled="true">
+                                    </a>
+                                    <script>
+                                            $('[data-toggle="tooltip"]').tooltip();
+                                    </script>
+                                </td>
+                                <td data-title="Manage/Opt-Out" class="text-center">
+                                    <span class="mar_rt5"><a href="javascript:void(0)" ng-click="viewAdditionalNotifications(data)" data-toggle="modal" data-target="#additionalNotificationsModal"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></span>
+                                    <span class="opt_img"><a href="javascript:void(0)" class="font_red" ng-click="showOptOutConfirmation(data.textNumber)" data-toggle="modal" data-target="#confirmModal"><img src="../../images/opt_out.png" /></a></span>
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <div class="col-md-12 text-right pad_top10"> <a href="javascript:void(0)" ng-show="showAddTextNumber" ng-click="startOptIn()"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>&nbsp;Add Text Number</a></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-10 col-sm-12 col-md-offset-1 col-xs-12 mobile_pdlt0 mobile_pdrt0  mar_top20 mar_btm10">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center">
+                        <a class="uderline cursor" data-toggle="modal" data-target="#optInModal">How to Opt-IN</a>
+
+                        <span class="pull-right">|</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center">
+                        <a class="uderline cursor" data-toggle="modal" data-target="#optOutModal">How to Opt-OUT</a><span class="pull-right">|</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center"><a class="uderline cursor" data-toggle="modal" data-target="#termsModal">Terms and Conditions</a><span class="pull-right">|</span></div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center">
+                        <a class="uderline cursor" data-toggle="modal" data-target="#privacyModal">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Opt In Modal -->
+    <div class="modal fade" id="optInModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">HOW TO OPT-IN</h4>
+                </div>
+                <div class="modal-body">
+                    <p>When you call or visit the website you may be asked if you would like to receive text messages concerning your account or targeted promotions. If you agree verbally or in writing to receive text messages, you will then be sent a text message requesting you confirm your desire to opt-in to this text alert system by responding with the Personal Identification Number provided. You will then receive a message from Mid-Atlantic Finance Company confirming you have opted in and providing you with contact and opt-out information.</p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Opt Out Modal -->
+    <div class="modal fade" id="optOutModal" role="dialog">
+        <div class="modal-dialog ">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">HOW TO OPT-OUT</h4>
+                </div>
+                <div class="modal-body">
+                    <p>To opt-out from our text system you can text "STOP" to (219) 213-3712 from your mobile phone and you will automatically be unsubscribed from our service. You will receive a confirmation that you successfully unsubscribed but will not receive any additional messages until such time you opt-in again from speaking to a customer service rep or opt-in accessing your account via the Mid-Atlantic Finance website.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Terms & Conditions Modal -->
+    <div class="modal fade" id="termsModal" role="dialog">
+        <div class="modal-dialog ">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">TERMS AND CONDITIONS</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Subscribers to Mid-Atlantic Finance Company’s mobile messaging program have opted-in to receive text messages from Mid-Atlantic Finance concerning account servicing and other related promotions.</p><p>
+                        Subscribers expressed an interest in receiving text messages when they called the customer service department or visited the website. Subscribers will only receive text messages from the customer service team to which they opted-in and the messages are only concerning the messages of interest.
+                    </p><p>
+                        All messages sent to subscribers are standard rate text messages. Message fees may apply, based on the type of text messaging program the subscriber has with his or her carrier. There are no additional fees assessed by Mid-Atlantic Finance Company or the providers of the text messaging service.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Privacy Modal -->
+    <div class="modal fade" id="privacyModal" role="dialog">
+        <div class="modal-dialog ">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">PRIVACY POLICY</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Mid-Atlantic Finance Company respects your privacy. We will not share or use your mobile number for any other purpose. We will only use information you provide to transmit your text message. Nonetheless, we reserve the right at all times to disclose any information as necessary to satisfy any law, regulation or governmental request, to avoid liability, or to protect our rights or property. When you complete forms online or otherwise provide us information in connection with the Service, you agree to provide accurate, complete, and true information. You agree not to use a false or misleading name or a name that you are not authorized to use. If we, in our sole discretion, believe that any such information is untrue, inaccurate, or incomplete, we may refuse you access to the Service and pursue any appropriate legal remedies.</p>
+                    <p>For more information on our text service, you can reach us at (800) 793-9661 x 600.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--Confirm Modal-->
+    <div class="modal fade" id="confirmModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Opt-Out Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>By clicking Yes the text number {{optOutNumber | tel}} will be Opt-Out from all Notifications By Text. <b>Are you sure?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn_green" ng-click="unSubscribe()" data-dismiss="modal">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Additional Notifications Modal-->
+    <div class="modal fade" id="additionalNotificationsModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Additional Notifications</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-6 mobile_pdlt0">
+                        <label class="pull-left mar_top15">Text Number</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-6 col-xs-6 pad_lt0 mobile_pdrt0">
+                        <input type="text" class="form-control pull-left mar_rt20 mar_top10" id="txtNumber" maxlength="12" onkeypress="return isNumber(event);" phone-input ng-model="TextNumber" ng-disabled="true">
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_top10 mobile_pdlt0 mobile_pdrt0">
+                        <div class="clearfix"></div>
+                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-7 pad_rt0 pad_lt0 mar_top8">
+                            <label>Payment Reminder</label><a href="javascript:void(0)" data-toggle="tooltip" data-placement="bottom"
+                                                              title="" data-original-title="You will receive Payment Reminder text messages."
+                                                              class="red-tooltip">
+                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-6 col-xs-5 pad_rt0 pad_lt0 mar_top8 popuptoggle">
+                            <input id="c13" type="checkbox" data-toggle="toggle" data-style="ios" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="isPaymentReminder">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-7 pad_rt0 pad_lt0 mar_top8">
+                            <label>Payment Confirmation</label><a href="javascript:void(0)" data-toggle="tooltip" data-placement="bottom"
+                                                                  title="" data-original-title="You will receive Payment Confirmation text messages."
+                                                                  class="red-tooltip">
+                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-6 col-xs-5 pad_rt0 pad_lt0 mar_top8 popuptoggle">
+                            <input id="c23" type="checkbox" data-toggle="toggle" data-style="ios" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="isPaymentConfirmation">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-7 pad_rt0 pad_lt0 mar_top8">
+                            <label>Chat By Text</label><a href="javascript:void(0)" data-toggle="tooltip" data-placement="bottom"
+                                                                   title="" data-original-title="Please text Mid-Atlantic Finance at (219) 213-3712 for all text communications regarding your account."
+                                                                   class="red-tooltip">
+                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-6 col-xs-5 pad_rt0 pad_lt0 mar_top8 popuptoggle">
+                            <input id="c33" type="checkbox" data-toggle="toggle" data-style="ios" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="isCommunicationByText">
+                        </div>
+                        <div ng-if="isPayByText" class="col-lg-5 col-md-5 col-sm-6 col-xs-7 pad_rt0 pad_lt0 mar_top8 mar_btm10">
+                            <label>Pay By Text</label><a href="javascript:void(0)" data-toggle="tooltip" data-placement="bottom"
+   title="" data-original-title="You will receive text messages regarding Pay By Text. And, you can enable one text number for Pay By Text."
+   class="red-tooltip">
+    <i class="fa fa-question-circle" aria-hidden="true"></i>
+</a>
+                        </div>
+                        <div ng-if="isPayByText" class="col-lg-7 col-md-7 col-sm-6 col-xs-5 pad_rt0 pad_lt0 mar_top8 mar_btm10 popuptoggle">
+                            <input id="c43" type="checkbox" data-toggle="toggle" data-style="ios" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="$parent.isPayByText">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn_green" ng-click="manageAdditionalNotifications()" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    function isNumber(e) { // input only numeric
+        e = e || window.event;
+        var charCode = e.which ? e.which : e.keyCode;
+        if (charCode == 8 || charCode == 46) return true;
+        return /\d/.test(String.fromCharCode(charCode));
+    }
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+

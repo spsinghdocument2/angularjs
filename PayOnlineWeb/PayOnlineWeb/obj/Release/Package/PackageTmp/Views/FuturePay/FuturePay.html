@@ -1,0 +1,235 @@
+﻿<script>
+    // date picker
+    $(function () {
+        $(".datetimepicker").datetimepicker({
+            format: 'm/d/Y',
+
+            timepicker: false,
+            yearEnd: 2115,
+            closeOnDateSelect: true,
+           // minDate: '-1969/12/31',   //tomorrow is minimum date calendar      //'0', /* To disable the date before current date */
+            //onSelectDate: function (dateText, inputField) { showDate(dateText); },
+            onShow: function (ct) {
+                //alert($('#dueDate').text());
+                var dueDate = new Date($('#dueDate').text());
+                var nextDueDate = new Date($('#nextDueDate').text());
+                this.setOptions({
+                    minDate: dueDate.getFullYear() + '/' + (dueDate.getMonth() + 1) + '/' + (dueDate.getDate() + 1),
+                    maxDate: nextDueDate.getFullYear() + '/' + (nextDueDate.getMonth() + 1) + '/' + nextDueDate.getDate()
+                })
+            },
+            scrollMonth: false,
+            scrollTime: false,
+            scrollInput: false
+        });
+    });
+
+    if (typeof app === 'undefined') {
+
+        document.location.href = "../../Index.html";
+    }
+
+</script>
+<style>
+    .form-group {
+        margin-bottom: 8px;
+    }
+</style>
+<div ng-controller="futurePayController">   
+    <div ng-show="loading" class="loadingOverlay"></div>
+    
+    <section class="content" ng-show="FuturePayPanel">
+        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 acc_serv">
+                    <div class="login_bg">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pad_lt0 pad_rt0">
+
+                            <h4 class="font_headblue line_ht30 mar_top10 ">MAF Account Number : {{AccountNumber}}</h4>
+
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mobile_pdlt0 pad_rt0">
+                            <h4 class="font_headblue line_ht30 mar_top10 ">Total Amount Due : ${{TotalAmountDue}}</h4>
+
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mobile_pdlt0 pad_rt0">
+                            <h4 class="font_headblue line_ht30 mar_top10 "><span ng-show="FuturePayWithAgreement">Due Date : </span><span ng-show="FuturePayWithOutAgreement">Next Due Date : </span> {{NextDueDate}}</h4>
+                            <span id="dueDate" class="hide">{{DueDate}}</span>
+                            <span id="nextDueDate" class="hide">{{NextDueDate}}</span>
+                        </div>
+                        <div class="clearfix"></div>
+
+
+                        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0 ">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0  mobile_martp10">
+                                <div class="col-sm-12 col-xs-12 pad_lt0 pad_rt0">
+                                    <label class="font_24 font_color2 font_we400">Set Future Payment</label>
+                                    <div class="col-xs-12 pad_lt0 pad_lt0 mar_top10">
+                                        <label class="mar_btm10 mar_top0 font16"><span ng-show="FuturePayWithAgreement">Due Date : </span><span ng-show="FuturePayWithOutAgreement">Next Due Date : </span></label>
+                                        &nbsp; &nbsp;
+                                        {{NextDueDate}}
+                                    </div>
+                                    <div class="col-sm-12 col-xs-12 pad_lt0 pad_rt0 mar_top10">
+                                        <h4 class="mar_btm10 mar_top0 pull-left">Date</h4>
+                                        <div class="col-lg-6 col-md-7 col-sm-8 col-xs-9 pad_rt0">
+                                            <input style=" cursor: pointer;" readonly="" type="text" ng-model="FutureDate" class="input_img datetimepicker form-control">
+                                            <span style="color:red">{{dateError}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-12 pad_lt0 pad_lt0 mar_top10">
+                                        <input type="radio" name="future_Amount" id="future_paymentpay1" ng-change="FutureAmount.name='TotalAmount';SelectAmount()" ng-model="FutureAmount.name" value="TotalAmount" class="css-checkbox"><label for="future_paymentpay1" class="css-label font16">Total Amount Due: ${{TotalAmountDue}}</label>
+                                        <span style="color:red"></span>
+                                        <div class="clearfix"></div>
+                                        <input type="radio" name="future_Amount" id="future_paymentpay2" ng-change="FutureAmount.name='OtherAmount';SelectAmount()" class="css-checkbox" ng-model="FutureAmount.name" value="OtherAmount">
+                                        <label for="future_paymentpay2" class="css-label font16">
+                                            Pay Other Amount: $<input name="otherAmount" type="text" class="label_input chkamount" maxlength="6" ng-disabled="DisableOtherAmountTxt" ng-model="OtherTotalAmountDue" money min="0" max="999.99" precision="2">
+                                        </label>
+                                        <br />
+                                        <span style="color:red">{{AmountError}}</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0 mobile_martp10">
+                                <h3 class="font_color2 mar_btm20 mar_top0">One-Time Payment</h3>
+                                <p class="font_darkblue">This is a one-time payment only and it will not recur automatically for future billing.</p>
+                                <p class="font_darkblue">Any information obtained could be used for communications purposes.</p>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+
+
+                        <div class="accinfo_containerbg mar_top10">
+                            <div class="col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+
+                                <h3 class="font_we400 font_color2 mar_btm20 mar_top0">
+                                    Select Payment Type
+                                </h3>
+
+                                <div class="col-lg-3 col-md-5 col-sm-6 pad_lt0">
+                                    <input type="radio" name="radio_PaymentType" ng-disabled="ACHRadio" id="radio8" class="css-checkbox" ng-model="PaymentType.name" value="ACH" ng-click="PaymentType.name='ACH';SelectPaymentType();">
+                                    <label for="radio8" class="css-label"><img src="images/ach.png" width="50"> Pay By ACH</label>
+
+                                </div>
+                                <div class="col-lg-4 col-md-5 col-sm-6 pad_lt0">
+                                    <input type="radio" name="radio_PaymentType" id="radio9" class="css-checkbox" ng-model="PaymentType.name" value="Card" ng-click="PaymentType.name='Card';SelectPaymentType();">
+                                    <label for="radio9" class="css-label"><img src="images/visa_master.png" width="50"> Pay By Debit/ Credit Card</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div ng-show="ACHPanel" ng-include="'../../Views/FuturePay/PartialACHPay.html'"></div>
+                        <div ng-show="CardPanel" ng-include="'../../Views/FuturePay/PartialCardPay.html'"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    
+                    <div class="form-group text-right mar_top20">
+                       <span style="color:red">{{ errorCvNumber}}</span>
+                        <span style="color:red">{{error}}</span>
+                        <button class="btn btn-default btn_miniwidth100" ng-click="btnCancel()" type="button">Cancel</button>
+                        <button class="btn btn-default btn_miniwidth100 btn_green" ng-click="FuturePayment()" type="button">
+                            <span class="glyphicon  glyphicon-refresh-animate"></span>
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>          
+    </section> 
+
+    <div ng-show="ACHConfirmationPanel" ng-include="'../../Views/FuturePay/PartialACHConfirmation.html'"></div>
+    <div ng-show="CardConfirmationPanel" ng-include="'../../Views/FuturePay/PartialCardConfirmation.html'"></div>
+    <div class="modal fade" id="ConfirmationModal" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title"> Confirmation </h4>
+                </div>
+                <div class="modal-body"><div class="form-group"><p><!--  {{confirmation }}-->Future Pay setup is successfull.</p></div></div>
+                <div class="modal-footer pad_top0"><button type="button" class="btn btn-default width100" data-dismiss="modal">OK</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog" style="display: none;">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+
+                    <h4 class="modal-title">Your Routing Number</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="images/check.gif" width="100%">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn_miniwidth100" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color:red">Delete confirmation </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p>Are you sure you want to delete this?</p>
+                    </div>
+                </div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="AchDelete()"  class="btn btn-default btn_miniwidth100 btn_green">
+                        Yes
+                     
+                    </button>
+                    <button type="button" class="btn btn-default btn_miniwidth100" data-dismiss="modal">No</button>
+                    <span style="color:red">{{AchDelete}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="CardConfirmModal" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button><h4 class="modal-title" style="color:red">Delete confirmation </h4>
+                </div>
+                <div class="modal-body"><div class="form-group"><p>Are you sure to delete this card?</p></div></div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="DeleteCard()" class="btn btn-default btn_miniwidth100">Yes</button>
+                    <button type="button" class="btn btn-default btn_miniwidth100" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div><
+    </div>
+</div>
+
+
+
+<script>
+
+
+
+    function BtnCardPrint() {
+        $("#CardPrint").show();
+        $("#CardPrint").print();
+    }
+
+  
+
+</script>

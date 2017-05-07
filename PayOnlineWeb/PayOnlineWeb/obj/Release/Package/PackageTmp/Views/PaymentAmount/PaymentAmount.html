@@ -1,0 +1,719 @@
+﻿
+
+<script>
+    // date picker
+    $(".datetimepicker").datetimepicker({
+        format: 'm/d/Y',
+
+        timepicker: false,
+        yearEnd: 2115,
+        closeOnDateSelect: true,
+        minDate: '-1969/12/31',   //tomorrow is minimum date calendar      //'0', /* To disable the date before current date */
+        //onSelectDate: function (dateText, inputField) { showDate(dateText); },
+        scrollMonth: false,
+        scrollTime: false,
+        scrollInput: false
+    });
+
+    if (typeof app === 'undefined') {
+
+        document.location.href = "../../Index.html";
+    }
+
+
+</script>
+<style>
+    /*.form-group {
+        margin-bottom: 8px;
+    }*/
+</style>
+
+<div ng-controller="paymentAmountController">
+    <style>
+        input.ng-invalid.ng-dirty {
+            border: 1px solid red;
+        }
+
+        .select2 > .select2-choice.ui-select-match {
+            /* Because of the inclusion of Bootstrap */
+            height: 29px;   
+        }
+
+        .selectize-control > .selectize-dropdown {
+            top: 36px;
+        }
+        /* Some additional styling to demonstrate that append-to-body helps achieve the proper z-index layering. */
+        .select-box {
+            background: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .alert-info.positioned {
+            margin-top: 1em;
+            position: relative;
+            z-index: 10000; /* The select2 dropdown has a z-index of 9999 */
+        }
+    </style>
+    <script type="text/javascript">
+
+        if (typeof app === 'undefined') {
+
+            document.location.href = "../../Index.html";
+        }
+
+    </script>
+    <div ng-show="loading" class="loadingOverlay"></div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <h4 class="modal-title">Your Routing Number</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="images/check.gif" width="100%" />
+                </div>
+                <div class="modal-footer">
+                    <button ng-click="mainholderAdd()" type="button" class="btn btn-default btn_miniwidth100" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <section class="content">
+        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 acc_serv">
+                    <div class="login_bg">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <h4 class=" line_ht30 pull-left mar_btm0" ng-class="{font_red:DaysDue, font_headblue : !DaysDue}">Due Date : {{DueDate}}</h4>
+                                <h4 class="font_headblue line_ht30 pull-right mbl_flt_lt mar_btm0">MAF Account Number : {{accountNumberGet}}</h4>
+                            </div>
+                       
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <h4 class="font_headblue line_ht30 pull-left">Total Amount Due : ${{TotalAmountDue}}</h4>
+                                <button ng-click="PaymentHistoryAchPaymentAmount()" class="btn btn-primary pull-right mbl_flt_lt" type="submit">View Previous Payments</button>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="accinfo_containerbg mar_top10">
+                            <div class="col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                <h3 class="font_color2 mar_btm20 mar_top0 mobile_marbtm10">
+                                    Select Payment Type
+                                </h3>
+                                <div class="col-lg-3 col-md-5 col-sm-6 pad_lt0">
+                                    <input type="radio" name="pay_time" id="pay_time1" class="css-checkbox" ng-change="payNow();" data-ng-model="PaymentTimeOption.name" value="PayNow" />
+                                    <label for="pay_time1" class="css-label">Pay Now</label>
+                                </div>
+                                <div class="col-lg-4 col-md-5 col-sm-6 pad_lt0">
+                                    <input ng-click="setFuturement()" type="radio" name="pay_time" id="pay_time2" class="css-checkbox" data-ng-model="PaymentTimeOption.name" value="SetFuturePayment" />
+                                    <label for="pay_time2" class="css-label">Set Future Payment</label>
+                        </div>
+                                <div class="col-lg-4 col-md-5 col-sm-6 pad_lt0">
+                                    <span style="color:red;" class="ng-binding"></span>
+                            </div>
+                            </div>
+                          </div>
+                        <div class="clearfix"></div>
+                        <div class="row mar_top10" ng-show="!payNowDisabled">
+                            <div class="col-xs-12">
+                                <!--<div class="payment_detaiHead">
+                                    <label class="mar_btm0">Pay Now</label>
+                                </div>-->
+                        <div class="accinfo_containerbg">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                        <div class="col-xs-12 pad_lt0">
+                                        <h4 class="mar_btm10 mar_top0">Select Payment Amount<span class="font_red font12 line_ht0">*</span></h4>
+                                        <label class="mar_btm10 mar_top0 font16">Due Date:</label>
+                                        &nbsp; &nbsp;
+                                        
+                                        {{DueDate}}
+
+                                    </div>
+                                        <div class="col-xs-12 pad_lt0">
+                                        <input type="radio" name="radiog_dark" id="radio4" class="css-checkbox" ng-change="SelectAmount()" data-ng-model="Amount.name" value="totalAmount" ng-disabled="payNowDisabled" /><label for="radio4" class="css-label font16">Total Amount Due: ${{TotalAmountDue}}</label>
+                                        <span style="color:red">{{totalAmountError}}</span>
+                                        <div class="clearfix"></div>
+                                        <input type="radio" ng-disabled="payNowDisabled" name="radiog_dark" id="radio5" class="css-checkbox" ng-change="SelectAmount()" data-ng-model="Amount.name" value="otherAmount" />
+                                            <label for="radio5" class=" css-label font16">
+                                            Pay Other Amount: $<input name="otAmount" ng-click="removeOtereAmountError()" maxlength="6" ng-disabled="disabled" type="text" ng-model="OtherAmount" class="label_input chkamount" money min="0" max="{{MaximumAmount}}" precision="2" />
+                                        </label>
+                                            <br/>
+                                        <span style="color:red">{{otereAmountError}}</span>
+                                        </div>
+                                    </div>                            
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0  mobile_martp10">
+                                        <h3 class="font_color2 mar_top0">One-Time Payment</h3>
+                                        <p class="font_darkblue">This is a one-time payment only and it will not recur automatically for future billing.</p>
+                                        <p class="font_darkblue">Any information obtained could be used for communications purposes.</p>
+                                    </div>
+                                    </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="row mar_top10" ng-show="!FuturementDisabled">
+                            <div class="col-xs-12">
+                                <!--<div class="payment_detaiHead">
+                                    <label class="mar_btm0">Set Future Payment</label>
+                                </div>-->
+                                <div class="accinfo_containerbg">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+
+                                        <div class="col-sm-12 col-xs-12 pad_lt0 pad_rt0">
+                                        <h4 class="mar_btm10 mar_top0">Date</h4>
+                                        <div class="col-md-7 col-sm-8 pad_lt0 pad_rt0">
+                                            <input ng-model="FuturePaymentDate" ng-click="removeerrorFuturePaymentDate()" ng-disabled="FuturementDisabled" style=" cursor: pointer;" readonly type="text" class="input_img datetimepicker form-control">
+                                            <span style="color:red">{{errorFuturePaymentDate}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 pad_lt0 pad_lt0 mar_top10">
+                                        <input ng-change="FuturementSelectAmount();" type="radio" ng-disabled="FuturementDisabled" data-ng-model="FutureAmount.name" value="totalAmount" name="payment_future" id="payment_future1" class="css-checkbox" /><label for="payment_future1" class="css-label font16">Total Amount Due: ${{TotalAmountDue}}</label>
+                                        <span style="color:red">{{FutureoteretotalAmountError}}</span>
+                                        <div class="clearfix"></div>
+                                        <input type="radio" ng-change="FuturementSelectAmount();" ng-disabled="FuturementDisabled" data-ng-model="FutureAmount.name" value="otherAmount" name="payment_future" id="payment_future2" class="css-checkbox" />
+                                        <label for="payment_future2" class="css-label font16">
+                                            Pay Other Amount: $<input name="otAmount" ng-click="removeOtereAmountError()" maxlength="6" ng-disabled="Amountdisabled" type="text" ng-model="FutureOtherAmount" class="label_input chkamount" money min="0" max="{{MaximumAmount}}" precision="2" />
+
+                                        </label>
+                                        <br />
+                                        <span style="color:red">{{FutureotereAmountError}}</span>
+                                    </div>
+
+                                </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0  mobile_martp10">
+                                        <h3 class="font_color2 mar_top0">One-Time Payment</h3>
+                                <p class="font_darkblue">This is a one-time payment only and it will not recur automatically for future billing.</p>
+                                <p class="font_darkblue">Any information obtained could be used for communications purposes.</p>
+                            </div>
+                        </div>
+
+                            </div>
+                        </div>
+                        <div class="accinfo_containerbg mar_top10">
+                            <div class="col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                <h3 class="font_color2 mar_btm20 mar_top0">
+                                    Select Payment Method
+                                </h3>
+                                <div class="col-lg-3 col-md-5 col-sm-6 pad_lt0">
+                                    <input type="radio" name="radiog_dark1" id="radio8" ng-disabled="ACHRadio" ng-click="PaymentType.name='ACH';PaymentTypeAch()" ng-model="PaymentType.name" class="css-checkbox" value="ACH" />
+                                    <label for="radio8" class="css-label"><img src="images/ach.png" width="50" /> Pay By ACH</label>
+                                </div>
+                                <div class="col-lg-4 col-md-5 col-sm-6 pad_lt0">
+                                    <input type="radio" name="radiog_dark1" id="radio9" ng-click="PaymentType.name='PayByDebitCredit';PaymentTypeDebitCredit()" ng-model="PaymentType.name" class="css-checkbox" value="PayByDebitCredit" />
+                                    <label for="radio9" class="css-label"><img src="images/visa_master.png" width="50" /> Pay By Debit/ Credit Card</label>
+                                </div>
+                                <div class="col-lg-4 col-md-5 col-sm-6 pad_lt0">
+                                  <span style="color:red;">{{CardMaxLimit}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      
+                        
+                      
+                        <div class="clearfix"></div>
+                        <form class="" name="from">
+                            <div ng-show="showHidePanel.ACH" class="accinfo_containerhide mar_top10">
+                                <div class="col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0 " ng-show="PaymentTypeACH">
+
+                                    <h4 class="font_color2 mar_btm0 mar_top0 col-lg-2 col-md-3 col-sm-4 mobile_pdlt0">
+                                        Pay With:
+                                    </h4>
+
+                                    <div class="col-lg-3 col-md-4 col-sm-6 pad_lt0">
+                                        <input type="radio" name="radio_selectACHpay" id="radio15" class="css-checkbox" ng-click="AchDetail.name='SavedAchDetail';PaymentTypeACHType()" ng-model="AchDetail.name" value="SavedAchDetail" />
+                                        <label for="radio15" class="css-label"> Saved ACH Detail</label>
+
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 pad_lt0">
+                                        <input type="radio" name="radio_selectACHpay" id="radionewach" class="css-checkbox" ng-click="AchDetail.name='NewAchDetail';PaymentTypeACHType();" ng-model="AchDetail.name" value="NewAchDetail" />
+                                        <label for="radionewach" class="css-label"> New ACH Detail</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_top10">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="payment_detaiHead" ng-show="showSavedAch">
+
+                                                    <label class="mar_btm0">Your Saved ACH Detail</label>
+
+                                                </div>
+                                                <div class="accinfo_containerbg" ng-show="showSavedAch">
+                                                    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                        <div id="no-more-tables">
+                                                            <table class="col-md-12 table tabel_debit table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                                                <thead class="cf">
+                                                                    <tr>
+                                                                        <th>Account Type</th>
+                                                                        <th>Account Holder Name</th>
+                                                                        <th>Bank Account Name</th>
+                                                                        <th>{{AchGrid}} Account Number</th>
+                                                                        <th>Bank Routing Number</th>
+                                                                        <th>Delete</th>
+                                                                    </tr>
+
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr ng-repeat="data in savedAch">
+                                                                        <td data-title="Account Type">
+                                                                            <input type="radio" ng-click="radioSavedAchClicked(data)" ng-checked="data.Selected" name="radiog_dark" id=radioSavedAch{{data.counter}} class="css-checkbox tabel_radio">
+                                                                            <label for=radioSavedAch{{data.counter}} class="css-label">{{data.BankAcctType}}</label>
+                                                                        </td>
+                                                                        <td data-title="Account Holder Name">{{data.BankHolder}}</td>
+                                                                        <td data-title="Bank Account Name">{{data.BankAccountName}}</td>
+                                                                        <td data-title="Account Number">{{data.BankAcctNoView}}</td>
+                                                                        <td data-title="Bank Routing Number">{{data.BankABA}}</td>
+                                                                        <td data-title="Delete"><span><a href="javascript:void(0)" ng-click="AchDeletePop(data)" class="font_red"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></span></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                                <div class="payment_detaiHead" ng-show="showNewAch">
+                                                    <!--<input type="radio" name="radiog_dark" id="radio11" class="css-checkbox ng-pristine ng-valid" ng-click="radioNewAchClicked()" ng-model="AchDetail.name" value="NewAchDetail">
+                                                    <label for="radio11" class="css-label mar_btm0">New ACH Detail</label>-->
+                                                    <label class="mar_btm0">New ACH Detail</label>
+                                                </div>
+                                                <div class="accinfo_containerbg" ng-show="showNewAch">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  mobile_pdlt0 mobile_pdrt0">
+                                                        <h3 class="font_color2 mar_btm20 mar_top0">{{rdAccountType.name}} Account Information</h3>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0">
+                                                        <p>Please enter your name as it appears on your {{rdAccountType.name}} account.</p>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="form-group col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                        <label class="mar_rt10 mobile_marrt10">Account Type <span class="font_red font12 line_ht0">*</span></label>
+                                                        <input type="radio" name="radiog_dark2" id="radio13" class="css-checkbox" data-ng-model="rdAccountType.name" value="Checking" /><label for="radio13" class="css-label label_manage mar_rt10 mobile_marrt10">Checking</label>
+                                                        <input type="radio" name="radiog_dark2" id="radio7" class="css-checkbox" data-ng-model="rdAccountType.name" value="Saving" /><label for="radio7" class="css-label label_manage">Savings</label>
+                                                    </div>
+
+                                                    <div class="clearfix"></div>
+                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12  mobile_pdlt0 mobile_pdrt0">
+                                                        <label>Account Holder Name<span class="font_red font12 line_ht0">*</span></label>
+                                                        <input type="text" ng-disabled="disableNewAch" ng-model="AccountHolder" name="AccountHolder" class="form-control text-uppercase" id="" readonly required>
+                                                        <span style="color:red" ng-show="from.AccountHolder.$dirty && from.AccountHolder.$error.required">Please Enter Account Holder Name</span>
+                                                    </div>
+                       
+                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                        <label>Account Holder Primary Number<span class="font_red font12 line_ht0">*</span></label>
+                                                        <input type="text" ng-click="removeErrorPrimaryNumber()" ng-model="AccountHolderPhoneNumber" name="AccountHolderPhoneNumber" class="form-control" id={{submittedPrimaryNumber}} phone-input>
+                                                        <span style="color:red">{{errorPrimaryNumber}}</span>
+                                                    </div>
+                      
+                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                        <label>Bank Account Name<span class="font_red font12 line_ht0">*</span></label>
+                                                        <input ng-click="removeErrorBankAccountName()" ng-model="BankAccountName" type="text" id={{submittedBankAccountName}} class="form-control">
+                                                        <span style="color:red">{{errorBankAccountName}}</span>
+                                                    </div>
+
+                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                        <label>{{rdAccountType.name}} Account Number<span class="font_red font12 line_ht0">*</span></label>
+                                                        <input ng-click="removeErrorCheckingAccountNumber()" ng-model="CheckingAccountNumber" id={{submittedCheckingAccountNumber}} type="text" class="form-control">
+                                                        <span style="color:red">{{errorCheckingAccountNumber}}</span>
+                                                    </div>
+
+                                                    <div class="clearfix"></div>
+                 
+                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                        <label>
+                                                            Bank Routing Number<span class="font_red font12 line_ht0">*</span>
+                                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" class="font12">&nbsp;( Need help finding your Routing Number ! )</a>
+                                                        </label>
+                                                        <input ng-maxlength="9" ng-click="removeErrorRouting()" ng-model="BankRoutingNumber" type="text" id={{submittedRouting}} class="form-control">
+                                                        <span style="color:red">{{ErrorRouting}}</span>
+                                                    </div>
+
+                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                        <label>Email<span class="font_red font12 line_ht0">*</span></label>
+                                                        <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right"
+                                                           title="" data-original-title="This email will be used for payment confirmation"
+                                                           class="red-tooltip">
+                                                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                        </a>
+                                                        <input type="email" ng-model="email" ng-click="removeerrorEmail()" name="email" class="form-control " id={{submittedEmail}}>
+                                                        <span style="color:red">{{errorEmail}}</span>
+                                                    </div>
+                                                    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+
+                                                        <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20">
+                                                            <input ng-model="checkboxFutureAccount.value" ng-disabled="chkAccountFuture" type="checkbox" id="c5"><label for="c5" class="font_color1">Save account information for future payment.</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                              
+
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </form>
+                        <div class="clearfix"></div>
+
+
+                        <form class="" name="">
+                            <div ng-show="showHidePanel.Card" class="row mar_top10">
+                                <div class="col-sm-12 col-xs-12" ng-show="PaymentTypeCCDB">
+
+                                    <h4 class="font_color2 mar_btm0 mar_top0 col-lg-2 col-md-3 col-sm-4 mobile_pdlt0">
+                                        Pay With:
+                                    </h4>
+
+                                    <div class="col-lg-3 col-md-4 col-sm-6 pad_lt0">
+                                        <input type="radio" name="radio_selectCCDBpay" id="radioSaveCCDB" class="css-checkbox" ng-click="TypeOfDebitCredit.name='Saved';PaymentTypeDebitCreditType()" ng-model="TypeOfDebitCredit.name" value="Saved" />
+                                        <label for="radioSaveCCDB" class="css-label"> Saved Debit and Credit Card</label>
+
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 pad_lt0">
+                                        <input type="radio" name="radio_selectCCDBpay" id="radioNewCard" class="css-checkbox" ng-click="TypeOfDebitCredit.name='New';PaymentTypeDebitCreditType();radioNewCard();" ng-model="TypeOfDebitCredit.name" value="New" />
+                                        <label for="radioNewCard" class="css-label"> New Debit and Credit Card</label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 mar_btm15 mar_top10" ng-show="SaveCardInfo">
+                                    <div class="payment_detaiHead">
+                                        <label>Your Saved Debit and Credit Card</label>
+                                    </div>
+                                    <div class="accinfo_containerbg">
+                                        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                            <div id="no-more-tables">
+                                                <table class="col-md-12 table tabel_debit table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                                    <thead class="cf">
+                                                        <tr>
+                                                            <th>Saved Card</th>
+                                                            <th>Name on Card</th>
+                                                            <th>Expires on</th>
+                                                            <th class="width100">
+                                                                CVV<a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" data-html="true"
+                                                                      title="" data-original-title="
+                                                                    <img src='images/cvv.png' class='' />"
+                                                                                        class="red-tooltip" style="text-decoration:none;">
+                                                                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                                                    </a>
+                                                                <span class="font_red font12 line_ht0">*</span>
+                                                            </th>
+                                                            <th>Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="data in savedCards">
+                                                            <td data-title="Saved Card">
+                                                                <input type="hidden" value="{{data.TokenId}}" />
+                                                                <input type="radio" name="radio_savedcard" id="radio{{data.TokenId}}" ng-checked="data.Selected" ng-click="radioSavedCard(data)" class="css-checkbox tabel_radio">
+                                                                <label for="radio{{data.TokenId}}" class="css-label"><img src=images/{{data.CardType}}.jpg width="50"></label>
+                                                                <label class="">XXXX-XXXX-XXXX-{{data.CardNumber}}</label>
+                                                            </td>
+                                                            <td data-title="Name on Card">{{data.CardName}}</td>
+                                                            <td data-title="Expires on">{{data.CardExpiry}}</td>
+                                                            <td data-title="CVV"><input type="text" placeholder="CVV" ng-disabled="!data.Selected" class="width100 padrtlt_10 form-control" id="SavedCvNumber" maxlength="3" ng-model="data.CVV" ng-change="updateSavedCardCVV(data)" onkeypress="return isNumber(event);"></td>
+                                                            <td data-title="Delete"><a href="" ng-click="DeleteConfirm(data)" class="font_red"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-xs-12  mar_top10" ng-show="ShowNewCard">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="payment_detaiHead">                                          
+                                                <label>New Debit or Credit Card</label>
+                                        </div>
+                                        <div class="accinfo_containerbg">
+                                            <div class="row">
+                                                    <div class="col-xs-12 mar_btm20">
+                                                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 pad_lt0">
+                                                        <input type="radio" name="radiog_dark" id="radioVisa" checked="checked" ng-disabled="SaveCardDisabled" ng-model="CardType.Name" value="Visa" class="css-checkbox">
+                                                        <label for="radioVisa" class="css-label"><img src="images/visa_icon.jpg" width="50px;"></label>
+                                                    </div>
+                                                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 pad_lt0">
+                                                            <input type="radio" name="radiog_dark" id="radioMaster" value="Master" ng-disabled="SaveCardDisabled" ng-model="CardType.Name" class="css-checkbox">
+                                                            <label for="radioMaster" class="css-label"><img src="images/master_card.jpg" width="50px;"></label>
+                                                        </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                    <label class="font_we500">Name on Card<span class="font_red font12 line_ht0">*</span></label>
+                                                    <input type="text" class="form-control" ng-model="CardName" id="CardName" ng-disabled="SaveCardDisabled">
+                                                </div>
+                                                <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                    <label class="font_we500">Card Number<span class="font_red font12 line_ht0">*</span></label>
+                                                    <input type="text" class="form-control card_typeimg" id="CardNumber" maxlength="16" ng-disabled="SaveCardDisabled" ng-model="CardNumber" onkeypress="return isNumber(event);">
+                                                </div>
+                                               
+                                                <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                    <label class="font_we500">Expiry Date<span class="font_red font12 line_ht0">*</span></label>
+                                                    <div class="clearfix"></div>
+                                                    <div class="form-group col-xs-6 pad_lt0 pad_rt0">
+                                                        <select class="form-control" id="ExpiryDate" ng-model="ExpiryDate" ng-disabled="SaveCardDisabled">
+                                                            <option value="">MM</option>
+                                                            <option value="01">01</option>
+                                                            <option value="02">02</option>
+                                                            <option value="03">03</option>
+                                                            <option value="04">04</option>
+                                                            <option value="05">05</option>
+                                                            <option value="06">06</option>
+                                                            <option value="07">07</option>
+                                                            <option value="08">08</option>
+                                                            <option value="09">09</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-xs-6 pad_rt0">
+                                                        <select class="form-control" id="ExpiryYear" ng-model="ExpiryYear" ng-disabled="SaveCardDisabled">
+                                                            <option value="">YY</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2021">2021</option>
+                                                            <option value="2022">2022</option>
+                                                            <option value="2023">2023</option>
+                                                            <option value="2024">2024</option>
+                                                            <option value="2025">2025</option>
+                                                            <option value="2026">2026</option>
+                                                            <option value="2027">2027</option>
+                                                            <option value="2028">2028</option>
+                                                            <option value="2029">2029</option>
+                                                            <option value="2030">2030</option>
+                                                            <option value="2031">2031</option>
+                                                            <option value="2032">2032</option>
+                                                            <option value="2033">2033</option>
+                                                            <option value="2034">2034</option>
+                                                            <option value="2035">2035</option>
+                                                            <option value="2036">2036</option>
+                                                            <option value="2037">2037</option>
+                                                            <option value="2038">2038</option>
+                                                            <option value="2039">2039</option>
+                                                            <option value="2040">2040</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                    <label class="font_we500">CVV<span class="font_red font12 line_ht0">*</span></label>
+                                                    <div class="clearfix"></div>
+                                                    <input type="text" class="form-control width_70 pull-left mar_rt10" id="CvNumber" ng-disabled="SaveCardDisabled" maxlength="3" ng-model="CvNumber" onkeypress="return isNumber(event);">
+                                                    <img src="images/cvv.png" class="">
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20">
+                                                        <input type="checkbox" id="chkfuturecard" ng-model="chkFuture.value" ng-disabled="chkAccountFuture"><label for="chkfuturecard" class="font_color1">Save account information for future payment.</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        
+                                </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+
+                                <div class="col-xs-12 mobile_martp10 mar_top10">
+                                    <div class="payment_detaiHead" ng-show="SavedBillingAddress">
+                                        <label>Billing Address Detail</label>
+                                    </div>
+                                    <div class="payment_detaiHead" ng-show="EditBillingAddress">
+                                        <label>Billing Address Detail</label>
+                                    </div>
+
+                                    <div id="Save_billingaddress" class="accinfo_containerbg" ng-show="SavedBillingAddress">
+                                        <div class="row mar_top0">
+                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                <h3 class="ng-binding mar_top0">{{FirstName}} {{LastName}}</h3>
+                                                <p title="Address" class="ng-binding"><i class="fa fa-map-marker mar_rt10 font_color1" aria-hidden="true"></i>{{Address}} {{City}} {{State}} {{Zip}}</p>
+                                                <p title="Email" class="ng-binding"><i class="fa fa-envelope-o mar_rt10 font_color1" aria-hidden="true"></i>{{Email}}</p>
+                                                <p title="Primary Phone Number" class="ng-binding"><i class="fa fa-phone mar_rt10 font_color1" aria-hidden="true"></i>{{PrimaryNumber | tel}}</p>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-right">
+                                                <button class="btn btn-default width100" ng-click="EditAddress()" type="button">Edit</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div id="Edit_billingaddress" class="accinfo_containerbg" ng-show="EditBillingAddress">
+                                        <div class="row mar_top0">
+                                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 pad_rt0">
+                                                <div class=" custom_check form-group col-xs-12 pad_lt20">
+                                                    <input type="checkbox" id="chkuseraddress" ng-model="chkuserProfileaddress.value" ng-change="GetAddress()"><label for="chkuseraddress" class="font_color1"> User Profile Address</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 pad_rt0">
+                                                <div class=" custom_check form-group col-xs-12 pad_rt0 pad_lt20">
+                                                    <input type="checkbox" ng-change="GetAddress()" ng-model="chkLastBillAddress.value" id="chkLastbilling"><label for="chkLastbilling" class="font_color1"> Last Billing Address</label>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                <label class="font_we500">First Name<span class="font_red font12 line_ht0">*</span></label>
+                                                <input type="text" class="form-control" maxlength="50" id="FirstName" ng-model="FirstName">
+                                            </div>
+                                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                <label class="font_we500">Last Name<span class="font_red font12 line_ht0">*</span></label>
+                                                <input type="text" class="form-control" maxlength="50" id="LastName" ng-model="LastName">
+                                            </div>
+                                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                <label class="font_we500">Primary Number<span class="font_red font12 line_ht0">*</span></label>
+                                                <input type="text" class="form-control" id="PrimaryNumber" maxlength="12" ng-model="PrimaryNumber" phone-input>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                <label class="font_we500">Email<span class="font_red font12 line_ht0">*</span></label>
+                                                <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right"
+                                                   title="" data-original-title="This email will be used for payment confirmation"
+                                                   class="red-tooltip">
+                                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                </a>
+                                                <input type="text" class="form-control" id="Email" maxlength="100" ng-click="RemoveEmailError()" ng-model="Email">
+                                                <span style="color:red">{{ errorEmail}}</span>
+
+                                            </div>
+                                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                <label class="font_we500">ADDRESS<span class="font_red font12 line_ht0">*</span></label>
+                                                <input type="text" class="form-control" id="Address" ng-model="Address">
+                                            </div>
+                                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                <label class="font_we500">City<span class="font_red font12 line_ht0">*</span></label>
+                                                <input type="text" class="form-control" maxlength="50" id="City" ng-model="City">
+                                            </div>
+                                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                <label class="font_we500">State<span class="font_red font12 line_ht0">*</span></label>
+
+
+                                                <ui-select ng-model="$parent.selectedState" theme="bootstrap">
+                                                    <ui-select-match placeholder="Select or search state">{{$select.selected.name}}</ui-select-match>
+                                                    <ui-select-choices repeat="item in $parent.StateList | filter: $select.search">
+                                                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                                <span style="color:red; display:none;" id="state">Please Select State</span>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                <label class="font_we500">Zip<span class="font_red font12 line_ht0">*</span></label>
+                                                <input type="text" class="form-control" id="Zip" ng-model="Zip">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group text-right mar_top20" ng-show="showHidePanel.ACH">
+                        <span style="color:red">{{UserError}}</span>
+                        <span style="color:red">{{MainError}}</span>
+                        <span style="color:red">{{MessageError}}</span>
+                        <button ng-click="Back()" class="btn btn-default pull-left btn_miniwidth100" type="button">Back</button>
+                        <button class="btn btn-default btn_miniwidth100" ng-click="btnCancel()" type="button">Cancel</button>
+                        <button class="btn btn-default btn_miniwidth100 btn_green" ng-click="AccountInformationNext()" type="button">
+                            Next
+                        </button>
+                    </div>
+                    <span style="color:red">{{ errorCvNumber}}</span>
+                    <div class="form-group text-right mar_top20" ng-show="showHidePanel.Card">
+                        
+                        <button ng-click="Back()" class="btn btn-default pull-left btn_miniwidth100" type="button">Back</button>
+                        <span style="color:red">{{ MainCardError}}</span>
+                        <button class="btn btn-default btn_miniwidth100" ng-click="btnCancel()" type="button">Cancel</button>
+                        <button class="btn btn-default btn_miniwidth100 btn_green" ng-click="CardPaymentNext()" type="button">
+                            Next
+                        </button>
+                    </div>
+                    <div class="col-sm-12 mobile_pdlt0 mobile_pdrt0 text-center " ng-show="showHidePanel.Card"> <img src="images/safe&amp;b-secure.png" width="245px;"> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--ACH Modal Delete-->
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog min-popup">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color:red">Delete confirmation </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <p>
+                            Are you sure you want to delete this?
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer pad_top0">
+
+                    <button type="button" ng-click="AchDelete()" id="btncontinue" ng-disabled="btndisabled" class="btn btn-default btn_miniwidth100 btn_green">
+                        Yes
+                       
+                    </button>
+                    <button type="button" class="btn btn-default btn_miniwidth100" data-dismiss="modal">No</button>
+                    <span style="color:red">{{AchDelete}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="modal fade" id="CardConfirmModal" role="dialog">
+        <div class="modal-dialog min-popup">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color:red">Delete confirmation </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <p>Are you sure to delete this card?</p>
+                    </div>
+                </div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="DeleteCard()" class="btn btn-default btn_miniwidth100">Yes</button>
+                    <button type="button" class="btn btn-default btn_miniwidth100" data-dismiss="modal">No</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+</script>
+

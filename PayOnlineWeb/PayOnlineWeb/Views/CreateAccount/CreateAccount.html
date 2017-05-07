@@ -1,0 +1,145 @@
+﻿
+<script type="text/javascript">
+
+    if (typeof app === 'undefined') {
+
+        document.location.href = "../../Index.html";
+    }
+</script>
+
+<div ng-controller="RegisterController">
+    <style>
+        input.ng-invalid.ng-dirty 
+        {
+            border: 1px solid red;
+        }
+    </style>
+    <section class="bg_white_contact">
+        <div class="container pad_btm50">
+            <div class="row row_mar0">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0 mar_btm30"><span class="padrtlt_10 bdr_btmgrn">Create Account</span></h2>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                    <p class="mar_btm20 mobile_marbtm10">This information will help us to provide a better security on your payments. make sure you complete this form and hit save.</p>
+                    <p class="mar_btm50 mobile_marbtm10">Please note that online payment is currently provided for the primary accountholder.</p>
+                    <p class="mar_btm50 mobile_marbtm10">Password is required to be at least 6 characters long and it has to contain minimum one numeric value.  At least one special chacacters use<span class="font_red">(i.e. *,', !, #)</span>.</p>
+                    <p class="mar_btm20 mobile_marbtm10">What is a security Question? We ask you to provide us with a security answer in order to establish your identity. It will also help you to reset or recover your password in case it gets lost.</p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12  acc_serv">
+                    <form id="createForm" class="login_bg" name="form" ng-submit="registrationform" novalidate>
+                        <div class="form-group">
+
+                            <span style="color:red">{{ErrorMessage}}</span>
+                        </div>
+                        <div class="form-group">
+                            <label>MAF Account Number <span class="font_red font12 line_ht0">*</span></label>
+                            <input ng-model="Register.collection.AccountNumber" type="text" class="form-control" id="mafAccountNumber" disabled="disable" name="accountNumber" required>
+                            <span style="color:red" ng-show="form.accountNumber.$dirty && form.accountNumber.$error.required">Please Enter MAF Account Number</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Email (username)<span class="font_red font12 line_ht0">*</span></label>
+                            <input type="email" class="form-control" id="txtemail" name="email" ng-model="Register.collection.Email" required />
+                            <span style="color:red" ng-show="form.email.$dirty && form.email.$error.required">Please Enter Email</span>
+                            <span style="color:red" ng-show="form.email.$dirty && form.email.$error.email">Not an email!</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Full Name <span class="font_red font12 line_ht0">*</span></label>
+                            <input ng-model="Register.collection.FullName" type="text" class="form-control" id="fullName" name="fullName" required>
+                            <span style="color:red" ng-show="form.fullName.$dirty && form.fullName.$error.required">Please Enter Full Name</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Password <span class="font_red font12 line_ht0">*</span></label>
+                            <input type="password" class="form-control" id="" ng-model="Register.collection.Password2" name="password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d$@$!%*#?&]{6,}$/" required />
+                            <span style="color:red" ng-show="form.password.$dirty && form.password.$error.required">Please Enter Password</span>
+                            <span style="color:Red" ng-show="form.password.$error.pattern">Must be more than 6 characters and at least 1 numeric value</span>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Re-Type Password<span class="font_red font12 line_ht0">*</span></label>
+                            <input type="password" class="form-control" id="" name="repassword" ng-model="Register.collection.Password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d$@$!%*#?&]{6,}$/" required />
+                            <span style="color:red" ng-show="form.repassword.$dirty && form.repassword.$error.required">Please Enter Re-Type Password</span><br />
+                            <span style="color:red" ng-show="Register.collection.Password2 !== Register.collection.Password">Password mismatch</span>
+                            <span style="color:Red" ng-show="form.repassword.$error.pattern">Must be more than 6 characters and at least 1 numeric value</span>
+                        </div>
+                        <div class="form-group">
+                            <label>SELECT YOUR SECURITY QUESTION 1<span class="font_red font12 line_ht0">*</span></label>
+                            <!--<input type="password" class="form-control" id="">-->
+                            <select class="form-control" name="singleSelect" id="singleSelect" ng-model="Register.collection.SecurityID" required>
+                                <option value="">---Please select---</option> <!-- not selected / blank option -->
+                                <option ng-repeat="x in AllData" value={{x.value}}>{{x.SecurityQuestions}}</option>
+                            </select>
+
+                            <span style="color:red" ng-show="form.singleSelect.$dirty && form.singleSelect.$error.required">Please SELECT YOUR SECURITY QUESTION 1</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Security Answer</label>
+                            <input type="text" class="form-control" id="" name="securityAnswer" ng-model="Register.collection.Answer" required />
+                            <span style="color:red" ng-show="form.securityAnswer.$dirty && form.securityAnswer.$error.required">Please Enter Security Answer</span>
+                        </div>
+
+                        <!----------------->
+                        <div class="form-group">
+                            <label>SELECT YOUR SECURITY QUESTION 2<span class="font_red font12 line_ht0">*</span></label>
+                            <!--<input type="password" class="form-control" id="">-->
+                            <select ng-change="ErrorQuestionMessageHideSecond() " class="form-control" name="singleSelect2" id="singleSelect" ng-model="Register.collection.SecurityID2" required>
+                                <option value="">---Please select---</option> <!-- not selected / blank option -->
+                                <option ng-repeat="x in AllData" value={{x.value}}>{{x.SecurityQuestions}}</option>
+                            </select>
+                            <span style="color:red" ng-show="form.singleSelect2.$dirty && form.singleSelect2.$error.required">Please SELECT YOUR SECURITY QUESTION 2</span>
+                            <span style="color:red">{{QuestionError2}}</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Security Answer</label>
+                            <input type="text" class="form-control" id="" name="securityAnswer2" ng-model="Register.collection.Answer2" required />
+                            <span style="color:red" ng-show="form.securityAnswer2.$dirty && form.securityAnswer2.$error.required">Please Enter Security Answer</span>
+                        </div>
+                        <div class="form-group">
+                            <label>SELECT YOUR SECURITY QUESTION 3<span class="font_red font12 line_ht0">*</span></label>
+                            <!--<input type="password" class="form-control" id="">-->
+                            <select class="form-control" ng-change="ErrorQuestionMessageHideThird()" name="singleSelect3" id="singleSelect" ng-model="Register.collection.SecurityID3" required>
+                                <option value="">---Please select---</option> <!-- not selected / blank option -->
+                                <option ng-repeat="x in AllData" value={{x.value}}>{{x.SecurityQuestions}}</option>
+                            </select>
+                            <span style="color:red" ng-show="form.singleSelect3.$dirty && form.singleSelect3.$error.required">Please SELECT YOUR SECURITY QUESTION 3</span>
+                            <span style="color:red">{{QuestionError3}}</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Security Answer</label>
+                            <input type="text" class="form-control" id="" name="securityAnswer3" ng-model="Register.collection.Answer3" required />
+                            <span style="color:red" ng-show="form.securityAnswer3.$dirty && form.securityAnswer3.$error.required">Please Enter Security Answer</span>
+                        </div>
+
+                        <!----------------->
+                        <div class="form-group text-right mar_btm0">
+
+
+                            <button ng-show="buttonReset" ng-click="RegisterReset()" type="button" class="btn btn-default btn_miniwidth100">Reset</button>
+                            <button ng-show="buttonSave" ng-disabled="form.$invalid || btnDisble" ng-click="save();" type="button" class="btn btn-default btn_green btn_miniwidth100">
+                                <span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>
+
+                                Save
+                            </button>
+                            <button ng-show="buttonok" type="button" class="btn btn-default btn_miniwidth100" ng-click="MafLogin()"> OK</button>
+                            <label style="color:green">{{message}}</label>
+                        </div>
+                        <div class="form-group text-left">
+                            <a ng-click="MafLogin()" style=" cursor: pointer;">Return to MAF Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script type="text/javascript">
+ 
+
+    $(document).ready(function () {
+        $('#RightMenuId').hide();
+        $('#leftMenuId').hide();
+    });
+
+</script>

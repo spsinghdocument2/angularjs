@@ -1,0 +1,104 @@
+﻿<script type="text/javascript">
+   
+    
+     
+    $(document).ready(function ()
+    {
+        $('#RightMenuId').hide();
+        
+        $('#leftMenuId').hide();
+        //location.reload();
+
+        //window.location.reload();
+        
+    });
+
+   
+
+</script>
+<script type="text/javascript">
+
+    if (typeof app === 'undefined') {
+
+        document.location.href = "../../Index.html";
+    }
+</script>
+
+<div  ng-controller="LoginController">
+    <style>
+        input.ng-invalid.ng-dirty {
+            border: 1px solid red;
+        }
+
+      
+    </style>
+    <div ng-show="loading" class="loadingOverlay"></div>
+    <section class="bg_white_contact">
+        <div class="container">
+
+            <div class="row row_mar0">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                    <h3 class="text-center mar_btm30 pay_login mar_top0 col-md-4 col-sm-6 col-xs-10 col-lg-offset-4 col-md-offset-4 col-sm-offset-3 col-xs-offset-1">
+                        MAF PAYMENT LOGIN<br>
+                        <small class="text-lowercase font12 mar"><span class="mar_rt10">powered by CallPass Tech.</span><img alt="" src="images/callpass.jpg" width="80"></small>
+                    </h3>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <h3 class="mar_top0small">Easy and Convenient</h3>
+                    <p>Make your car payments online it's easy! Simply click on the "Create Account" link and follow the steps through the verification process. Once your account is verified, you can easily managing your account. Make one-time payments, setup AutoPay or view your account balance at your convenience!.</p>
+                    <h3>Account Management</h3>
+                    <p>CallPass Tech, provides our processing system allowing you to manage your account online and make your payments using your debit, credit or checking account.</p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 acc_serv">
+                    <form name="from" class="login_bg">
+                        <span style="color:red">{{model}}</span>
+                        <div class="form-group">
+                            <label>Account Number</label>
+                            <input type="text" name="Accno" ng-click="RemoveError()" placeholder="Account Number" class="form-control" id="" ng-model="new.collection.AccountNumber" ng-pattern="/^\d+$/" required>
+                            <span style="color:red" ng-show="from.Accno.$dirty && frm.Accno.$error.required">Required!</span>
+                            <span style="color:Red" ng-show="from.Accno.$error.pattern">Enter Only Numbers</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Email (username)</label>
+                            <input type="email" ng-click="RemoveError()" name="email" class="form-control" id="" placeholder="Email/Username" ng-model="new.collection.Email" required>
+                            <!--<span style="color:red" ng-show="from.email.$dirty && from.email.$error.required">Required!</span>-->
+                            <span style="color:red" ng-show="from.email.$dirty && from.email.$error.email">Email Not Valid!</span>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input ng-click="RemoveError()" type="password" ng-keypress="onKeyPress($event)" name=" password" placeholder="Password" class="form-control" id="" ng-model="new.collection.Password" required>
+                            <!--<span style="color:red" ng-show="from.password.$dirty && from.password.$error.required">Required!</span>-->
+
+                        </div>
+                        <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20 mar_btm10">
+                            <input type="checkbox" name="remember" data-ng-model="remember.value" id="c1"><label for="c1" class="font_color1">Remember Me</label>
+
+
+                        </div>
+                        <div class="form-group text-left">
+
+
+                            <!--<button class="btn btn-default" ng-click="Cancel()" type="submit">Reset</button>-->
+                            <!--<button class="btn btn-default" type="submit">Clear</button>-->
+                            <button class="btn btn-default mar_rt20 width_half" ng-disabled="from.$invalid || btndisabled" type="button" data-toggle="modal" ng-click="login()" data-target="#myModal">
+                                <!--<span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>-->
+                                Login
+                            </button>
+                            <a ng-click="ForgotPassword()" style=" cursor: pointer;" class="line_ht30">forgot password?</a>
+                        </div>
+                       
+                        <!--<p><a style="cursor: pointer;" ng-click="ResetPassword()">Want to reset your password!</a></p>-->
+                        <p>Not registered yet? <a ng-click="Authenticate()" style=" cursor: pointer;">Create Account</a></p>
+                        <div class="customer_servicebox"><p>For questions or comments regarding to your payments please contact customer service at 800.793.9661 x600</p></div>
+                        <div class="login_logobox text-center mar_top10"><img src="images/callpass.jpg" class="mar_rt10" /><img src="images/global_sign.jpg" /></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+

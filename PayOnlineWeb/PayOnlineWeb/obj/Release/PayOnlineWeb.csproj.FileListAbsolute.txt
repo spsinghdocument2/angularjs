@@ -1,0 +1,6 @@
+E:\TFS\PayOnline\PayOnlineWeb\PayOnlineWeb\bin\PayOnlineWeb.dll.config
+E:\TFS\PayOnline\PayOnlineWeb\PayOnlineWeb\bin\PayOnlineWeb.dll
+E:\TFS\PayOnline\PayOnlineWeb\PayOnlineWeb\bin\PayOnlineWeb.pdb
+E:\TFS\PayOnline\PayOnlineWeb\PayOnlineWeb\obj\Release\PayOnlineWeb.dll
+E:\TFS\PayOnline\PayOnlineWeb\PayOnlineWeb\obj\Release\PayOnlineWeb.pdb
+E:\TFS\PayOnline\PayOnlineWeb\PayOnlineWeb\obj\Release\PayOnlineWeb.csprojResolveAssemblyReference.cache

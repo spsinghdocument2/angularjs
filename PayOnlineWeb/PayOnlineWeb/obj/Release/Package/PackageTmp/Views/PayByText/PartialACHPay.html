@@ -1,0 +1,157 @@
+﻿<form class="ng-pristine ng-valid" name="from">
+    <div class="accinfo_containerhide mar_top10">
+        <div class="col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+
+            <h4 class="font_color2 mar_btm0 mar_top0 col-lg-2 col-md-3 col-sm-4">
+                Pay With:
+            </h4>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 pad_lt0" ng-show="SavedACHRadio">
+                <input type="radio" name="radio_selectACHpay" id="radio15" class="css-checkbox" ng-click="SelectACHTypeValue.name='SavedACH';SelectACHType()" ng-model="SelectACHTypeValue.name" value="SavedACH">
+                <label for="radio15" class="css-label"> Saved ACH Detail</label>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 pad_lt0">
+                <input type="radio" name="radio_selectACHpay" id="radionewach" class="css-checkbox" ng-click="SelectACHTypeValue.name='NewACH';SelectACHType()" ng-model="SelectACHTypeValue.name" value="NewACH">
+                <label for="radionewach" class="css-label"> New ACH Detail</label>
+            </div>
+        </div>
+
+        <div class="row" ng-show="SavedACH">
+            <div class="col-xs-12">
+                <div class="payment_detaiHead mar_top10">
+                    <label class="mar_btm0">Saved ACH</label>
+                </div>
+                <div class="accinfo_containerbg">
+                    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <div id="no-more-tables">
+                            <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                <div id="no-more-tables">
+                                    <table class="col-md-12 table tabel_debit table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                        <thead class="cf">
+                                            <tr>
+                                                <th>Account Type</th>
+                                                <th>Account Holder Name</th>
+                                                <th>Bank Account Name</th>
+                                                <th>{{AchGrid}} Account Number</th>
+                                                <th>Bank Routing Number</th>
+                                                <th>Delete</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="data in savedAch">
+                                                <td data-title="Account Type">
+                                                    <input type="radio" ng-click="radioSavedAch(data)" ng-checked="data.Selected" name="radiog_dark" id=radioSavedAch{{data.counter}} class="css-checkbox tabel_radio">
+                                                    <label for=radioSavedAch{{data.counter}} class="css-label">{{data.BankAcctType}}</label>
+                                                </td>
+                                                <td data-title="Account Holder Name">{{data.BankHolder}}</td>
+                                                <td data-title="Bank Account Name">{{data.BankAccountName}}</td>
+                                                <td data-title="Account Number">{{data.BankAcctNoView}}</td>
+                                                <td data-title="Bank Routing Number">{{data.BankABA}}</td>
+                                                <td data-title="Delete"><span><a href="javascript:void(0)" ng-click="AchDeletePop(data);" class="font_red"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="NewACH">
+            <div class="col-xs-12">
+                <div class="payment_detaiHead mar_top10">
+                    <label class="mar_btm0">New ACH Detail</label>
+                </div>
+                <div class="accinfo_containerbg">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  mobile_pdlt0 mobile_pdrt0">
+                        <h3 class="font_we300 font_color2 mar_btm20 mar_top0 ng-binding">{{$parent.ACHAccountType.name}} Account Information</h3>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0">
+                        <p class="ng-binding">Please enter your name as it appears on your Checking account.</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label class="mar_rt10 mobile_marrt10">Account Type <span class="font_red font12 line_ht0">*</span></label>
+                        <input type="radio" name="ACHAccountType" id="radio13" class="css-checkbox ng-pristine ng-valid" data-ng-model="$parent.ACHAccountType.name" value="Checking"><label for="radio13" class="css-label label_manage mar_rt10 mobile_marrt10">Checking</label>
+                        <input type="radio" name="ACHAccountType" id="radio7" class="css-checkbox ng-pristine ng-valid" data-ng-model="$parent.ACHAccountType.nam" value="Saving"><label for="radio7" class="css-label label_manage">Savings</label>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12  mobile_pdlt0 mobile_pdrt0">
+                        <label>Account Holder Name<span class="font_red font12 line_ht0">*</span></label>
+                        <input type="text" class="form-control text-uppercase" id="" readonly="" required="" ng-model="$parent.Name">
+                        <span style="color:red" class="ng-hide">Please Enter Account Holder Name</span>
+                    </div>
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label>Account Holder Primary Number<span class="font_red font12 line_ht0">*</span></label>
+                        <input type="text" class="form-control" ng-model="$parent.CellNumber" phone-input>
+                        <span style="color:red" >{{errorCellNumber}}</span>
+                    </div>
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label>Bank Account Name<span class="font_red font12 line_ht0">*</span></label>
+                        <input type="text" id="" class="form-control" ng-model="$parent.BankAccountName">
+                        <span style="color:red" >{{errorBankAccountName}}</span>
+                    </div>
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label>{{$parent.ACHAccountType.name}} Account Number<span class="font_red font12 line_ht0">*</span></label>
+                        <input id="" type="text" class="form-control" ng-model="$parent.CheckingAccountNumber" >
+                        <span style="color:red">{{errorCheckingAccountNumber}}</span>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label>
+                            Bank Routing Number<span class="font_red font12 line_ht0">*</span>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" class="font12">&nbsp;( Need help finding your Routing Number ! )</a>
+                        </label>
+                        <input ng-maxlength="9" ng-model="$parent.BankRoutingNumber" type="text" class="form-control" maxlength="9" onkeypress="return isNumber(event);">
+                        <span style="color:red">{{ErrorRouting}}</span>
+                    </div>
+
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label>Email<span class="font_red font12 line_ht0">*</span></label>
+                        <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="" data-original-title="This email will be used for payment confirmation" class="red-tooltip">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        </a>
+                        <input type="email" name="email" ng-model="$parent.achemail" class="form-control" id="">
+                        <span style="color:red" >{{errorEmail}}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="agreement_bg mar_top10">
+            <h3 class="mar_btm20 mar_top0 text-uppercase">Pay By Text Payment Authorization </h3>
+            <p>Thank you for enrolling in Mid-Atlantic Finance Company's ("MAF") Pay By Text Payment program.</p>
+            <p>I Authorize MAF to make electronic funds payment via ACH to my MAF auto loan account. Payment will be debited from the checking or saving account I provided to MAF. I am either a named owner or authorized representative of the ACH account and the name(s) on the ACH account or documents providing authorization match the name(s) of my MAF account.</p>
+            <p>I understand payments will be automatically debited from the ACH account number provided in accordance with each scheduled payment due date in the respective payment amount. Payments will be automatically debited on a recurring basis with no further action on my part.</p>
+            <p>Payments may be processed by CallPass Tech Pay System ("CallPass"), an independent third-party; however, each payment will be credited to my MAF account. There is a convenience fee of <strong>${{fee}}</strong> that will be charged to your account by CallPass Tech.. It may take up to the 48 hours for payment to post to MAF accounts. Your ACH account statement may reflect "CallPass Tech" as the Payee. Subscribers to the AutoPay-Recurring Payment program may incur a service charge assessed by your financial institution.</p>
+            <p>MAF will not be liable for any delays connected with the Pay By Text Payment program.</p>
+            <p>This Authorization will remain in effect until the debt is satisfied or until cancelled by either party. I understand I may cancel through my online account, by sending a text message, by contacting MAF's Accounts Servicing department at (800) 793-9661 ext. 600 or by submitting written notice. Electronic requests will be processed by the next scheduled payment due date provided a request is made more than 2 business days prior to that date. I understand MAF may suspend this agreement at any time.</p>
+            <p>By clicking "Submit" I agree to the terms and conditions set forth above.</p>
+        </div>
+        <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20 mar_top20">
+            <input ng-click="RemovePaymentAmounttermsAndConditionsError()" ng-model="$parent.checkBoxTermsAndConditionsPaymentAmount" type="checkbox" id="c2">
+            <label for="c2" class="font_color1">YES, I have read and accepted the terms and conditions of the Pay By Text Payment authorization form and agree to enrollment in the program.</label>
+            <span style="color:red">{{PaymentAmountTermsAndConditionsError}}</span>
+        </div>
+    </div>
+    
+</form>
+
+<script>
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+</script>

@@ -1,0 +1,142 @@
+﻿<form class="ng-pristine ng-valid" name="from">
+    <div class="accinfo_containerhide mar_top10">
+        <div class="col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+
+            <h4 class="font_color2 mar_btm0 mar_top0 col-lg-2 col-md-3 col-sm-4">
+                Pay With:
+            </h4>
+
+            <div class="col-lg-3 col-md-4 col-sm-6 pad_lt0" ng-show="SavedACHRadio">
+                <input type="radio" name="radio_selectACHpay" id="radio15" class="css-checkbox" ng-click="SelectACHTypeValue.name='SavedACH';SelectACHType()" ng-model="SelectACHTypeValue.name" value="SavedACH">
+                <label for="radio15" class="css-label"> Saved ACH Detail</label>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 pad_lt0">
+                <input type="radio" name="radio_selectACHpay" id="radionewach" class="css-checkbox" ng-click="SelectACHTypeValue.name='NewACH';SelectACHType()" ng-model="SelectACHTypeValue.name" value="NewACH">
+                <label for="radionewach" class="css-label"> New ACH Detail</label>
+            </div>
+        </div>
+
+        <div class="row" ng-show="SavedACH">
+            <div class="col-xs-12">
+                <div class="payment_detaiHead mar_top10">
+                    <label class="mar_btm0">Saved ACH</label>
+                </div>
+                <div class="accinfo_containerbg">
+                    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <div id="no-more-tables">
+                            <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                <div id="no-more-tables">
+                                    <table class="col-md-12 table tabel_debit table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                        <thead class="cf">
+                                            <tr>
+                                                <th>Account Type</th>
+                                                <th>Account Holder Name</th>
+                                                <th>Bank Account Name</th>
+                                                <th>{{AchGrid}} Account Number</th>
+                                                <th>Bank Routing Number</th>
+                                                <th>Delete</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="data in savedAch">
+                                                <td data-title="Account Type">
+                                                    <input type="radio" ng-click="radioSavedAch(data)" ng-checked="data.Selected" name="radiog_dark" id=radioSavedAch{{data.counter}} class="css-checkbox tabel_radio">
+                                                    <label for=radioSavedAch{{data.counter}} class="css-label">{{data.BankAcctType}}</label>
+                                                </td>
+                                                <td data-title="Account Holder Name">{{data.BankHolder}}</td>
+                                                <td data-title="Bank Account Name">{{data.BankAccountName}}</td>
+                                                <td data-title="Account Number">{{data.BankAcctNoView}}</td>
+                                                <td data-title="Bank Routing Number">{{data.BankABA}}</td>
+                                                <td data-title="Delete"><span><a href="" ng-click="AchDeletePop(data);" class="font_red"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="NewACH">
+            <div class="col-xs-12">
+                <div class="payment_detaiHead mar_top10">
+                    <label class="mar_btm0">New ACH Detail</label>
+                </div>
+                <div class="accinfo_containerbg">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  mobile_pdlt0 mobile_pdrt0">
+                        <h3 class="font_we300 font_color2 mar_btm20 mar_top0 ">{{$parent.ACHAccountType.name}} Account Information</h3>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0">
+                        <p>Please enter your name as it appears on your Checking account.</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label class="mar_rt10 mobile_marrt10">Account Type <span class="font_red font12 line_ht0">*</span></label>
+                        <input type="radio" name="ACHAccountType" id="radio13" class="css-checkbox ng-pristine ng-valid" ng-model="$parent.ACHAccountType.name" value="Checking"><label for="radio13" class="css-label label_manage mar_rt10 mobile_marrt10">Checking</label>
+                        <input type="radio" name="ACHAccountType" id="radio7" class="css-checkbox ng-pristine ng-valid" ng-model="$parent.ACHAccountType.name" value="Saving"><label for="radio7" class="css-label label_manage">Savings</label>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12  mobile_pdlt0 mobile_pdrt0">
+                        <label>Account Holder Name<span class="font_red font12 line_ht0">*</span></label>
+                        <input type="text" class="form-control text-uppercase" id="" readonly="" required="" ng-model="$parent.Name">
+                        <span style="color:red" class="ng-hide">Please Enter Account Holder Name</span>
+                    </div>
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label>Account Holder Primary Number<span class="font_red font12 line_ht0">*</span></label>
+                        <input type="text" class="form-control" ng-model="$parent.CellNumber" phone-input>
+                        <span style="color:red" >{{errorCellNumber}}</span>
+                    </div>
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label>Bank Account Name<span class="font_red font12 line_ht0">*</span></label>
+                        <input type="text" id="" class="form-control" ng-model="$parent.BankAccountName">
+                        <span style="color:red" >{{errorBankAccountName}}</span>
+                    </div>
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label>{{$parent.ACHAccountType.name}} Account Number<span class="font_red font12 line_ht0">*</span></label>
+                        <input id="" type="text" class="form-control" ng-model="$parent.CheckingAccountNumber" >
+                        <span style="color:red">{{errorCheckingAccountNumber}}</span>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label>
+                            Bank Routing Number<span class="font_red font12 line_ht0">*</span>
+                            <a href="" data-toggle="modal" data-target="#myModal" class="font12">&nbsp;( Need help finding your Routing Number ! )</a>
+                        </label>
+                        <input ng-maxlength="9" ng-model="$parent.BankRoutingNumber" type="text" class="form-control" maxlength="9" onkeypress="return isNumber(event);">
+                        <span style="color:red">{{ErrorRouting}}</span>
+                    </div>
+
+
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <label>Email<span class="font_red font12 line_ht0">*</span></label>
+                        <a href="" data-toggle="tooltip" data-placement="right" title="" data-original-title="This email will be used for payment confirmation" class="red-tooltip">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        </a>
+                        <input type="email" name="email" ng-model="$parent.achEmail" class="form-control" id="">
+                        <span style="color:red" >{{errorEmail}}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    
+</form>
+
+<script>
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+</script>

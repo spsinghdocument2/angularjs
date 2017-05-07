@@ -1,0 +1,332 @@
+﻿<script type="text/javascript">
+    if (typeof app === 'undefined') {
+        document.location.href = "../../Index.html";
+    }
+</script>
+<div ng-controller="textNotificationController">
+    <style type="text/css">
+        p.terms-conditions {
+            overflow: auto;
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+        }
+
+        a.cursor {
+            cursor: pointer;
+        }
+
+        .notification_bg {
+            background: #f8f8f8;
+            border: 1px solid #cfcfcf;
+            padding: 20px;
+        }
+
+        div.popuptoggle div.ios {
+            width: 40% !important;
+        }
+
+        p a {
+            text-decoration: underline;
+        }
+
+        .btn-height34 {
+            height: 34px;
+        }
+    </style>
+
+    <div ng-show="loading" class="loadingOverlay"></div>
+    <section class="content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0"><span class="padrtlt_10 bdr_btmgrn">Notifications By Text</span></h2>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+            <div class="wizard auto_payWizard">
+                <div class="wizard-inner">
+                    <div class="connecting-line"></div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="{{Step1Class}}"> <a href="" aria-controls="step1" role="tab"> <span class="round-tab">Step 1 / <br><span class="font12 mobile_hide1">Enter Your Text Number</span> </span> </a> </li>
+                        <li role="presentation" class="{{Step2Class}}"> <a href="" aria-controls="step2" role="tab"> <span class="round-tab">Step 2 / <br><span class="font12 mobile_hide1">Verify Your Notifications</span> </span> </a> </li>
+                        <li role="presentation" class="{{Step3Class}}"> <a href="" aria-controls="step3" role="tab"> <span class="round-tab">Step 3 / <br><span class="font12 mobile_hide1">Enter Your Verification Pin</span> </span> </a> </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="{{tabpane1Class}}" role="tabpanel" id="step1">
+                        <div class="login_bg">
+                            <div class="accinfo_containerbg">
+                                <form id="form1" name="optinForm">
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0" ng-show="showErrorMessage">
+                                        <p style="color:red;">{{errorMessage}}</p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12 mobile_pdlt0">
+                                        <label class="pull-left mar_top15 mar_topbig0">Text Number<span class="font12">&nbsp; &nbsp; (Ex- 123-456-7890)</span> </label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 pad_lt0 mobile_pdrt0">
+                                        <input type="text" class="form-control pull-left mar_rt20 mar_top10" id="txtNumber" maxlength="12" ng-pattern="/^[0-9+-]{10,12}$/" required ng-model="TextNumber" phone-input ng-change="textNumberChanged()">
+                                        <span style="color:red" ng-show="optinForm.TextNumber.$dirty && optinForm.TextNumber.$error.required">Please Enter Valid Text Number</span>
+                                        <span style="color:Red" ng-show="optinForm.TextNumber.$error.pattern">Invalid Text number</span>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-12 mobile_pdrt0 mobile_pdlt0">
+                                        <div class="agreement_bg mar_top20 pad">
+                                            <h3 class="mar_btm20 mar_top0">Terms of Service </h3>
+                                            <p>All messages sent to subscribers are standard rate text messages. Message fees may apply, based on the type of text messaging program the subscriber has with their carrier. There are no additional fees assessed by Mid-Atlantic Finance Company or the providers of the text messaging service.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 mobile_pdrt0 mobile_pdlt0">
+                                        <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20 mar_top20">
+                                            <input type="checkbox" id="chkTerms" ng-model="checkboxValidation.value">
+                                            <label for="chkTerms">I agree to above terms of use.</label>
+                                            <p id="errorTerms" ng-show="showErrorTerms" class="error" style="color:red;">{{errorTerms}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_top15 mobile_pdlt0 mobile_pdrt0">
+                                        <button class="btn btn-default" type="button" id="" ng-click="NotificationByTextManage();NotificationByTextManageOperation()">Cancel</button>
+                                        <button class="btn btn-default pull-right btn_green" type="button" id="btnNext" ng-click="requestPin()" ng-show="showNextButton" ng-disabled="btnNextDisabled">Next</button>
+                                        <span ng-show="showButtonProgress" class="pull-right"><img src="../../images/progress.gif" width="30" /></span>
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="{{tabpane2Class}}" role="tabpanel" id="step2">
+                        <div class="login_bg">
+                            <div class="accinfo_containerbg">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <h3 class="font_color2 mar_top0 text-center pad_top10"><span class="padrtlt_10 bdr_btmgrn">Additional Notifications</span></h3>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0" ng-show="showErrorMessage">
+                                    <span style="color:red;">{{errorMessage}}</span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0">
+                                    <label class="pull-left mar_top15">Text Number</label>
+                                </div>
+                                <div class="col-lg-4 col-md-5 col-sm-5 col-xs-6 pad_lt0 mobile_pdrt0">
+                                    <input type="text" class="form-control pull-left mar_rt20 mar_top10" id="txtNumber" maxlength="12" onkeypress="return isNumber(event);" ng-model="TextNumber" phone-input ng-disabled="true">
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_top10 mobile_pdrt0 mobile_pdlt0">
+                                    <div class="clearfix"></div>
+                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-7 pad_rt0 pad_lt0 mar_top8">
+                                        <label>Payment Reminder</label><a href="" data-toggle="tooltip" data-placement="bottom"
+                                                                          title="" data-original-title="You will receive Payment Reminder text messages."
+                                                                          class="red-tooltip">
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-5 col-sm-5 col-xs-5 pad_rt0 pad_lt0 mar_top8 popuptoggle">
+                                        <input id="c13" type="checkbox" data-toggle="toggle" data-style="ios" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="isPaymentReminder">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-7 pad_rt0 pad_lt0 mar_top8">
+                                        <label>Payment Confirmation</label><a href="" data-toggle="tooltip" data-placement="bottom"
+   title="" data-original-title="You will receive Payment Confirmation text messages."
+   class="red-tooltip">
+    <i class="fa fa-question-circle" aria-hidden="true"></i>
+</a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-5 col-sm-5 col-xs-5 pad_rt0 pad_lt0 mar_top8 popuptoggle">
+                                        <input id="c23" type="checkbox" data-toggle="toggle" data-style="ios" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="isPaymentConfirmation">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-7 pad_rt0 pad_lt0 mar_top8">
+                                        <label>
+                                            Chat By Text
+                                        </label><a href="" data-toggle="tooltip" data-placement="bottom"
+   title="" data-original-title="Please text Mid-Atlantic Finance at (219) 213-3712 for all text communications regarding your account."
+   class="red-tooltip">
+    <i class="fa fa-question-circle" aria-hidden="true"></i>
+</a>
+                                        
+                                    </div>
+                                    <div class="col-lg-4 col-md-5 col-sm-5 col-xs-5 pad_rt0 pad_lt0 mar_top8 popuptoggle">
+                                        <input id="c43" type="checkbox" data-toggle="toggle" data-style="ios" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="isCommunicationByText">
+                                    </div>
+                                    <div class="clearfix" ng-init="isPayByText = false"></div>
+                                    <!--<div class="col-lg-3 col-md-4 col-sm-5 col-xs-7 pad_rt0 pad_lt0 mar_top8 mar_btm10">
+                                        <label>Pay By Text</label><a href="" data-toggle="tooltip" data-placement="bottom"
+   title="" data-original-title="You will receive text messages regarding Pay By Text."
+   class="red-tooltip">
+    <i class="fa fa-question-circle" aria-hidden="true"></i>
+</a>
+                                    </div>
+                                    <div class="col-lg-4 col-md-5 col-sm-5 col-xs-5 pad_rt0 pad_lt0 mar_top8 mar_btm10 popuptoggle">
+                                        <input id="c33" type="checkbox" data-toggle="toggle" data-style="ios" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="isPayByText">
+                                    </div>-->
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_top15 mobile_pdlt0 mobile_pdrt0">
+                                    <button class="btn btn-default" type="button" id="" ng-click="NotificationByTextManage();NotificationByTextManageOperation()">Cancel</button>
+                                    <button class="btn btn-default pull-right btn_green" type="button" id="btnNext" ng-click="additionalNotifications()">Next</button>
+                                    <span ng-show="showButtonProgress" class="pull-right"><img src="../../images/progress.gif" width="30" /></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="{{tabpane3Class}}" role="tabpanel" id="step3">
+                        <div class="login_bg">
+                            <div class="accinfo_containerbg">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0" ng-show="showErrorMessage">
+                                    <span style="color:red;">{{errorMessage}}</span>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0" ng-show="showSuccessMessage">
+                                    <span style="color:green;">{{successMessage}}</span>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdrt0 mobile_pdlt0">
+                                    <label class="mar_btm20 ">A text message containing a verification pin will be sent to {{TextNumber | tel}}, or reply "YES" to approve acct msgs to this #. Once received please enter the verification pin below to complete the Opt-In process.</label>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mobile_pdlt0">
+                                    <label class="pull-left mar_top10">Verification Pin ({{TextNumber | tel}})</label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pad_lt0 mobile_pdrt0">
+                                    <input type="text" class="form-control pull-left mar_rt20" ng-model="pin">
+                                    <p ng-show="showErrorVerify" class="error" style="color:red;">{{errorVerify}}</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 mobile_martp10 mobile_pdlt0">
+                                    <button class="btn btn-default btn-height34 btn_green" type="button" ng-click="confirmPin(TextNumber, pin, '')" ng-show="showVerifyButton">Verify</button>
+                                    <span ng-show="showVerifyProgress"><img src="../../images/progress.gif" width="30" /></span>
+                                    <button class="btn btn-default btn-height34" type="button" ng-click="NotificationByTextManage();NotificationByTextManageOperation()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-10 col-sm-12 col-md-offset-1 col-xs-12 mobile_pdlt0 mobile_pdrt0  mar_top20 mar_btm20">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center">
+                                <a class="uderline cursor" data-toggle="modal" data-target="#optInModal">How to Opt-IN</a>
+
+                                <span class="pull-right">|</span>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center">
+                                <a class="uderline cursor" data-toggle="modal" data-target="#optOutModal">How to Opt-OUT</a><span class="pull-right">|</span>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center"><a class="uderline cursor" data-toggle="modal" data-target="#termsModal">Terms and Conditions</a><span class="pull-right">|</span></div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center">
+                                <a class="uderline cursor" data-toggle="modal" data-target="#privacyModal">Privacy Policy</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+
+    <!--Opt In Modal -->
+    <div class="modal fade" id="optInModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">HOW TO OPT-IN</h4>
+                </div>
+                <div class="modal-body">
+                    <p>When you call or visit the website you may be asked if you would like to receive text messages concerning your account or targeted promotions. If you agree verbally or in writing to receive text messages, you will then be sent a text message requesting you confirm your desire to opt-in to this text alert system by responding with the Personal Identification Number provided. You will then receive a message from Mid-Atlantic Finance Company confirming you have opted in and providing you with contact and opt-out information.</p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Opt Out Modal -->
+    <div class="modal fade" id="optOutModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">HOW TO OPT-OUT</h4>
+                </div>
+                <div class="modal-body">
+                    <p>To opt-out from our text system you can text "STOP" to (219) 213-3712 from your mobile phone and you will automatically be unsubscribed from our service. You will receive a confirmation that you successfully unsubscribed but will not receive any additional messages until such time you opt-in again from speaking to a customer service rep or opt-in accessing your account via the Mid-Atlantic Finance website.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Terms & Conditions Modal -->
+    <div class="modal fade" id="termsModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">TERMS AND CONDITIONS</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Subscribers to Mid-Atlantic Finance Company’s mobile messaging program have opted-in to receive text messages from Mid-Atlantic Finance concerning account servicing and other related promotions.</p><p>
+                        Subscribers expressed an interest in receiving text messages when they called the customer service department or visited the website. Subscribers will only receive text messages from the customer service team to which they opted-in and the messages are only concerning the messages of interest.
+                    </p><p>
+                        All messages sent to subscribers are standard rate text messages. Message fees may apply, based on the type of text messaging program the subscriber has with his or her carrier. There are no additional fees assessed by Mid-Atlantic Finance Company or the providers of the text messaging service.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Privacy Modal -->
+    <div class="modal fade" id="privacyModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">PRIVACY POLICY</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Mid-Atlantic Finance Company respects your privacy. We will not share or use your mobile number for any other purpose. We will only use information you provide to transmit your text message. Nonetheless, we reserve the right at all times to disclose any information as necessary to satisfy any law, regulation or governmental request, to avoid liability, or to protect our rights or property. When you complete forms online or otherwise provide us information in connection with the Service, you agree to provide accurate, complete, and true information. You agree not to use a false or misleading name or a name that you are not authorized to use. If we, in our sole discretion, believe that any such information is untrue, inaccurate, or incomplete, we may refuse you access to the Service and pursue any appropriate legal remedies.</p>
+                    <p>For more information on our text service, you can reach us at (800) 793-9661 x 600.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Already opt-in error Modal -->
+    <div class="modal fade" id="optInErrorModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="redirectToNotificationsByText()">&times;</button>
+                    <h4 class="modal-title">Notifications By Text</h4>
+                </div>
+                <div class="modal-body"><div class="form-group"><p>{{optInErrorMessage}}</p></div></div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="redirectToNotificationsByText()" class="btn btn-default btn_miniwidth100">Ok</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+      
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+</div>

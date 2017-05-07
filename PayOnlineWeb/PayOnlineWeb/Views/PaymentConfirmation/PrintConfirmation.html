@@ -1,0 +1,161 @@
+﻿<script>
+    $(document).ready(function () {
+        $('#footer').hide();
+        $('#header').hide();
+
+        function print() {
+            window.print();
+        }
+    });
+</script>
+<style>
+    body {
+        padding-bottom: 50px;
+    }
+</style>
+<div ng-controller="printPaymentConfirmationController as vm">
+    <div id="outprint">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+            <div ng-if="vm.showAchSection">
+                <div class="print_logo"><img alt="" src="images/logo.png"></div>
+                <h2 class="font_color2 mar_top0 text-center pad_top10 pad_topbig0"><span class="padrtlt_10 bdr_btmgrn"> Payment Confirmation</span></h2>
+                <div class="clearfix"></div>
+                <h5 class="mar_btm20"><strong class="font_color1">Your payment transaction has been completed.</strong> Make sure you keep this confirmation number for your records.</h5>
+                <div class="mar_btm20 col-lg-12 col-md-12 col-sm-12 col-xs-12 paid_stamp">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Date<span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.paymentDate | date:'MM/dd/yyyy'}}</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Amount <span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.paymentAmount}}</label>
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Fee Amount <span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.fee}}</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Total Amount <span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.totalAmount}} (Amount to be withdrawn from banking account)</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">MAF Account Number<span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.accountNumber}}</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Name on the ACH<span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.fullName}}</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Bank Account Name <span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.bankAccountName}}</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Bank name<span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.bankName}}</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Routing Number<span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.routingNumber}}</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Bank Account Number<span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.bankAccountNumber}}</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Account Type<span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.accountType == "Saving" ? "Savings Account" : vm.accountType == "Savings" ? "Savings Account" : "Checking Personal"}}</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Confirmation Number<span class="pull-right">:</span></label>
+                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.confirmationNumber }}</label>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <p>Please Note, the confirmation number is used for online verification purposes only. This transaction is subject to accuracy of information and availability of funds regarding your banking account. Payment updates can take up to 24-48 hours before applying to your account.</p>
+            </div>
+            <div ng-if="vm.showCardSection">
+                <div class="print_logo"><img alt="" src="images/logo.png"></div>
+
+
+                <h3 class="font_color2 mar_top0 text-center"><span class="padrtlt_10 bdr_btmgrn">Card Details</span></h3>
+                <div class="accinfo_containerbg mar_top10">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12 col-print-6">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12">
+                                    <label>MAF Account Number</label>
+                                    <p>{{vm.accountNumber}}</p>
+                                </div>
+                            </div>
+                            <div class="row mar_top20">
+                                <div class="col-sm-6 col-xs-12">
+                                    <label>Card Billing Address</label>
+                                    <p>{{vm.fullName}} <br> {{vm.address}}<br>{{vm.city}}, {{vm.state}} {{vm.zip}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12 col-print-6">
+                                <div class="col-xs-12 mar_btm20"><img src="images/{{vm.cardType}}_card.jpg"></div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6 col-xs-12 col-print-6">
+                                    <label>Card Number</label>
+                                    <p>XXXX-XXXX-XXXX-{{vm.cardNumber}}</p>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-print-6">
+                                    <label>Expires</label>
+                                    <p>{{vm.expiryDate}}/{{vm.expiryYear}}</p>
+                                </div>
+                                <div class="col-sm-6 col-xs-12 col-print-6">
+                                    <label>Card Holder Name</label>
+                                    <p>{{vm.cardName}}</p>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="mar_top20">
+                    <h3 class="font_color2 mar_top0 text-center"><span class="padrtlt_10 bdr_btmgrn">Payment Confirmation</span></h3>
+                    <div class="clearfix"></div>
+                    <h5 class="mar_btm20"><strong class="font_color1">Your payment transaction has been completed.</strong> Please verify the information below. If this is correct click the submit button to continue.</h5>
+                    <div class="login_bg mar_btm20 col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0 paid_stamp">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                            <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Date<span class="pull-right">:</span></label>
+                            <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{vm.paymentDate | date:'MM/dd/yyyy'}}</label>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                            <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Amount<span class="pull-right">:</span></label>
+                            <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{vm.paymentAmount}}</label>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                            <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Fee Amount<span class="pull-right">:</span></label>
+                            <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{vm.fee}}</label>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                            <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Total Amount<span class="pull-right">:</span></label>
+                            <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{vm.totalAmount}} (Amount charged via credit/debit card)</label>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                            <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0"> Account Type<span class="pull-right">:</span></label>
+                            <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">Credit/Debit Card </label>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0 mar_top20">
+                            <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Confirmation Number<span class="pull-right">:</span></label>
+                            <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0 font_color1">{{vm.confirmationNumber }}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <p>Please note, the confirmation number is used for online verification purposes only. This transaction is subject to accuracy of information and availability of funds regarding your banking account. Payment updates can take up to 24-48 hours before applying to your account.</p>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-2 col-md-4 col-lg-offset-5 col-md-offset-4 hidden-print">
+        <button onclick="print()" type="button" class="btn btn-default btn_miniwidth100 pull-left">
+            <span class="glyphicon glyphicon-print mar_rt5"></span>Print
+        </button>
+    </div>
+</div>
+

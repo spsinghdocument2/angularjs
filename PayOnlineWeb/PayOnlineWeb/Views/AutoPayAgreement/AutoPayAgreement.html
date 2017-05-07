@@ -1,0 +1,61 @@
+﻿<div ng-controller="AutoPayAgreementController">
+    <div ng-show="loading" class="loadingOverlay"></div>
+    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0 pad_btm90" ng-show="!showConfirmationPage">
+        <h2 class="font_color2 mar_top0 text-center pad_top10 mar_btm50 text-uppercase"><span class="padrtlt_10 bdr_btmgrn">AutoPay Recurring Payment</span></h2>
+        <div class="login_bg" ng-switch="switchWidgetForTerms">
+            <label style="color:red;font-weight:bold;">{{errorMessage}}</label>
+            <div class="accinfo_containerbg mar_btm10">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h3 class="font_headblue line_ht30 mar_top10">MAF Account Number : {{accountNumber}}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="agreement_bg mar_top10" ng-switch-when="ACHTerms">
+                <h3 class="mar_btm20 mar_top0 text-uppercase">AutoPay-Recurring Payment Authorization </h3>
+                <p>Thank you for enrolling in Mid-Atlantic Finance Company's ("MAF") AutoPay-Recurring Payment program.</p>
+                <p>I Authorize MAF to make electronic funds payment via ACH to my MAF auto loan account. Payment will be debited from the checking or saving account I provided to MAF. I am either a named owner or authorized representative of the ACH account and the name(s) on the ACH account or documents providing authorization match the name(s) of my MAF account.</p>
+                <p>I understand payments will be automatically debited from the ACH account number provided in accordance with each scheduled payment due date in the respective payment amount. Payments will be automatically debited on a recurring basis with no further action on my part.</p>
+                <p>Payments may be processed by CallPass Tech Pay System ("CallPass"), an independent third-party; however, each payment will be credited to my MAF account. CallPass will not charge a convenience fee for processing of recurring ACH payment. It may take up to the 48 hours for payment to post to MAF accounts. Your ACH account statement may reflect "CallPass Tech" as the Payee. Subscribers to the AutoPay-Recurring Payment program may incur a service charge assessed by your financial institution.</p>
+                <p>MAF will not be liable for any delays connected with the AutoPay-Recurring Payment program.</p>
+                <p>This Authorization will remain in effect until the debt is satisfied or until cancelled by either party. I understand I may cancel through my online account, by sending a text message, by contacting MAF's Accounts Servicing department at (800) 793-9661 ext. 600 or by submitting written notice. Electronic requests will be processed by the next scheduled payment due date provided a request is made more than 2 business days prior to that date. I understand MAF may suspend this agreement at any time.</p>
+                <p>By clicking "Submit" I agree to the terms and conditions set forth above.</p>
+            </div>
+            <div class="agreement_bg mar_top10" ng-switch-when="CardTerms">
+                <h3 class="mar_btm20 mar_top0 text-uppercase">AutoPay-Recurring Payment Authorization </h3>
+                <p>Thank You for choosing to make AutoPay- Recurring Payment. Please Read carefully.</p>
+                <p>I authorize Mid-Atlantic Finance Company to debit the  <b><i>Credit/Debit</i></b>  account indicated in this web form for the noted amount on the schedule indicated. Subscribers to Mid-Atlantic Finance Company's Web payment program have the ability to make auto loan payments held by Mid-Atlantic Finance Company. Payments can be made directly to Mid-Atlantic Finance Company and are processed through CallPass Tech Pay System, an independent third-party. I understand that this authorization will remain in effect until the schedule end date, or until I cancel it in online OPT-OUT or by calling Mid-Atlantic Finance Company's Customer Service Dept at 800.793.9661 ext 600, and I agree to notify the business by calling in or online OPT-OUT of any changes to my account information or termination of this authorization at least 24 hours to the next billing date. If the above noted payment date falls on a weekend or holiday, I understand that the payment may be executed on the next business day. I certify that I am an authorized user of this <b><i>Credit/Debit</i></b>  account and that I will not dispute the payment with my credit card company or bank, so long as the transaction corresponds to the terms indicated in this web form. Only two equivalent payments can be made per calendar day.</p>
+                <p>
+                    By clicking "Submit" you agree to the Terms and Conditions outlined above.  You have elected to make a payment on your auto loan with Mid-Atlantic Finance Company using the "CallPass ".
+                    Subscribers may incur service fees by their financial institution as well as CallPass Tech. Your bank or credit card statement will reflect CallPass Tech as the payee.
+                </p>
+                <p>
+                    There is a convenience fee of ${{transactionFee}} charged by CallPass Tech for the online payment processing. You understand this recurring payment will post to the account number above.  Processing may take up to 48 hours for the payment to post to your account.
+                </p>
+                <p>Mid-Atlantic Finance Company will not be liable for any delays connected with this program.</p>
+            </div>
+            <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20 mar_top20">
+                <input ng-change="termsAndConditionCheckboxChanged()" ng-model="checkBoxTermsAndConditions" type="checkbox" id="c2">
+                <label for="c2" class="font_color1">YES, I have read and accepted the terms and conditions of the AutoPay-Recurring Payment authorization form and agree to enrollment in the program.</label>
+                <label style="color:red">{{termsAndConditionsError}}</label>
+            </div>
+            <div class="clearfix"></div>
+            <div class="mar_top20">
+                <button type="button" ng-disabled="disableEnrollButton" ng-if="!showErrorMessage" ng-click="enrollToAutoPay();" class="btn btn-default next-step pull-right btn_miniwidth100 btn_green">
+                    Enroll
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0 pad_btm90" ng-show="showConfirmationPage">
+        <h2 class="font_color2 mar_top0 text-center pad_top10 mar_btm50 text-uppercase"><span class="padrtlt_10 bdr_btmgrn">AutoPay Recurring Payment</span></h2>
+                        <h4 class="font_color2 mar_btm20 text-center text-uppercase">Thank you for Enrolling in Mid-Atlantic Finance AutoPay-Recurring Payment.</h4>
+                        <h4 class="font_color1 mar_btm20 text-center">Your Confirmation Number is: {{confirmationNumber}}</h4>
+        <div class="col-xs-12 text-center"><img src="../../images/check.png" width="80" /></div>
+    </div>
+
+    
+
+</div>

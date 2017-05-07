@@ -1,0 +1,184 @@
+﻿<script type="text/javascript">
+
+    if (typeof app === 'undefined')
+    {
+
+        document.location.href = "../../Index.html";
+    }
+</script>
+
+
+
+<script type="text/javascript">  
+    function CreditInfo() { $('#cardtext').html('Credit'); $('#creditmenu').addClass('active'); $('#debitmenu').removeClass('active'); }
+    function DebitInfo() { $('#cardtext').html('Debit'); $('#debitmenu').addClass('active'); $('#creditmenu').removeClass('active'); }
+</script>
+
+<div >
+
+    <section class="content">
+        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 acc_serv">
+                    <div class="login_bg login_bghide">
+                        <div class="accinfo_containerbg">
+                            <h3 class="font_we300 font_color2 mar_btm20 mar_top0">Account Information</h3>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6 mobile_martp10">
+                                    <div class="accinfo_bg">
+                                        <h5 class="text-center line_ht25">ALISHA JOHNSON</h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 mobile_martp10">
+                                    <div class="accinfo_bg">
+                                        <h5 class="text-center line_ht25">Account<br /><span class="font20">100528</span></h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 pad_tpmat10">
+                                    <div class="accinfo_bg">
+                                        <h5 class="text-center line_ht25">Total Payment Due<br /><span class="font20">$1,022.25</span> </h5>
+                                    </div>
+                                </div><div class="col-md-3 col-sm-6 pad_tpmat10">
+                                    <div class="accinfo_bg">
+                                        <h5 class="text-center line_ht25">Payment Amount<br /><span class="font20">$383.00</span> </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mar_top20">
+                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 bhoechie-tab-container">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+                                    <div class="list-group">
+                                        <a href="Javascript:void(0)" class="list-group-item active text-center" id="creditmenu" onclick="CreditInfo(this)">
+                                            <h4 class="glyphicon glyphicon-credit-card"></h4><br />Credit / Debit Card
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <!-- Credit card Section Start -->
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab pad15">
+                                    <h3 class="font_we300 font_color2 mar_btm20 mar_top0 text-center pad_top10"><span class="padrtlt_10 bdr_btmgrn">Payment Method</span></h3>
+                                    <div class="bhoechie-tab-content active">
+                                        <div class="form-group col-xs-12 text-uppercase pad_lt0 pad_rt0">
+                                            <label class="font_we500">Name on Card<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                        <div class="form-group col-xs-12 text-uppercase pad_lt0 pad_rt0">
+                                            <label class="font_we500"><span id="cardtext">Credit</span> Card Number<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control card_typeimg" id="">
+                                        </div>
+                                        <div class="col-sm-8 col-xs-12 text-uppercase pad_lt0 pad_rt0">
+                                            <label class="font_we500">Expiry Date<span class="font_red font12 line_ht0">*</span></label>
+                                            <div class="clearfix"></div>
+                                            <div class="form-group col-xs-5 pad_lt0 pad_rt0">
+                                                <select class="form-control">
+                                                    <option>MM</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                    <option>7</option>
+                                                    <option>8</option>
+                                                    <option>9</option>
+                                                    <option>10</option>
+                                                    <option>11</option>
+                                                    <option>12</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-xs-7 pad_rt0">
+                                                <!--<input class="Year" />-->
+                                                <select class="form-control">
+                                                    <option>YY</option>
+                                                    <option>2016</option>
+                                                    <option>2017</option>
+                                                    <option>2018</option>
+                                                    <option>2019</option>
+                                                    <option>2020</option>
+                                                    <option>2021</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="form-group col-xs-4 text-uppercase pad_rt0 pad_lt0">
+                                            <label class="font_we500">CVV<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                        <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20 mar_btm20 mar_top8">
+                                            <input type="checkbox" id="c1">
+                                            <label for="c1" class="font_color1 font12">By checking this box, I agree to the<a href="#" class="uderline"> Terms & Conditions.</a></label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-default btn_miniwidth100">Pay Now</button>
+                                            <button type="button" class="btn btn-default btn_miniwidth100">Cancel</button>
+                                        </div>
+                                    </div>
+
+                                  
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 pad_rt0 pad_tpmat10 mobile_martp10 pad_padlt0">
+                                <div class="accinfo_containerbg">
+                                    <h3 class="font_we300 font_color2 mar_btm20 mar_top0">Billing Address<a href="javascript:void(0)" class="pull-right font14 line_ht25"><!--Edit--></a></h3>
+                                    <div class="row">
+                                        <div class="form-group col-md-12 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">Primary Number  </label>
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">ADDRESS<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">City<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">State<span class="font_red font12 line_ht0">*</span></label>
+                                            <select class="form-control">
+                                                <option>-- Select State -- </option>
+                                                <option>State 1</</option>
+                                                <option>State 2</</option>
+                                            </select>
+                                           
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">Zip<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-default btn_miniwidth100">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<script src="../../Plugin/datepicker/js/jquery-datetimepicker.js"></script>
+<link href="../../Plugin/datepicker/css/jquery-datetimepicker.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        $('.Year').datetimepicker({            
+            timepicker: false,
+            datepicker: false,
+            step: 30,
+            yearStart:2016,
+            yearEnd:2050
+
+            //formatTime: 'g:i A',
+            //format: 'h:i A'
+            
+        });                
+    });
+
+</script>

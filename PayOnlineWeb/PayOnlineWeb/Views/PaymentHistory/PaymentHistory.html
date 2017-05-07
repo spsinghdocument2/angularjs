@@ -1,0 +1,211 @@
+﻿
+ <script>
+       // date picker
+     $(".datetimepicker").datetimepicker({
+         format: 'm/d/Y',
+
+         timepicker: false,
+         yearEnd: 2115,
+         closeOnDateSelect: true,
+         // minDate: '0', /* To disable the date before current date */
+         scrollMonth: false,
+         scrollTime: false,
+         scrollInput: false,
+         maxDate: '+1970/01/01'//tomorrow is maximum date calendar
+     });
+
+   </script>
+<script type="text/javascript">
+
+    if (typeof app === 'undefined') {
+
+        document.location.href = "../../Index.html";
+    }
+</script>
+
+
+
+<div ng-controller="PaymentHistoryController">
+
+    <section class="content">
+
+        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0 mar_btm30"><span class="padrtlt_10 bdr_btmgrn">Payment History</span></h2>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-12 text-right">
+
+                    <button ng-show="paymentHistoryGoBack" ng-click="Gobacktomyaccount()" type="button" class="btn btn-default btn_miniwidth100 btn_green mar_btm10">Go Back</button>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-center">
+                    <h4 class="account_headbg mar_btm0 mar_top0">Account Number</h4>
+                    <h4 class="account_numbg">{{AccountNumber}}</h4>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-center mobile_martp10">
+                    <h4 class="account_headbg mar_btm0 mar_top0">Account Holder</h4>
+                    <h4 class="account_numbg">{{BankHolde}}</h4>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-center mobile_martp10">
+                    <h4 class="account_headbg mar_btm0 mar_top0">Last Payment</h4>
+                    <h4 class="account_numbg">{{lastPayment}}</h4>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 text-center mobile_martp10">
+                    <h4 class="account_headbg mar_btm0 mar_top0">Current Balance</h4>
+                    <h4 class="account_numbg">${{CurrentBalance}} (<span class="font_red">*</span>)</h4>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-xs-12 mar_top20">
+                    <div class=" col-xs-12 mar_btm20 filter_date pad_lt0 pad_rt0">
+                        <h4 class="pay_history mar_top0 mar_btm0">
+                            Search Payment History
+                            <a href="" ng-show="paymentHistoryGoBack" ng-click="Gobacktomyaccount()" type="button" class="pull-right font14 font_white">Go Back</a>
+                        </h4>
+
+                        <div class="login_bg">
+                            <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
+                                <div class="col-md-5 col-sm-5 pad_lt0 pad_rt0">
+                                    <div class="col-md-3 col-sm-4 pad_lt0 pad_rt0"><h5 class="mar_top0 text-right textrtmobl">From Date :</h5></div>
+                                    <div class="col-md-9 col-sm-8 mobile_pdlt0 mobile_pdrt0"><input style=" cursor: pointer;" readonly type="text" ng-change="validateDates()" ng-model="fromDate" class="input_img datetimepicker form-control"></div>
+                                </div>
+                                <div class="col-md-5 col-sm-5 pad_lt0 pad_rt0">
+
+                                    <div class="col-md-3 col-sm-4 pad_lt0 pad_rt0 mobile_martp10"><h5 class="mar_top0 text-right textrtmobl">To Date :</h5></div>
+                                    <div class="col-md-9 col-sm-8 mobile_pdlt0 mobile_pdrt0"><input readonly style=" cursor: pointer;" type="text" ng-change="validateDates()" ng-model="todate" class="input_img datetimepicker form-control"></div>
+                                    <div><span ng-show="dateError" style="font-size:12px; color:red;">{{toError}}</span></div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 mobile_pdlt0 mobile_pdrt0 mobile_martp10"><button ng-click="dateRangeFilter()" ng-disabled="Valid" id="paymet_histortBtn" type="button" class="btn btn-default">Search</button></div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="loading" class="loadingOverlay"></div>
+                    <div id="history_tabel" class="col-xs-12 mar_btm20 pad_lt0 pad_rt0">
+                        <h4 class="pay_history mar_top0 mar_btm0">Payment History</h4>
+                        <div class="login_bg">
+                            <div id="no-more-tables" class="tabel_scroll">
+                                <table class="col-md-12 table table-bordered table-striped table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                    <thead class="cf">
+                                        <tr>
+                                            <th>Confirmation #</th>
+                                            <th>Tran. Date</th>
+                                            <th>Payment</th>
+                                            <th>Fee</th>
+                                            <th>Type</th>
+                                            <th>Bank Account/Card #</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tr ng-repeat="data in dataHolder ">
+                                        <td data-title="Confirmation #">{{data.ConfirmationID}}</td>
+                                        <td data-title="Tran. Date">{{data.TranDate | date |date: 'dd/mm/YYYY'}}</td>
+                                        <td data-title="Payment">${{data.TranPayment}}</td>
+                                        <td data-title="Fee">${{data.TranFee}}</td>
+                                        <td data-title="Type"><img width="20%" src="../../images/bankType/{{data.BankAcctType}}.png" /></td>
+                                        <td data-title="Bank Account/Card #"> <span ng-if="data.BankAcctType=='V' || data.BankAcctType=='M'">XXXX-XXXX-XXXX-{{data.BankAcctNo}}</span> <span ng-if="data.BankAcctType=='S' || data.BankAcctType=='P'"> {{data.BankAcctNo}}</span></td>
+
+                                        <td data-title="Status">{{data.Status}}</td>
+                                        <td data-title="Action">
+                                            <button ng-click="ViewPaymentHistory(data)" type="button" data-toggle="modal" data-target="#myModal" class="btn btn-sm btn-info">View</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div>
+                            <p class="font12 mar_btm0 mar_top8">(<span class="font_red">*</span>) Understand this is not a payoff balance. The debit for last monthly payment may be more or less than the scheduled payment, please contact MAF at 800.793.9661 ext. 600 to determine final payment amount and make final payment arrangements.</p>
+
+
+                        </div>
+                        <div class="text-right">
+
+                            <button ng-show="paymentHistoryGoBack" ng-click="Gobacktomyaccount()" type="button" class="btn btn-default btn_miniwidth100 btn_green mar_btm10">Go Back</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Payment History</h4>
+                </div>
+                <div class="modal-body">
+
+                    <table width="100%" class="table-bordered table-striped table-condensed">
+                        <tr>
+                            <td>Full Name :</td>
+                            <td>{{ViewBankHolder}}</td>
+                        </tr>
+                        <tr ng-if="BankAcctType=='V' || BankAcctType=='M'">
+                            <td>Card Number :</td>
+                            <td>XXXX-XXXX-XXXX-{{BankAcctNo}}</td>
+                        </tr>
+                        <tr ng-if="BankAcctType=='S' || BankAcctType=='P'">
+                            <td>Bank Account Number :</td>
+                            <td>{{BankAcctNo}}</td>
+                        </tr>
+                        <tr ng-show="bankNameShow">
+                            <td>Bank Name :</td>
+                            <td>{{ViewBankName}}</td>
+                        </tr>
+                        <tr ng-show="bankNameShow">
+                            <td>Routing Number :</td>
+                            <td>{{ViewRoutingNumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>Confirmation Number :</td>
+                            <td>{{ViewConfirmation}}</td>
+                        </tr>
+                        <tr>
+                            <td>Payment Date :</td>
+                            <td>{{ViewTranDate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Payment Amount :</td>
+                            <td>{{ViewTranPayment}}</td>
+                        </tr>
+                        <tr>
+                            <td>Fee Amount  :</td>
+                            <td>{{ViewTranFee}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Amount :</td>
+                            <td>{{ViewTotalAmount }}</td>
+                        </tr>
+                        <tr>
+                            <td>Account Type :</td>
+                            <td>{{ViewType}}</td>
+                        </tr>
+                        <tr>
+                            <td>Status :</td>
+                            <td>{{ViewStatus}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button  type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

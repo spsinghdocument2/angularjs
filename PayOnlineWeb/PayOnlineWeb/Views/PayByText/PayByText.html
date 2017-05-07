@@ -1,0 +1,318 @@
+﻿<script>
+
+    //if (typeof app === 'undefined') {
+
+    //    document.location.href = "../../Index.html";
+    //}
+
+</script>
+<style>
+    .form-group {
+        margin-bottom: 8px;
+    }
+</style>
+<div ng-controller="payByTextController">
+    <div ng-show="loading" class="loadingOverlay"></div>
+
+    <section class="content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0 mar_btm30"><span class="padrtlt_10 bdr_btmgrn">Pay By Text</span></h2>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="SetupGrid">
+            <div class="login_bg">
+                <span class="error" style="color:red;">{{Error}}</span>
+                <div id="no-more-tables" class="tabel_scroll">
+                    <span style="color:red"></span>
+                    <table class="col-md-12 table table-bordered table-striped table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                        <thead class="cf">
+                            <tr>
+                                <th>MAF Account #</th>
+                                <th>Text Number</th>
+                                <th>Type</th>
+                                <th class="" ng-if="AchTypeSetup">Bank Routing #</th>
+                                <th class="" ng-if="AchTypeSetup">Bank Account #</th>
+                                <th class="" ng-if="!AchTypeSetup">Card #</th>
+                                <th class="">Pay By Text</th>
+                                <th class="">Edit/Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in payByTextSetup">
+                                <td data-title="MAF Account #" class="text-center">{{data.AcctNo}}</td>
+                                <td data-title="Text Number" class="text-center">{{data.TextNumber | tel}}</td>
+                                <td data-title="Type" class="text-center"><img src="images/{{data.TypeImage}}" width="30" /></td>
+                                <td data-title="Bank Routing #" ng-if="AchTypeSetup" class="text-center">{{data.BankABA}}</td>
+                                <td data-title="Bank Account #" ng-if="AchTypeSetup" class="text-center">{{data.BankAcctNo}} </td>
+                                <td data-title="Card #" ng-if="!AchTypeSetup" class="text-center">{{data.BankAcctNo}} </td>
+                                <td data-title="Pay By Text" class="text-center">
+                                    <input id=checkboxAutoPay{{data.PayByTextId}} type="checkbox" data-toggle="toggle" data-style="ios cursor-style" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="data.IsActive" ng-disabled="true">
+                                </td>
+                                <td data-title="Edit/Delete" class="text-center">
+                                    <span class="mar_rt10"><a href="" ng-click="editPayByText(data)" class=""><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></span>
+                                    <span><a href="" onclick="PayByTextDeletePopUp()" class="font_red"><img src="../../images/opt_out.png" /></a></span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0" ng-show="!SetupGrid">
+            <div class="wizard auto_payWizard">
+                <div class="wizard-inner">
+                    <div class="connecting-line"></div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="{{Step1Class}}"> <a href="" data-toggle="tab" aria-controls="step1" role="tab"> <span class="round-tab">Step 1 / <br /><span class="font12 mobile_hide1">Select Text Number/Enroll</span> </span> </a> </li>
+                        <li role="presentation" class="{{Step2Class}}"> <a href="" data-toggle="tab" aria-controls="step2" role="tab"> <span class="round-tab"> Step 2 / <br /><span class="font12 mobile_hide1">Select Payment Type</span> </span></a> </li>
+                        <li role="presentation" class="{{Step3Class}}"> <a href="" data-toggle="tab" aria-controls="step3" role="tab"> <span class="round-tab">Step 3 / <br /><span class="font12 mobile_hide1">Enrollment Confirmation</span> </span></a> </li>
+                    </ul>
+                </div>
+
+
+                <!--<div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 acc_serv">-->
+                <!--<h2 class="font_color2 mar_top0 text-center pad_top10 mar_btm30 text-uppercase"><span class="padrtlt_10 bdr_btmgrn">Pay By Text Setup</span></h2>-->
+                <div class="tab-content">
+                    <span class="error" style="color:red;">{{Error}}</span>
+                    <div class="tab-pane active" role="tabpanel" id="step1" ng-show="Step1">
+                        <div class="login_bg">
+                            <div class="accinfo_containerbg">
+
+                                <form>
+                                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 pad_rt0  mobile_pdlt0">
+                                        <label class="pull-left mar_top10 mar_topbig0">Select Text Number</label>
+                                    </div>
+                                    <div class="col-lg-5 col-md-4 col-sm-4 col-xs-12  mar_top10 pad_lt0 mobile_pdrt0">
+                                        <!--<select class="form-control" ng-model="TextNumber">
+            <option ng-repeat="textNumber in optedInTextNumbers">{{textNumber | tel}}</option>
+        </select>-->
+                                        <div class="col-lg-6 col-md-6 col-sm-12 pad_lt0" ng-repeat="textNumber in optedInTextNumbers">
+                                            <input type="radio" name="radioTextNumber" id=radio{{textNumber.TextNumber}} class="css-checkbox" ng-checked="textNumber.Selected" ng-click="textNumberChanged(textNumber.TextNumber)" value="{{textNumber.Selected}}">
+                                            <label for=radio{{textNumber.TextNumber}} class="css-label">{{textNumber.TextNumber | tel}}</label>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 pad_lt0">
+                                            <span id="errorStep1" ng-show="showErrorStep1" class="error" style="color:red;">{{errorStep1}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pad_lt0 mobile_pdrt0 text-right mar_top10">
+                                        <a href="" data-toggle="modal" ng-show="showAddTextNumber" data-backdrop="static" data-keyboard="false" data-target="#notificationsByTextModal"><i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i>&nbsp;Add Text Number</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-12 mobile_pdrt0 mobile_pdlt0">
+                                        <div class="agreement_bg mar_top20 pad">
+                                            <h3 class="mar_btm20 mar_top0">Terms of Service </h3>
+                                            <p>All messages sent to subscribers are standard rate text messages. Message fees may apply, based on the type of text messaging program the subscriber has with their carrier. There are no additional fees assessed by Mid-Atlantic Finance Company or the providers of the text messaging service.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 mobile_pdrt0 mobile_pdlt0">
+                                        <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20 mar_top20">
+                                            <input type="checkbox" id="chkTermsofService" ng-model="TermsOfService">
+                                            <label for="chkTermsofService">I agree to above terms of use.</label>
+                                            <br> <span id="errorTermsofService" ng-show="showErrorTermsOfService" class="error" style="color:red;">You must agree to above Terms of Service.</span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group pull-right mar_top20">
+                            <button type="button" class="btn btn-default next-step pull-right btn_green" ng-click="PaymentMethodSetup()">Continue</button>
+                            <button type="button" class="btn btn-default pull-right mar_rt10" ng-click="GoToPayByTextHome()">Cancel</button>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane active" role="tabpanel" id="step2" ng-show="FuturePayPanel">
+                        <div class="login_bg">
+                            <div class="accinfo_containerbg mar_top10">
+                                <div class="col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+
+                                    <h3 class="font_we400 font_color2 mar_btm20 mar_top0">
+                                        Select Payment Type
+                                    </h3>
+
+                                    <div class="col-lg-3 col-md-5 col-sm-6 pad_lt0">
+                                        <input type="radio" name="radio_PaymentType" id="radio8" class="css-checkbox" ng-model="PaymentType.name" value="ACH" ng-click="PaymentType.name='ACH';SelectPaymentType();">
+                                        <label for="radio8" class="css-label"><img src="images/ach.png" width="50"> Pay By ACH</label>
+
+                                    </div>
+                                    <div class="col-lg-4 col-md-5 col-sm-6 pad_lt0">
+                                        <input type="radio" name="radio_PaymentType" id="radio9" class="css-checkbox" ng-model="PaymentType.name" value="Card" ng-click="PaymentType.name='Card';SelectPaymentType();">
+                                        <label for="radio9" class="css-label"><img src="images/visa_master.png" width="50"> Pay By Debit/ Credit Card</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div ng-show="ACHPanel" ng-include="'../../Views/PayByText/PartialACHPay.html'"></div>
+                            <div ng-show="CardPanel" ng-include="'../../Views/PayByText/PartialCardPay.html'"></div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group text-right mar_top20">
+                            <span style="color:red">{{ errorCvNumber}}</span>
+                            <span style="color:red">{{error}}</span>
+                            <button class="btn btn-default pull-left btn_miniwidth100" type="button" ng-click="BackToStep1()">Back</button>
+                            <button class="btn btn-default btn_miniwidth100" ng-click="GoToPayByTextHome()" type="button">Cancel</button>
+                            <button class="btn btn-default btn_miniwidth100 btn_green" ng-click="FuturePayment()" type="button">
+                                <span class="glyphicon  glyphicon-refresh-animate"></span>
+                                Continue
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane active" role="tabpanel" id="step3" ng-show="ACHConfirmationPanel || CardConfirmationPanel">
+
+                        <div ng-show="ACHConfirmationPanel" ng-include="'../../Views/PayByText/PartialACHConfirmation.html'"></div>
+                        <div ng-show="CardConfirmationPanel" ng-include="'../../Views/PayByText/PartialCardConfirmation.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="ConfirmationModal" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title"> Confirmation </h4>
+                </div>
+                <div class="modal-body"><div class="form-group"><p><!--  {{confirmation }}-->Pay By Text setup is successful.</p></div></div>
+                <div class="modal-footer pad_top0"><button type="button" class="btn btn-default width100" data-dismiss="modal">OK</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog" style="display: none;">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+
+                    <h4 class="modal-title">Your Routing Number</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="images/check.gif" width="100%">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn_miniwidth100" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color:red">Delete confirmation </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p>Are you sure you want to delete this?</p>
+                    </div>
+                </div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="AchDelete()"  class="btn btn-default btn_miniwidth100 btn_green">
+                        Yes
+                      
+                    </button>
+                    <button type="button" class="btn btn-default btn_miniwidth100" data-dismiss="modal">No</button>
+                    <span style="color:red">{{AchDelete}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="CardConfirmModal" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button><h4 class="modal-title" style="color:red">Delete confirmation </h4>
+                </div>
+                <div class="modal-body"><div class="form-group"><p>Are you sure to delete this card?</p></div></div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="DeleteCard()" class="btn btn-default btn_miniwidth100">Yes</button>
+                    <button type="button" class="btn btn-default btn_miniwidth100" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div><
+    </div>
+
+    <!--Notifications By Text Modal -->
+    <div class="modal fade" id="notificationsByTextModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">ENROLL NEW TEXT NUMBER</h4>
+                </div>
+                <div class="modal-body">
+                    <div ng-include="'../../Views/PayByText/PartialNotificationsByText.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="noTextNumberModal" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" ng-click="cancelPopup();AccountOperationFirst()" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color:red">No Text Number Opted-In</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p>
+                            Our system shows that you have not opted-in any text number and to enroll into Pay By Text, text number opt-in is required.
+                        </p>
+                        Please go to <a href="javascript:void();" onclick="removeModelClass()" ng-click="redirectToNotificationsByText();NotificationByTextManageOperation()">Notifications By Text Section</a> to Opt-In Text Number.
+                    </div>
+                </div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="cancelPopup();AccountOperationFirst()" class="btn btn-default btn_miniwidth100" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btncontinue" ng-click="redirectToNotificationsByText();NotificationByTextManageOperation()" onclick="removeModelClass()" class="btn btn-default btn_miniwidth100  btn_green" data-dismiss="modal">Notifications By Text</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Auto Pay Modal Delete-->
+    <div class="modal fade" id="DeletePayByTextModel" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title" style="color:red">Delete confirmation </h4></div>
+                <div class="modal-body"><div class="form-group"><p>Are you sure you want to delete Pay By Text setup?</p></div></div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="deletePayByText()" id="btncontinue" ng-disabled="deletebtndisabled" class="btn btn-default width100">Yes</button>
+                    <button type="button" class="btn btn-default width100" data-dismiss="modal">No</button><span style="color:red">{{PayByTextDeleteError}}</span></div>
+                </div>
+        </div>
+    </div>
+</div>
+<script>
+    function BtnCardPrint() {
+        $("#CardPrint").show();
+        $("#CardPrint").print();
+    }
+    function removeModelClass()
+    {
+        //$('#noTextNumberModal').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+    }
+    function PayByTextDeletePopUp() {
+        $('#DeletePayByTextModel').modal({
+            backdrop: 'static',
+            keyboard: false  // to prevent closing with Esc button (if you want this too)
+        })
+    };
+</script>

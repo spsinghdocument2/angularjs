@@ -1,0 +1,105 @@
+﻿<section class="content" id="CardPrint">
+    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 acc_serv">
+                <div class="login_bg">
+                    <h3 class="font_color2 mar_top0 text-center"><span class="padrtlt_10 bdr_btmgrn">Review Your Card Details</span></h3>
+                    <div class="accinfo_containerbg mar_top10">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>MAF Account Number</label>
+                                        <p>{{AccountNumber}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mar_top20">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Card Billing Address</label>
+                                        <p>{{FirstName}} {{LastName}} <br> {{Address}}<br>{{City}}, {{State}} {{Zip}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="accinfo_containerbg">
+                                    <div class="col-xs-12 mar_btm20"><img src="images/{{CardType}}_card.jpg"></div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Card Number</label>
+                                        <p>XXXX-XXXX-XXXX-{{CardLastDigit}}</p>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Expires</label>
+                                        <p>{{ExpiryMonth}}/{{ExpiryYear}}</p>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <label>Card Holders Name</label>
+                                        <p>{{CardName}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="login_bg mar_top10">
+                        <h3 class="font_color2 mar_top0 text-center"><span class="padrtlt_10 bdr_btmgrn">Payment Confirmation</span></h3>
+                        <div class="clearfix"></div>
+                        <h5 class="mar_btm20" ng-show="FirstCardDiv"><strong class="font_color1">Your payment transaction has not been completed yet.</strong> Please verify the information below. If this is correct click the submit button to continue.</h5>
+                        <h5 class="mar_btm20" ng-show="SecondCardDiv"><strong class="font_color1">Your payment transaction has been completed.</strong> Please verify the information below. If this is correct click the submit button to continue.</h5>
+                        <div class="mar_btm20 col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0" ng-class="{'paid_stamp':secondDiv}">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Date:</label>
+                                <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{FutureDate}}</label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Amount:</label>
+                                <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{amount}}</label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Fee Amount:</label>
+                                <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{fee}}</label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Total Amount:</label>
+                                <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{totalAmount}} (Amount charged via credit/debit card)</label>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0"> Account Type:</label>
+                                <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">Credit/Debit </label>
+                            </div>
+                            <div ng-show="SecondCardDiv" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0 mar_top20">
+                                <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Confirmation Number:</label>
+                                <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0 font_color1">{{confirmation }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div >
+                    <label ng-show="FirstCardDiv" class="mar_top15">Click Submit if this information is correct if not, click the back button to update.</label>
+                    <div class="form-group text-right mar_top20" ng-show="FirstCardDiv">
+                        <span ng-show="errortext" style="color:red"> {{error}}</span>
+                        <button ng-click="Edit()" class="btn btn-default pull-left btn_miniwidth100" type="button">Back</button>
+                        <button type="button" ng-click="btnCancel()" class="btn btn-default btn_miniwidth100">Cancel</button>
+                        <button type="button" ng-click="CardFuturePayConfirm()" class="btn btn-default btn_green btn_miniwidth100" data-dismiss="modal">
+                           
+                            Submit
+                        </button>
+                    </div>
+                </div>
+                <div ng-show="SecondCardDiv" class="mar_btm20">
+                    <p>Please note, the confirmation number is used for online verification purposes only. This transaction is subject to accuracy of information and availability of funds regarding your banking account. Payment updates can take up to 24-48 hours before applying to your account.</p>
+
+                    <div class="form-group text-center mar_top20">
+                        <button onclick="BtnCardPrint()" type="button" class="btn btn-default btn_miniwidth100 pull-left" data-dismiss="modal">
+                            <span class="glyphicon {{Loadname}} glyphicon-print mar_rt5"></span>Print
+                        </button>
+                        <button type="button" class="btn btn-default btn_green pull-right btn_miniwidth100" ng-click="btnCancel()">
+                            Finish
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

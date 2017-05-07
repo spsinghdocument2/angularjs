@@ -1,0 +1,232 @@
+﻿<script type="text/javascript">
+
+    if (typeof app === 'undefined') {
+
+        document.location.href = "../../Index.html";
+    }
+</script>
+<div ng-controller="PaymentConfirmationController">
+    <div ng-show="firstDiv">
+        <section class="content">
+            
+            <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                <div class="row"><!--container_acinfo-->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left_col">
+                        <div class="login_bg">
+                            <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0"><span class="padrtlt_10 bdr_btmgrn"> Payment Confirmation</span></h2>
+
+                            <div class="clearfix"></div>
+                            <span style="color:red">{{Error}}</span>
+                            <h5 class="mar_btm20"><strong class="font_color1">Your payment transaction has not been completed yet.</strong> Please verify the information below.</h5>
+                            <div class="mar_btm20 col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Date:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{PavmentDate | date:'MM/dd/yyyy'}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0"> Payment Amount:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ViewPaymnetAmount}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Fee Amount:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ViewFee}}</label>
+                                </div>
+
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Total Amount:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ViewTotalamount}} (Amount to be withdrawn from banking account)</label>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">MAF Account Number:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{AccountNumber}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">{{name}}:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{FullName}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Bank Account Name:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{BankAccountName}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Bank Name:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{BankName}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Routing Number:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{RoutingNumber}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Bank Account Number:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{BankAccountNumber}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Account Type:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{AccountTypeGet}} </label>
+                                </div>
+                                <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+            <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Recurring Payment:</label>
+            <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{RecurringPayment}} </label>
+        </div>-->
+                            </div>
+                            <div ng-show="loading" class="loadingOverlay"></div>
+                            <div class="clearfix"></div>
+                            <div class="agreement_bg">
+                                <h3 class="mar_btm20 mar_top0">Terms and Conditions - One Time Payment</h3>
+                                <p>Thank You for choosing to make a one time payment. Please read  carefully.</p>
+                                <p> You have elected to make a payment on your auto loan with Mid - Atlantic Finance Company using the CallPass Tech online payment system.</p>
+                                <p>There is a convenience fee of {{ViewFee}} charged by CallPass Tech for the online payment processing. You understand this one-time payment will post to the account number above. Processing may take up to 48 hours for the payment to post to your account.<strong> This payment will show on your statement as CALLPASS TECH CAR LOAN.</strong></p>
+                                <p class="mar_btm0"><strong>I am 18 years of age and I authorize the draft from my banking account shown above and I am the authorized signer on this account.</strong></p>
+                                <p>BY clicking "Submit" you agree to the Terms and Conditions outlined above.</p>
+                            </div>
+                            <!--<div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20 mar_top20 mar_btm30">
+                <input ng-change="chkboxverify()" ng-model="checkboxValdation.value1" type="checkbox" id="c1"><label for="c1" class="font_color1">I have read and agree to the Terms and Conditions.</label>
+                <label style="color:red;margin-left: 30px;">{{checkBox3}}</label>
+            </div>-->
+
+                        </div>
+
+                        <label class="mar_top15">Click Submit if this information is correct if not, click the back button to update.</label>
+                        <div class="clearfix"></div>
+                        <div class="form-group text-right mar_top20">
+                            <button class="btn btn-default pull-left btn_miniwidth100" type="button" ng-click="edit()">Back</button>
+                            <button type="button" ng-click="MAFPayment()" class="btn btn-default btn_miniwidth100">Cancel</button>
+                            <button ng-disabled="btnSubmit" type="button" ng-click="submit()" class="btn btn-default btn_miniwidth100 btn_green" data-dismiss="modal">
+                                <!--<span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>-->
+
+                                Submit
+                            </button>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <div ng-show="secondDiv">
+        <section class="content">
+            <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left_col">
+                        <div class="login_bg">
+                            <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0"><span class="padrtlt_10 bdr_btmgrn"> Payment Confirmation</span></h2>
+                            <div class="clearfix"></div>
+                            <h5 class="mar_btm20"><strong class="font_color1">Your payment transaction has been completed.</strong> Make sure you keep this confirmation number for your records.</h5>
+                            <div class="mar_btm20 col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0" ng-class="{'paid_stamp':secondDiv}">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Date:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{PavmentDate | date:'MM/dd/yyyy'}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Amount:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ViewPaymnetAmount}}</label>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Fee Amount:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ViewFee}}</label>
+                                </div>
+
+
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Total Amount:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ViewTotalamount}} (Amount to be withdrawn from banking account)</label>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">MAF Account Number:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{AccountNumber}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">{{name}}:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{FullName}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Bank Account Name:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{BankAccountName}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Bank Name:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{BankName}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Routing Number:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{RoutingNumber}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Bank Account Number:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{BankAccountNumber}}</label>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Account Type:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{AccountTypeGet}}</label>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0 mar_top20">
+                                    <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Confirmation Number:</label>
+                                    <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0 font_color1">{{confirmation }}</label>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <p>Please note, the confirmation number is used for online verification purposes only. This transaction is subject to accuracy of information and availability of funds regarding your banking account. Payment updates can take up to 24-48 hours before applying to your account.</p>
+
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="form-group text-center mar_top20">
+                            <button type="button" class="btn btn-default btn_miniwidth100 pull-left" ng-click="print()">
+                                <span class="glyphicon glyphicon-print mar_rt5"></span>Print
+                            </button>
+                            <a href="javascript:void(0)" ng-click="setFuturePayWithOutAgreement()" class="mar_rt10 mob_rtmar0">
+                                <img src="../../images/future_payment.png" class="btn_imgwd" />
+                            </a>
+                            <a href="javascript:void(0)" data-dismiss="modal" ng-click="AutoPay();  AutoPayOperation();">
+                                <img src="../../images/enroll_autopay_btn.png" class="btn_imgwd" />
+                            </a>
+
+                            <button type="button" class="btn btn-default pull-right btn_green" ng-click="Finish();AccountOperationFirst()">
+                                Finish
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!--<div ng-show="ThirdDiv" id="outprint">-->
+
+    <div class="modal fade" id="ConfirmationPaymentModal" role="dialog">
+        <div class="modal-dialog min-popup">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"> Confirmation </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <p>
+                            <!--  {{confirmation }}-->
+                            Your payment has been completed successfully.
+                        </p>
+
+                    </div>
+                </div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" class="btn btn-default width100" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

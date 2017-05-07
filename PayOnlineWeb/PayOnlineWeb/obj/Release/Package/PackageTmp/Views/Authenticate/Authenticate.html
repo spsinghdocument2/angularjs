@@ -1,0 +1,164 @@
+﻿<script type="text/javascript">
+
+    if (typeof app === 'undefined')
+    {
+
+        document.location.href = "../../Index.html";
+    }
+   
+    $(document).ready(function ()
+    {
+  
+        
+        $('#RightMenuId').hide();
+        $('#leftMenuId').hide();
+    });
+
+</script>
+
+<div ng-controller="AuthenticateController">
+    <style>
+        input.ng-invalid.ng-dirty {
+            border: 1px solid red;
+        }
+    </style>
+
+    <section class="bg_white_contact">
+        <div class="container">
+            <div class="row row_mar0">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0"><span class="padrtlt_10 bdr_btmgrn">Verify your Account</span></h2>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="wizard">
+                        <div class="wizard-inner">
+                            <div class="connecting-line"></div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="{{Step1Class}}"> <a href="javascript:void(0)" aria-controls="step1" role="tab"> <span class="round-tab">Step 1 </span> </a> </li>
+                                <li role="presentation" class="{{Step2Class}}"> <a href="javascript:void(0)" aria-controls="step2" role="tab"> <span class="round-tab"> Step 2 </span> </a> </li>
+                                <li role="presentation" class="{{Step3Class}}"> <a href="javascript:void(0)" aria-controls="step3" role="tab"> <span class="round-tab">Step 3</span> </a> </li>
+                            </ul>
+                        </div>
+                        <form name="form" id="verifyForm" ng-submit="verifyform" role="form">
+                            <div class="tab-content">
+
+                                <div class="{{tabpane1Class}}" role="tabpanel" id="step1">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                        <h2 class="text-uppercase font_darkblue mar_btm30 mobile_marbtm10 mar_topbig0">Verify Your Account</h2>
+                                        <p class="mar_btm20 mobile_marbtm10">This step will help us to verify your account information. To be able to register have your MAF Account Number on hand.</p>
+                                        <p>If you are not able to verify your Account Information please contact an MAF Account Representative at 800.899.999</p>
+                                        <a ng-click="MafLogin()" style=" cursor: pointer;">Return to MAF Login</a>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 pad_rt0 mobile_pdlt0 mobile_martp10">
+
+                                        <div class="login_bg">
+                                            <span style="color:red">{{Error}}</span>
+                                            <h2 class="text-uppercase font_darkblue mar_btm30 mar_top0 mobile_marbtm10">Enter Your Account Detail</h2>
+                                            <div class="form-group">
+                                                <label>MAF Account Number</label>
+                                                <input type="text" ng-model="new2.verify.AccountNumber" name="accountNumber" class="form-control" id="" ng-pattern="/^\d+$/" required>
+                                                <span style="color:Red" ng-show="form.accountNumber.$error.pattern">Enter Only Numbers</span>
+                                                <span style="color:red" ng-show="form.accountNumber.$dirty && form.accountNumber.$error.required">Please Enter MAF Account Number</span>
+
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Account Last Name</label>
+                                                <input type="text" name="Lastname" ng-model="new2.verify.LastName" class="form-control" id="" required>
+                                                <span style="color:red" ng-show="form.Lastname.$dirty && form.Lastname.$error.required">Please Enter Account Last Name</span>
+                                            </div>
+                                            <div class="form-group text-right mar_btm0">
+                                                <button type="button" ng-click="Steap1Cancel()" class="btn btn-default btn_miniwidth100">Reset</button>
+                                                <!--<button type="button" ng-click="verify()" class="btn btn-default next-step">Verify</button>-->
+                                                <button type="button" ng-disabled="form.$invalid || btnDisble" ng-click="verify()" class="btn btn-default next-step btn_miniwidth100 btn_green">
+                                                    <span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>
+
+                                                    Verify
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="{{tabpane2Class}}" role="tabpanel" id="step2">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 mobile_pdlt0 ">
+                                        <div class="login_bg">
+                                            <h2 class="text-uppercase font_darkblue mar_btm30 mar_top0 mobile_marbtm10">Confirm Your Account</h2>
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                <label>Account Number</label>
+                                                <input type="text" class="form-control" id="" disabled="disable" ng-model="AccountNumber">
+                                            </div>
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                <label>Account Holder</label>
+                                                <input type="text" class="form-control" id="" disabled="disable" ng-model="AccountHolder">
+                                            </div>
+
+
+                                            <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_btm30 font_s10 pad_s0 mobile_marbtm10">
+                                                <input ng-change="chkBoxVerify2()" ng-model="checkboxModel.value1" type="checkbox" id="c4">
+                                                <label for="c4" class="font_color1 check_position check_pos">Is this the correct Account Holder? (check if yes)</label>
+                                                <label style="color:red;margin-left: 30px;">{{checkBox2}}</label>
+                                            </div>
+
+
+                                            <div class="form-group text-right mar_btm0">
+                                                <button type="button" ng-click="previous()" class="btn btn-default prev-step btn_miniwidth100">Previous</button>
+                                                <button ng-disabled="btnDisble2" type="button" ng-click="step2Verify()" class="btn btn-default next-step btn_miniwidth100 btn_green">
+                                                    <span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>
+                                                    Verify
+                                                </button>
+                                            </div>
+                                            <div class="form-group text-left mobile_martp10">
+                                                <a ng-click="MafLogin()" style=" cursor: pointer;">Return to MAF Login</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="{{tabpane3Class}}" role="tabpanel" id="step3">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 mobile_pdlt0 ">
+                                        <div class="login_bg">
+                                            <h2 class="text-uppercase font_darkblue mar_btm30 mar_top0">Confirm Your Vehicle</h2>
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                <label>Vehicle Year</label>
+                                                <input type="text" class="form-control" id="" disabled="disable" ng-model="VehicleYear">
+                                            </div>
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                <label>Make and Model</label>
+                                                <input type="text" class="form-control" id="" disabled="disable" ng-model="MakeandModel">
+                                            </div>
+
+                                            <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 font_s10 pad_s0">
+                                                <input ng-change="chkboxverify3()" ng-model="checkboxModel2.value1" type="checkbox" id="c5"><label for="c5" class="font_color1 check_position1 check_pos">Is this the correct vehicle? (Check if yes)</label>
+                                                <label style="color:red;margin-left: 30px;">{{checkBox3}}</label>
+                                            </div>
+
+
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_btm30 mobile_pdlt0 mobile_pdrt0 mobile_marbtm10"><p>If you have confirmed your account information hit continue.<strong>Cancel Otherwise.</strong></p></div>
+                                            <div class="form-group text-right mar_btm0">
+                                                <button type="button" ng-click="step2previous()" class="btn btn-default prev-step">Previous</button>
+                                                <button type="button" ng-click="cancelStep3()" class="btn btn-default">Cancel</button>
+                                                <a>
+                                                    <button ng-disabled="btnDisble3" type="button" ng-click="step3Verify()" class="btn btn-default btn_green">
+                                                        <span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>
+                                                        Contiinue
+                                                    </button>
+                                                </a>
+                                            </div>
+                                            <div class="form-group text-left mobile_martp10">
+                                                <a ng-click="MafLogin()" style=" cursor: pointer;">Return to MAF Login</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

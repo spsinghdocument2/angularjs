@@ -1,0 +1,37 @@
+﻿<script type="text/javascript">
+
+    if (typeof app === 'undefined') {
+
+        document.location.href = "../../Index.html";
+    }
+</script>
+
+
+
+<div ng-controller="paymentAgreementController">
+
+    <section class="content">
+        <div class="col-md-8 col-sm-10 col-md-offset-2 col-sm-offset-1 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+            <h2 class=" text-center mar_btm50 pay_login col-sm-8 col-sm-offset-2 text-uppercase">
+                Select Payment Type<br>
+            </h2>
+            <div class="col-sm-6">
+                <input type="radio" name="radiog_dark" id="radio4" data-ng-model="Type.name" class="css-checkbox" value="Ach" />
+                <label for="radio4" class="css-label"><img src="images/ach.png" width="50px;" /> Pay By ACH</label>
+            </div>
+            <div class="col-sm-6">
+                <input type="radio" name="radiog_dark" id="radio5" class="css-checkbox" data-ng-model="Type.name" value="PayByDebitCredit" />
+                <label for="radio5" class="css-label"><img src="images/visa_master.png" width="50px;" /> Pay By Debit/ Credit Card</label>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+            <div class="form-group text-center mar_top20">
+                <a href="">
+                    <button ng-click="PaymentAgreement()" type="button" class="btn btn-default">Next</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+</div>

@@ -1,0 +1,199 @@
+﻿<script>
+    if (typeof app === 'undefined') {
+
+        document.location.href = "../../Index.html";
+    }
+</script>
+<style>
+    .form-group {
+        margin-bottom: 8px;
+    }
+</style>
+<div ng-controller="manageSavedPaymentDetailsController">
+    <div ng-show="loading" class="loadingOverlay"></div>
+    <section class="content">
+        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0 ">
+            <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                    <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0 mar_btm30"><span class="padrtlt_10 bdr_btmgrn">Manage My Card</span></h2>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="login_bg">
+                <div class="row">
+                    <div ng-show="SavedCardBlank" style="color:red;">No Data Available!</div>
+                    <div class="col-xs-12 mar_btm15 mar_top10" ng-show="SavedCard">
+                        <div class="payment_detaiHead">
+                            <label>Your Saved Debit and Credit Card</label>
+                        </div>
+                        <div class="accinfo_containerbg">
+                            <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                <div id="no-more-tables">
+                                    <table class="col-md-12 table tabel_debit table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                        <thead class="cf">
+                                            <tr>
+                                                <th>Saved Card</th>
+                                                <th>Name on Card</th>
+                                                <th>Expires on</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="data in savedCards">
+                                                <td data-title="Saved Card">
+                                                    <input type="hidden" value="{{data.TokenId}}" />
+                                                    <input type="radio" name="radio_savedcard" id="radio{{data.TokenId}}" ng-checked="data.Selected" ng-click="radioSavedCard(data)" class="css-checkbox tabel_radio">
+                                                    <label for="radio{{data.TokenId}}" class="css-label"><img src=images/{{data.CardType}}.jpg width="50"></label>
+                                                    <label class="">XXXX-XXXX-XXXX-{{data.CardNumber}}</label>
+                                                </td>
+                                                <td data-title="Name on Card">{{data.CardName}}</td>
+                                                <td data-title="Expires on">{{data.CardExpiry}}</td>
+                                                <td data-title="Delete"><a href="" ng-click="DeleteConfirm(data)" class="font_red"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="col-xs-12 mobile_martp10 mar_top10" ng-show="SavedCard">
+                        <div class="payment_detaiHead">
+                            <label>Billing Address Detail</label>
+                        </div>
+
+                        <div id="Save_billingaddress" class="accinfo_containerbg" ng-show="SavedAddress">
+                            <div class="row mar_top0">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-7 mobile_pdlt0 mobile_pdrt0">
+                                    <h3 class="ng-binding mar_top0">{{FirstName}} {{LastName}}</h3>
+                                    <p title="Address"><i class="fa fa-map-marker mar_rt10 font_color1" aria-hidden="true"></i>{{Address}} {{City}} {{State}} {{Zip}}</p>
+                                    <p title="Email"><i class="fa fa-envelope-o mar_rt10 font_color1" aria-hidden="true"></i>{{CardEmail}}</p>
+                                    <p title="Primary Phone Number"><i class="fa fa-phone mar_rt10 font_color1" aria-hidden="true"></i>{{PrimaryNumber | tel}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 mobile_pdlt0 mobile_pdrt0  text-right">
+                                    <button class="btn btn-default width100" ng-click="EditAddress()" type="button">Edit</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div id="Edit_billingaddress" class="accinfo_containerbg" ng-show="NewAddress">
+                            <div class="row mar_top0">
+                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 pad_rt0">
+                                    <div class=" custom_check form-group col-xs-12 pad_lt20">
+                                        <input type="checkbox" id="chkuseraddress" ng-change="GetAddress()" ng-model="chkuserProfileaddress"><label for="chkuseraddress" class="font_color1"> User Profile Address</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 pad_rt0">
+                                    <div class=" custom_check form-group col-xs-12 pad_rt0 pad_lt20">
+                                        <input type="checkbox" ng-change="GetAddress()" ng-model="chkLastBillAddress" id="chkLastbilling"><label for="chkLastbilling" class="font_color1"> Last Billing Address</label>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">First Name<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control" maxlength="50" id="FirstName" ng-model="FirstName">
+                                            <span style=" color:red">{{errorFirstName}}</span>
+
+                                        </div>
+                                        <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">Last Name<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control" maxlength="50" id="LastName" ng-model="LastName">
+                                            <span style=" color:red">{{errorLastName}}</span>
+                                        </div>
+                                        <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">Primary Number<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control" id="PrimaryNumber" maxlength="12" ng-model="PrimaryNumber" phone-input>
+                                            <span style=" color:red">{{errorPrimaryNumber}}</span>
+                                        </div>
+                                        <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">Email<span class="font_red font12 line_ht0">*</span></label>
+                                            <a href="javascript:void(0)" data-toggle="tooltip" data-placement="right"
+                                               title="" data-original-title="This email will be used for payment confirmation"
+                                               class="red-tooltip">
+                                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                            </a>
+                                            <input type="text" class="form-control" id="Email" maxlength="100" ng-model="CardEmail">
+                                            <span style="color:red">{{ errorCardEmail}}</span>
+
+                                            <script>
+                                                $(document).ready(function () {
+                                                    $('[data-toggle="tooltip"]').tooltip();
+                                                });
+
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">ADDRESS<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control" id="Address" ng-model="Address">
+                                            <span style=" color:red">{{errorAddress}}</span>
+                                        </div>
+                                        <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">City<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control" maxlength="50" id="City" ng-model="City">
+                                            <span style=" color:red">{{errorCity}}</span>
+                                        </div>
+                                        <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">State<span class="font_red font12 line_ht0">*</span></label>
+
+
+                                            <ui-select ng-model="$parent.selectedState" theme="bootstrap">
+                                                <ui-select-match placeholder="Select or search state">{{$select.selected.name}}</ui-select-match>
+                                                <ui-select-choices repeat="item in StateList | filter: $select.search">
+                                                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                            <span style="color:red; ">{{errorselectedState}}</span>
+                                        </div>
+                                        <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                            <label class="font_we500">Zip<span class="font_red font12 line_ht0">*</span></label>
+                                            <input type="text" class="form-control" id="Zip" ng-model="Zip">
+                                            <span style=" color:red">{{errorZip}}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-right mar_top20 col-xs-12 ">
+                                    <span style="color:red">{{error}}</span>
+                                    <span style="color:green">{{success}}</span>
+                                    <button class="btn btn-default btn_miniwidth100 btn_green" ng-click="SaveCardAddress()" type="button">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="modal fade" id="CardConfirmModal" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                    </button><h4 class="modal-title" style="color:red">Delete confirmation </h4>
+                </div>
+                <div class="modal-body"><div class="form-group"><p>Are you sure to delete this card?</p></div></div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="DeleteCard()" class="btn btn-default btn_miniwidth100">Yes</button>
+                    <button type="button" class="btn btn-default btn_miniwidth100" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div><
+    </div>
+</div>
+

@@ -1,0 +1,5 @@
+{
+  "paymentAgreement": [
+	{"fee":"$6.00","autopayAchFee": "0.00","autopayCardFee": "4.00" } 
+	]
+    }

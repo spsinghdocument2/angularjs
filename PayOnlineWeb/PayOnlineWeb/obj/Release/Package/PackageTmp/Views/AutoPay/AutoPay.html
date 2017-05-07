@@ -1,0 +1,1516 @@
+﻿
+
+<div ng-controller="AutoPayController">
+
+
+    <style>
+        input.ng-invalid.ng-dirty {
+            border: 1px solid red;
+        }
+    </style>
+    <script type="text/javascript">
+
+        if (typeof app === 'undefined')
+        {
+
+            document.location.href = "../../Index.html";
+        }
+
+    </script>
+    <style>
+        .form-group {
+            margin-bottom: 8px;
+        }
+    </style>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <h4 class="modal-title">Your Routing Number</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="images/check.gif" width="100%" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div ng-switch="showSwitchWidget" >
+        <!--div show gridview-->
+        <div ng-switch-when="StartAutoPayGrid">
+            <!--<div  ng-show="ShowGridview">-->
+            <section class="content">
+                <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                    <h2 class="font_color2 mar_top0 text-center pad_top10 mar_btm30 text-uppercase"><span class="padrtlt_10 bdr_btmgrn">Autopay-Recurring Payment</span></h2>
+                    <div class="login_bg">
+                        <div id="no-more-tables" class="tabel_scroll">
+                            <span style="color:red"></span>
+                            <table class="col-md-12 table table-bordered table-striped table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                <thead class="cf">
+                                    <tr>
+                                        <th>MAF Account #</th>
+                                        <th>Type</th>
+                                        <th ng-show="TableBankABA" class="">Bank Routing #</th>
+                                        <th class="">{{bankAccountNameView}}</th>
+                                        <th class="">Payment Frequency</th>
+                                        <th class="">Next Scheduled Date</th>
+                                        <th class="">AutoPay</th>
+                                        <th class="">Edit/Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="data in dataHolderGrid">
+                                        <td data-title="MAF Account #" class="text-center">{{data.AcctNo}}</td>
+                                        <td data-title="Type" class="text-center"><img src="images/{{data.BankAcctType}}" width="30" /></td>
+                                        <td data-title="Bank Routing #" ng-show="TableBankABA" class="text-center">{{data.BankABA}}</td>
+                                        <td data-title={{bankAccountNameView}} class="text-center"><div ng-if="data.BankAcctNoView !=' '">{{data.BankAcctNoView}}</div> </td>
+                                        <td data-title="Payment Frequency" class="text-center">{{data.paymentFrequency}}</td>
+                                        <td data-title="Next Scheduled Date" class="text-center">{{data.ScheduleDate | date |date: 'dd/mm/YYYY'}}</td>
+                                        
+                                        <td data-title="AutoPay" class="text-center">
+                                            <input id=checkboxAutoPay{{data.counter}} type="checkbox" data-toggle="toggle" data-style="ios cursor-style" data-on="Enabled" data-off="Disabled" toggle-checkbox ng-model="AutoPayIsActive" ng-disabled="true">
+                                        </td>
+                                        <td data-title="Edit/Delete" class="text-center">
+                                            <span class="mar_rt10"><a href="javascript:void(0)" ng-click="AutoPayEdit(data)" class=""><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></span>
+                                            <span><a href="javascript:void(0)" ng-click="AutopayDelete(data)" class="font_red"><img src="../../images/opt_out.png" /></a></span>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </section>
+        </div>
+            <!--div start Auto Pay-->
+            <div ng-switch-when="StartAutoPay" >
+                <section class="content">
+                    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0 mar_btm30"><span class="padrtlt_10 bdr_btmgrn">Autopay-Recurring Payment</span></h2>
+                        <div class="login_bg mar_btm20">
+                            <div class="accinfo_containerbg">
+                            <h1 class="text-center setup_txt h1_mobile">Setup <img src="images/autopay.png" class="mobile_img" /> in 3 easy Steps...
+                                <a href="javascript:void(0)" class="" ng-disabled="btndisabled" ng-click="autoPayDuplicatePayment()">
+                                    <!--<span class="glyphicon  glyphicon-refresh-animate"></span>
+        Start AutoPay <i class="fa fa-angle-right" aria-hidden="true"></i>-->
+                                    <img src="../../images/GetStartedNow.jpg" width="180" />
+                                </a>
+                                </h1>
+                            <div class="wizard auto_payWizard wizard_allactive">
+                                <div class="wizard-inner">
+                                    <div class="connecting-line"></div>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"> <a href="javascript:void(0)" aria-controls="step1" role="tab"> <span class="round-tab">Step 1 / <br><span class="font12 mobile_hide1">Choose your Payment Method</span> </span> </a> </li>
+                                        <li role="presentation" class="active"> <a href="javascript:void(0)" aria-controls="step2" role="tab"> <span class="round-tab"> Step 2 / <br><span class="font12 mobile_hide1">AutoPay Authorization </span> </span></a> </li>
+                                        <li role="presentation" class="active"> <a href="javascript:void(0)" aria-controls="step3" role="tab"> <span class="round-tab">Step 3 / <br><span class="font12 mobile_hide1">AutoPay Confirmation</span> </span></a> </li>
+                                        <!--<li role="presentation" class="disabled"> <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete"> <span class="round-tab"> <i class="glyphicon glyphicon-ok"></i> </span> </a> </li>-->
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group text-center">
+                                <a href="javascript:void(0)" class="link_deconone" ng-disabled="btndisabled" ng-click="autoPayDuplicatePayment()">
+                                    <!--<span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>-->
+                                    <img src="../../images/Register.jpg" width="200" />
+                                </a>
+                                    <!--<button ng-disabled="btndisabled" ng-click="startAutoPay()" class="btn btn-default width200 btn_green" type="button">
+            <span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>
+            Start AutoPay <i class="fa fa-angle-right" aria-hidden="true"></i>
+        </button>-->
+                                    <span style="color:red">{{LandingError}}</span>
+</div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_top20">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center">
+                                        <a class="uderline cursor" data-toggle="modal" style=" cursor: pointer;" data-target="#optInModal">How to Opt-IN</a>
+
+                                        <span class="pull-right">|</span>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center">
+                                        <a class="uderline cursor" data-toggle="modal" style=" cursor: pointer;" data-target="#optOutModal">How to Opt-OUT</a><span class="pull-right">|</span>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center"><a class="uderline cursor" style=" cursor: pointer;" data-toggle="modal" data-target="#termsModal">Terms and Conditions</a><span class="pull-right">|</span></div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 pad_lt0 pad_rt0 text-center">
+                                        <a class="uderline cursor" style=" cursor: pointer;" data-toggle="modal" data-target="#privacyModal">Privacy Policy</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </section>
+
+                <!--Opt In Modal -->
+                <div class="modal fade" id="optInModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">HOW TO OPT-IN</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>When you call or visit the website you may be asked if you would like to receive text messages concerning your account or targeted promotions. If you agree verbally or in writing to receive text messages, you will then be sent a text message requesting you confirm your desire to opt-in to this text alert system by responding with the Personal Identification Number provided. You will then receive a message from Mid-Atlantic Finance Company confirming you have opted in and providing you with contact and opt-out information.</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Opt Out Modal -->
+                <div class="modal fade" id="optOutModal" role="dialog">
+                    <div class="modal-dialog ">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">HOW TO OPT-OUT</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>To opt-out from our text system you can text "STOP" to (219) 213-3712 from your mobile phone and you will automatically be unsubscribed from our service. You will receive a confirmation that you successfully unsubscribed but will not receive any additional messages until such time you opt-in again from speaking to a customer service rep or opt-in accessing your account via the Mid-Atlantic Finance website.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Terms & Conditions Modal -->
+                <div class="modal fade" id="termsModal" role="dialog">
+                    <div class="modal-dialog ">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">TERMS AND CONDITIONS</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Subscribers to Mid-Atlantic Finance Company’s mobile messaging program have opted-in to receive text messages from Mid-Atlantic Finance concerning account servicing and other related promotions.</p><p>
+                                    Subscribers expressed an interest in receiving text messages when they called the customer service department or visited the website. Subscribers will only receive text messages from the customer service team to which they opted-in and the messages are only concerning the messages of interest.
+                                </p><p>
+                                    All messages sent to subscribers are standard rate text messages. Message fees may apply, based on the type of text messaging program the subscriber has with his or her carrier. There are no additional fees assessed by Mid-Atlantic Finance Company or the providers of the text messaging service.
+                                </p>
+
+                            </div>
+
+                        </div>
+            </div>
+                </div>
+                <!-- Privacy Modal -->
+                <div class="modal fade" id="privacyModal" role="dialog">
+                    <div class="modal-dialog ">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">PRIVACY POLICY</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Mid-Atlantic Finance Company respects your privacy. We will not share or use your mobile number for any other purpose. We will only use information you provide to transmit your text message. Nonetheless, we reserve the right at all times to disclose any information as necessary to satisfy any law, regulation or governmental request, to avoid liability, or to protect our rights or property. When you complete forms online or otherwise provide us information in connection with the Service, you agree to provide accurate, complete, and true information. You agree not to use a false or misleading name or a name that you are not authorized to use. If we, in our sole discretion, believe that any such information is untrue, inaccurate, or incomplete, we may refuse you access to the Service and pursue any appropriate legal remedies.</p>
+                                <p>For more information on our text service, you can reach us at (800) 793-9661 x 600.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--first div step 1-->
+            <div ng-switch-when="FirstDivStep1">
+
+                <section class="content">
+                    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0"><span class="padrtlt_10 bdr_btmgrn">AutoPay Recurring Payment</span></h2>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_lt0 pad_rt0">
+                            <div class="wizard auto_payWizard">
+                                <div class="wizard-inner">
+                                    <div class="connecting-line"></div>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"> <a href="javascript:void(0)" aria-controls="step1" role="tab"><span class="round-tab">Step 1 / <br /><span class="font12 mobile_hide1">Choose your Payment Method</span> </span></a> </li>
+                                        <li role="presentation" class="disabled"> <a href="javascript:void(0)" aria-controls="step2" role="tab"><span class="round-tab"> Step 2 / <br /><span class="font12 mobile_hide1">AutoPay Authorization </span> </span></a> </li>
+                                        <li role="presentation" class="disabled"> <a href="javascript:void(0)" aria-controls="step3" role="tab"><span class="round-tab">Step 3 / <br /><span class="font12 mobile_hide1">AutoPay Confirmation</span> </span></a> </li>
+                                        <!--<li role="presentation" class="disabled"> <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete"> <span class="round-tab"> <i class="glyphicon glyphicon-ok"></i> </span> </a> </li>-->
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+
+                                    <div class="tab-pane active" role="tabpanel" id="step1">
+                                        <div class="login_bg">
+                                            <div class="accinfo_containerbg">
+                                            <h3 class="font_color2 mar_top0 text-center"><span class="padrtlt_10 bdr_btmgrn">Setup Automatic Payment Using EasyPay</span></h3>
+                                            <div class="clearfix"></div>
+                                               
+                                                <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                    <label class="pull-left mar_top15 font_we500">MAF Account Number :</label>
+                                                    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-6 mobile_pdrt0 pad_lt20">
+                                                        <input type="text" class="form-control pull-left mar_rt20 mar_top10" id="" ng-model="AccountNumber" disabled>
+                                                    </div>
+                                                </div>
+                                                
+                                            <div class="clearfix"></div>
+                                                <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0"><h5 class="mar_top15">Complete the steps below to setup automatic, recurring payments.</h5></div>
+                                               
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_top20 mobile_pdlt0 mobile_pdrt0">
+                                                    <h3 class="font_we300 font_color2 mar_btm20">
+                                                        Choose Payment Method
+                                                        <a href="javascript:void(0)" class="red-tooltip large-tooltip" data-toggle="tooltip" data-placement="bottom" data-html="true"
+                                                           title="" data-original-title="Select your method of payment and fill in the appropriate billing information.
+                                                            <br /><br /><b>Note:</b>If you choose to utilize a checking account, please ensure that your bank permits auto drafts from your account. If you choose to utilize a credit or debit card as your payment method, you will need to periodically review your information to ensure your card has not expired.">
+                                                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                        </a>
+                                                    </h3>
+
+
+                                                </div>
+                                                <div  class="col-lg-4 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                    <input type="radio" name="radiog_dark" ng-disabled="ACHRadio" id="radio4" class="css-checkbox" value="ACH" ng-model="PaymentMethod.name">
+                                                    <label for="radio4" class="css-label"><img src="images/ach.png" width="50px;" class="mar_rt10">Pay By ACH</label>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                    <input type="radio" name="radiog_dark" id="radio5" class="css-checkbox" value="DebitCredit" ng-click="PaymentTypeDebitCredit()" ng-model="PaymentMethod.name">
+                                                    <label for="radio5" class="css-label"><img src="images/visa_master.png" width="50px;" class="mar_rt10"> Pay By Debit/ Credit Card</label>
+                                                </div>
+                                                
+                                            <div class="clearfix"></div>
+                                                <div class="agreement_bg mar_top20">
+                                                <h3 class="mar_btm20 mar_top0">Terms of Service </h3>
+                                                <p>User agrees the use of the Mid-Atlantic Finance Company, ("MAF") website is restricted. User shall unconditionally conform to MAF site rules and all state and federal laws where applicable. Any inquiries of information should be directed to MAF personnel only. User may not disseminate information from this site to anyone without express written consent of MAF.</p>
+                                            </div>
+                                            <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20 mar_top20">
+                                                <input type="checkbox" id="c1" ng-click="RemovetermsAndConditionsError()" ng-model="checkBoxTermsAndConditions.value">
+                                                <label for="c1" class="font_color1">I Agree to above terms of use</label>
+                                                <span style="color:red">{{termsAndConditionsError}}</span>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="text-right mar_btm10 mar_top20">
+                                            <button type="button" ng-click="Cancel()" class="btn btn-default mar_rt10 btn_miniwidth100">Cancel</button>
+
+                                            <button type="button" ng-disabled="btndisabled" ng-click="ChoosePaymentMethod()" class="btn btn-default next-step btn_miniwidth100 btn_green" data-dismiss="modal">
+                                                <span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>
+                                                Continue
+                                            </button>
+                                            
+                                            <span style="color:red">{{FirstError}}</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                </section>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    });
+                </script>
+            </div>
+
+            <!--Second div step 2 ACH-->
+            <div ng-switch-when="SecondDiv2AHC">
+
+
+                <section class="content">
+                    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0"><span class="padrtlt_10 bdr_btmgrn">AutoPay Recurring Payment</span></h2>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_lt0 pad_rt0">
+                            <div class="wizard auto_payWizard">
+                                <div class="wizard-inner">
+                                    <div class="connecting-line"></div>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="disabled"> <a href="javascript:void(0)" aria-controls="step1" role="tab"><span class="round-tab">Step 1 / <br /><span class="font12 mobile_hide1">Choose your Payment Method</span> </span></a> </li>
+                                        <li role="presentation" class="active"> <a href="javascript:void(0)" aria-controls="step2" role="tab"><span class="round-tab"> Step 2 / <br /><span class="font12 mobile_hide1">AutoPay Authorization </span> </span></a> </li>
+                                        <li role="presentation" class="disabled"> <a href="javascript:void(0)" aria-controls="step3" role="tab"><span class="round-tab">Step 3 / <br /><span class="font12 mobile_hide1">AutoPay Confirmation</span> </span></a> </li>
+                                        <!--<li role="presentation" class="disabled"> <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete"> <span class="round-tab"> <i class="glyphicon glyphicon-ok"></i> </span> </a> </li>-->
+                                    </ul>
+                                </div>
+                                <div class="tab-pane active" role="tabpanel" id="step2">
+                                    <div class="login_bg">
+                                        <h3 class="font_color2 text-center mar_btm20"><span class="padrtlt_10 bdr_btmgrn">Setup Auto Pay</span></h3>
+                                        <div class="clearfix"></div>
+
+                                        <label>Your monthly charges will be automatically deducted from your bank account.</label>
+
+                                        <div class="accinfo_containerbg mar_btm10">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <h3 class="font_we300 font_color2 mar_btm20">Selected Payment Type</h3>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <input type="radio" name="paymentTypeACH" id="radio12" class="css-checkbox" value="ACH" ng-model="PaymentMethod.name">
+                                                    <label for="radio12" class="css-label"><img src="images/ach.png" width="50px;"> Pay By ACH</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="accinfo_containerbg mar_btm10">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <h3 class="font_headblue line_ht30 mar_top10 ng-binding">MAF Account Number : {{AccountNumber}}</h3>
+                                                </div>
+
+                                                        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                            <label>Amount Due</label>
+                                                            <input type="text" class="form-control" id="" disabled ng-model="AmountDue">
+                                                        </div>
+                                                        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                            <label>Billing Due Date</label>
+                                                            <!--<input type="text" class="form-control" id="" disabled value={{DueDate | date |date 'dd/mm/YYYY' }}>-->
+                                                            <label style="background-color: #eee" class="form-control">{{DueDate }}</label>
+                                                        </div>
+                                                        <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                            <label>Frequency</label>
+                                                            <input type="text" class="form-control" id="" ng-model="Frequency" disabled>
+                                                        </div>
+
+                                                    </div>
+                                        </div>
+
+                                                   
+
+
+
+
+                                                    <div class="col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0 " ng-show="PaymentTypeACH">
+                                                  
+                                                        <h4 class="font_color2 mar_btm0 mar_top0 col-lg-2 col-md-3 col-sm-4 mobile_pdlt0">
+                                                            Pay With:
+                                                        </h4>
+
+                                                        <div class="col-lg-3 col-md-4 col-sm-6 pad_lt0">
+                                                            <input type="radio" name="radio_selectACHpay" id="radio15" class="css-checkbox" ng-click="PaymentTypeACHSave()" ng-model="AchDetail.name" value="SavedAchDetail" />
+                                                            <label for="radio15" class="css-label"> Saved ACH Detail</label>
+
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4 col-sm-6 pad_lt0">
+
+                                                <input type="radio" name="radio_selectACHpay" id="radionewach" class="css-checkbox" ng-click="PaymentTypeACHNew();" ng-model="$parent.AchDetail.name" value="NewAchDetail" />
+                                                            <label for="radionewach" class="css-label"> New ACH Detail</label>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <div ng-show="achGridDiv">
+                                                    <div class="payment_detaiHead mar_top10">
+                                                               
+                                                                    <label> Your Saved ACH Detail</label>
+                                                             
+                                                            </div>
+                                                            <div class="accinfo_containerbg">
+                                                                <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                                    <div id="no-more-tables" class="tabel_scroll">
+                                                                        <table class="tabel_widthmore col-md-12 table tabel_debit table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                                                            <thead class="cf">
+                                                                                <tr>
+                                                                                    <th>Account Type</th>
+                                                                                    <th>Account Holder Name</th>
+
+                                                                                    <th>Bank Account Name</th>
+                                                                                    <th>{{AchGrid}} Account Number</th>
+                                                                                    <th>Bank Routing Number</th>
+                                                                                    <th>Delete</th>
+                                                                                </tr>
+
+                                                                            </thead>
+                                                                            <tbody>
+                                                                        <tr ng-repeat="data in dataHolder">
+                                                                         
+                                                                                    <td data-title="Account Type">
+                                                                                      
+                                                                                        <input type="radio"  ng-checked="data.Selected" ng-click="radioSavedAhc(data)" name="radiog_dark" id=radio6{{data.counter}} class="css-checkbox tabel_radio">
+
+                                                                                        <label for=radio6{{data.counter}} class="css-label">{{data.BankAcctType}}</label>
+
+
+                                                                                    </td>
+                                                                                
+                                                                                    <td data-title="Account Holder Name">{{data.BankHolder}}</td>
+
+
+                                                                                    <td data-title="Bank Account Name">{{data.BankAccountName}}</td>
+                                                                                    <td data-title="Account Number">{{data.BankAcctNoView}}</td>
+                                                                                    <td data-title="Bank Routing Number">{{data.BankABA}}</td>
+                                                                                    <td data-title="Delete"><span><a href="javascript:void(0)" ng-click="AchDeletePop(data)" class="font_red"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></span></td>
+                                                                                </tr>
+                                                                                <!--<tr >
+                <td>
+                    <input type="radio" ng-click="radioSavedAhc()" name="radiog_dark" id="radio61" class="css-checkbox tabel_radio">
+                    <label for="radio61" class="css-label">Checking</label>
+                </td>
+                <td>Tony Symons</td>
+
+                <td>JPMORGAN CHASE BANK</td>
+                <td>XXXX567</td>
+                <td>063100277</td>
+                <td><span><a href="" class="font_red"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></span></td>
+            </tr>-->
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div ng-show="achNewPaymentDetail">
+                                                                <div class="payment_detaiHead mar_top10">
+                                                        <!--<input type="radio" name="radiog_dark" id="radio11" class="css-checkbox" ng-click="radioNewAhc()" ng-model="$parent.AchDetail.name" value="NewAchDetail">-->
+                                                        <label>New ACH Detail</label>
+                                                                </div>
+                                                                <div class="accinfo_containerbg">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  mobile_pdlt0 mobile_pdrt0">
+                                                                        <h3 class="font_we300 font_color2 mar_btm20 mar_top0 ">{{AccountType.name}} Account Information</h3>
+                                                                    </div>
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-uppercase mobile_pdlt0 mobile_pdrt0">
+                                                                        <p>Please enter your name as it appears on your {{AccountType.name}} account.</p>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                    <div class="form-group col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                                        <label class="mar_rt10 mobile_marrt10">Account Type <span class="font_red font12 line_ht0">*</span></label>
+                                                            <input type="radio" name="radiog_dark2" id="radio21" class="css-checkbox" ng-model="AccountType.name" value="Checking"><label for="radio21" class="css-label label_manage mar_rt10 mobile_marrt10">Checking</label>
+                                                            <input type="radio" name="radiog_dark2" id="radio22" class="css-checkbox" ng-model="AccountType.name" value="Savings"><label for="radio22" class="css-label label_manage">Savings</label>
+                                                                    </div>
+
+                                                                    <div class="clearfix"></div>
+                                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12  mobile_pdlt0 mobile_pdrt0">
+                                                                        <label>Account Holder Name<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <input type="text" ng-model="AccountHolderName" class="form-control text-uppercase" id="" readonly="" required="">
+
+
+                                                                    </div>
+                                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                                        <label>Account Holder Primary Number<span class="font_red font12 line_ht0">*</span></label>
+                                                            <input type="text" ng-click="removeErrorPrimaryNumber()" ng-model="$parent.PrimaryNumber" phone-input class="form-control" id={{submittedPrimaryNumber}}>
+                                                                        <span style="color:red">{{errorPrimaryNumber}}</span>
+                                                                    </div>
+
+                                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                                        <label>Bank Account Name<span class="font_red font12 line_ht0">*</span></label>
+                                                            <input ng-click="removeErrorBankAccountName()" ng-model="$parent.BankAccountName" type="text" id={{submittedBankAccountName}} class="form-control">
+                                                                        <span style="color:red">{{errorBankAccountName}}</span>
+                                                                    </div>
+
+                                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                                        <label>{{AccountType.name}} Account Number<span class="font_red font12 line_ht0">*</span></label>
+                                                            <input ng-click="removeErrorCheckingAccountNumber()" ng-model="$parent.CheckingAccountNumber" id={{submittedCheckingAccountNumber}} type="text" class="form-control">
+                                                                        <span style="color:red">{{errorCheckingAccountNumber}}</span>
+
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                                        <label>
+                                                                            Bank Routing Number<span class="font_red font12 line_ht0">*</span>
+                                                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" class="font12">&nbsp;( Need help finding your Routing Number ! )</a>
+                                                                        </label>
+                                                            <input ng-maxlength="9" ng-click="removeErrorRouting()" ng-model="$parent.BankRoutingNumber" type="text" id={{submittedRouting}} class="form-control">
+                                                                        <span style="color:red">{{ErrorRouting}}</span>
+                                                                    </div>
+
+                                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                                        <label>Email<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <!--<a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="" data-original-title="This email will be used for payment confirmation" class="red-tooltip">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                </a>-->
+
+                                                            <input type="email" ng-model="$parent.Email" ng-click="removeerrorEmail()" name="email" class="form-control " id={{submittedEmail}}>
+                                                                        <span style="color:red">{{errorEmail}}</span>
+
+
+                                                                    </div>
+                                                                    <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                                        <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20">
+                                                                            <!--<input ng-disabled="AchDisabled" ng-model="$parent.AchSaveAccountInformationFuture.value" type="checkbox" id="c5"><label for="c5" class="font_color1">Save account information for future payment.</label>-->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        
+                                                        
+                                                         </div>
+                                                    </div>
+
+
+                                        <div class="clearfix"></div>
+                                        <div class="agreement_bg mar_top10">
+                                            <h3 class="mar_btm20 mar_top0 text-uppercase">AutoPay-Recurring Payment Authorization </h3>
+                                            <p>Thank you for enrolling in Mid-Atlantic Finance Company's ("MAF") AutoPay-Recurring Payment program.</p>
+                                            <p>I Authorize MAF to make electronic funds payment via ACH to my MAF auto loan account. Payment will be debited from the checking or saving account I provided to MAF. I am either a named owner or authorized representative of the ACH account and the name(s) on the ACH account or documents providing authorization match the name(s) of my MAF account.</p>
+                                            <p>I understand payments will be automatically debited from the ACH account number provided in accordance with each scheduled payment due date in the respective payment amount. Payments will be automatically debited on a recurring basis with no further action on my part.</p>
+                                            <p>Payments may be processed by CallPass Tech Pay System ("CallPass"), an independent third-party; however, each payment will be credited to my MAF account. CallPass will not charge a convenience fee for processing of recurring ACH payment. It may take up to the 48 hours for payment to post to MAF accounts. Your ACH account statement may reflect "CallPass Tech" as the Payee. Subscribers to the AutoPay-Recurring Payment program may incur a service charge assessed by your financial institution.</p>
+                                            <p>MAF will not be liable for any delays connected with the AutoPay-Recurring Payment program.</p>
+                                            <p>This Authorization will remain in effect until the debt is satisfied or until cancelled by either party. I understand I may cancel through my online account, by sending a text message, by contacting MAF's Accounts Servicing department at (800) 793-9661 ext. 600 or by submitting written notice. Electronic requests will be processed by the next scheduled payment due date provided a request is made more than 2 business days prior to that date. I understand MAF may suspend this agreement at any time.</p>
+                                            <p>By clicking "Submit" I agree to the terms and conditions set forth above.</p>
+                                        </div>
+                                        <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20 mar_top20">
+                                            <input ng-click="RemovePaymentAmounttermsAndConditionsError()" ng-model="checkBoxTermsAndConditionsPaymentAmount.value" type="checkbox" id="c2">
+                                            <label for="c2" class="font_color1">YES, I have read and accepted the terms and conditions of the AutoPay-Recurring Payment authorization form and agree to enrollment in the program.</label>
+                                            <span style="color:red">{{PaymentAmountTermsAndConditionsError}}</span>
+                                            
+                                     
+                                        </div>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="mar_top20">                                      
+                                        <button type="button" ng-click="BackAchPaymentAmount()" class="btn btn-default prev-step btn_miniwidth100">Back</button>    
+                                        <span style="color:red">{{MainError}}</span>
+                                        <span style="color:red">{{MainError2}}</span>                                   
+                                        <button type="button" ng-click="AchPaymentAmountContinue()" ng-disabled="btndisabled" class="btn btn-default next-step pull-right btn_miniwidth100 btn_green" data-dismiss="modal">
+                                            <span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>
+                                            Continue
+                                        </button>
+                                        <button type="button" ng-click="Cancel()" class="btn btn-default pull-right mar_rt10 btn_miniwidth100">Cancel</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    });
+                </script>
+
+            </div>
+
+            <!--Second div step 2 DebitCredit-->
+            <div ng-switch-when="SecondDivStep2DebitCredit">
+
+                <section class="content">
+                    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                        <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase pad_topbig0"><span class="padrtlt_10 bdr_btmgrn">AutoPay Recurring Payment</span></h2>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_lt0 pad_rt0">
+                            <div class="wizard auto_payWizard">
+                                <div class="wizard-inner">
+                                    <div class="connecting-line"></div>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="disabled"> <a href="javascript:void(0)" aria-controls="step1" role="tab"><span class="round-tab">Step 1 / <br /><span class="font12 mobile_hide1">Choose your Payment Method</span> </span></a> </li>
+                                        <li role="presentation" class="active"> <a href="javascript:void(0)" aria-controls="step2" role="tab"><span class="round-tab"> Step 2 / <br /><span class="font12 mobile_hide1">AutoPay Authorization </span> </span></a> </li>
+                                        <li role="presentation" class="disabled"> <a href="javascript:void(0)" aria-controls="step3" role="tab"><span class="round-tab">Step 3 / <br /><span class="font12 mobile_hide1">AutoPay Confirmation</span> </span></a> </li>
+                                        <!--<li role="presentation" class="disabled"> <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete"> <span class="round-tab"> <i class="glyphicon glyphicon-ok"></i> </span> </a> </li>-->
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" role="tabpanel" id="step2">
+                                        <div class="login_bg">
+                                            <h3 class="font_color2 mar_top0 text-center"><span class="padrtlt_10 bdr_btmgrn">Setup Auto Pay</span></h3>
+                                            <div class="clearfix"></div>
+                                            <label>Your monthly charges will be automatically deducted from your debit or credit card.</label>
+                                            <div class="accinfo_containerbg mar_btm10">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <h3 class="font_we300 font_color2 mar_btm20">Selected Payment Type</h3>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <input type="radio" name="paymentTypeACH" id="radio12" class="css-checkbox" checked="checked">
+                                                        <label for="radio12" class="css-label"><img src="images/visa_master.png" width="50px;"> Pay By Debit/Credit Card</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="accinfo_containerbg mar_btm10">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <h3 class="font_headblue line_ht30 mar_top10 ng-binding">MAF Account Number : {{AccountNumber}}</h3>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="row">
+                                                            <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                <label>Amount Due</label>
+                                                                <input type="text" class="form-control" id="" disabled ng-model="AmountDue">
+                                                            </div>
+                                                            <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                <label>Billing Due Date</label>
+                                                                <label style="background-color: #eee" class="form-control">{{DueDate }}</label>
+                                                            </div>
+                                                            <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                                <label>Frequency</label>
+                                                                <input type="text" class="form-control" id="" disabled ng-model="Frequency">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                         
+                                                <div ng-show="cardPayWith" class="col-sm-12 col-xs-12 mobile_pdlt0 mobile_pdrt0 ">
+
+                                                    <h4 class="font_color2 mar_btm0 mar_top0 col-lg-2 col-md-3 col-sm-4 mobile_pdlt0">
+                                                        Pay With:
+                                                    </h4>
+
+                                                    <div class="col-lg-3 col-md-4 col-sm-6 pad_lt0">
+                                                        <input ng-click="radioSavedCardShow()" type="radio" name="radio_selectACHpay" id="radio15" class="css-checkbox" ng-model="$parent.TypeOfDebitCredit.Name" value="Saved" />
+                                                        <label for="radio15" class="css-label">Saved debit and credit card</label>
+
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 pad_lt0">
+                                                        <!--<input type="radio" name="radio_selectACHpay" ng-model="$parent.TypeOfDebitCredit.Name" value="New" id="radio11" ng-click="radioNewCard()" class="css-checkbox">-->
+
+                                                        <input type="radio" name="radio_selectACHpay" id="radio150" class="css-checkbox" ng-model="$parent.TypeOfDebitCredit.Name" value="New" ng-click="radioNewCard()" />
+                                                        <label for="radio150" class="css-label">New debit and credit card</label>
+                                                    </div>
+                                                </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 mar_btm15 mar_top10" ng-show="SaveCardInfo">
+                                                    <div class="payment_detaiHead">
+                                                        <label>Your Saved Debit and Credit Card</label>
+
+                                                    </div>
+                                                    <div class="accinfo_containerbg">
+                                                        <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0">
+                                                            <div id="no-more-tables" class="tabel_scroll">
+                                                                <table class="col-md-12 table tabel_debit table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                                                    <thead class="cf">
+                                                                        <tr>
+
+                                                                            <th>Saved Card</th>
+                                                                            <th>Name on Card</th>
+                                                                            <th>Expires on</th>
+                                                                            <th class="width100">
+
+                                                                                CVV<a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" data-html="true"
+                                                                                      title="" data-original-title="<img src='images/cvv.png'>" class="red-tooltip" style="text-decoration:none;">
+                                                                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                                                </a>
+                                                                                <span class="font_red font12 line_ht0">*</span>
+                                                                            </th>
+                                                                            <th>Delete</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr  ng-repeat="data in savedCards">
+                                                                            <td data-title="Saved Card">
+                                                                                <input type="hidden" value="{{data.TokenId}}" />
+                                                                                <input type="radio" name="radio_savedcard" id=radio{{data.counter}} ng-checked="data.Selected" ng-click="radioSavedCard(data)" class="css-checkbox tabel_radio">
+                                                                                <label for=radio{{data.counter}} class="css-label"><img src="images/{{data.CardType}}.jpg" width="50"></label>
+                                                                                <label class="">XXXX-XXXX-XXXX-{{data.CardNumber}}</label>
+                                                                            </td>
+                                                                            <td data-title="Name on Card">{{data.CardName}}</td>
+                                                                            <td data-title="Expires on">{{data.CardExpiry}}</td>
+                                                                            <td data-title="CVV"><input type="text" placeholder="CVV" ng-disabled="!data.Selected" ng-click="removeErrorCvvTable()" class="width100 padrtlt_10 form-control" id="SavedCvNumber" maxlength="3" ng-model="data.CVV" ng-change="updateSavedCardCVV(data)"></td>
+                                                                            <td data-title="Delete"><a href="" ng-click="CardDeleteConfirm(data)" class="font_red"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="col-xs-12">
+                                                    <div class="row">
+
+                                                        <div ng-show="newCardView" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_top10">
+                                                            <div class="payment_detaiHead">
+                                                                <!--<input type="radio" name="radio_savedcard" ng-model="$parent.TypeOfDebitCredit.Name" value="New" name="radiog_dark30" id="radio11" ng-click="radioNewCard()" class="css-checkbox">-->
+                                                                <label>New Debit or Credit Card</label>
+                                                            </div>
+                                                            <div class="accinfo_containerbg">
+                                                                <div class="row">
+                                                                    <div class="col-xs-12 mar_btm30">
+                                                                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 pad_lt0">
+                                                                            <input type="radio" name="radiog_cardtype" id="radio13" class="css-checkbox" ng-model="$parent.CardType.Name" value="Visa">
+                                                                            <label for="radio13" class="css-label"><img src="images/visa_icon.jpg" width="50px;"></label>
+                                                                        </div>
+                                                                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 pad_lt0">
+                                                                            <input type="radio" name="radiog_cardtype" id="radio14" class="css-checkbox" value="Master" ng-model="$parent.CardType.Name">
+                                                                            <label for="radio14" class="css-label"><img src="images/master_card.jpg" width="50px;"></label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">Name on Card<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <input type="text" ng-click="RemoveErrorCardName()" class="form-control" id={{submittedInvalid}} ng-model="$parent.CardName">
+                                                                        <span style="color:red">{{ErrorCardName}}</span>
+                                                                    </div>
+                                                                    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">Card Number<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <input type="text" ng-click="RemoveErrorCardNumber()" class="form-control card_typeimg" id={{submittedInvalid2}} maxlength="16" ng-model="$parent.CardNumber" onkeypress="return isNumber(event);">
+                                                                        <span style="color:red">{{ErrorCardNumber}}</span>
+                                                                    </div>
+
+                                                                    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">Expiry Date<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <div class="clearfix"></div>
+                                                                        <div class="form-group col-xs-6 pad_lt0 pad_rt0">
+                                                                            <select id={{submittedExpiryDate}} ng-change="RemoveExpiryDate()" class="form-control" ng-model="$parent.ExpiryDate">
+                                                                                <option value="">MM</option>
+                                                                                <option value="01">01</option>
+                                                                                <option value="02">02</option>
+                                                                                <option value="03">03</option>
+                                                                                <option value="04">04</option>
+                                                                                <option value="05">05</option>
+                                                                                <option value="06">06</option>
+                                                                                <option value="07">07</option>
+                                                                                <option value="08">08</option>
+                                                                                <option value="09">09</option>
+                                                                                <option value="10">10</option>
+                                                                                <option value="11">11</option>
+                                                                                <option value="12">12</option>
+                                                                            </select>
+                                                                            <span style="color:red">{{ErrorExpiryDate}}</span>
+                                                                        </div>
+                                                                        <div class="form-group col-xs-6 pad_rt0">
+                                                                            <select ng-click="RemoveExpiryYear()" class="form-control" id={{submittedExpiryYear}} ng-model="$parent.ExpiryYear">
+                                                                                <option value="">YY</option>
+                                                                                <option value="2016">2016</option>
+                                                                                <option value="2017">2017</option>
+                                                                                <option value="2018">2018</option>
+                                                                                <option value="2019">2019</option>
+                                                                                <option value="2020">2020</option>
+                                                                                <option value="2021">2021</option>
+                                                                                <option value="2022">2022</option>
+                                                                                <option value="2023">2023</option>
+                                                                                <option value="2024">2024</option>
+                                                                                <option value="2025">2025</option>
+                                                                                <option value="2026">2026</option>
+                                                                                <option value="2027">2027</option>
+                                                                                <option value="2028">2028</option>
+                                                                                <option value="2029">2029</option>
+                                                                                <option value="2030">2030</option>
+                                                                                <option value="2031">2031</option>
+                                                                                <option value="2032">2032</option>
+                                                                                <option value="2033">2033</option>
+                                                                                <option value="2034">2034</option>
+                                                                                <option value="2035">2035</option>
+                                                                                <option value="2036">2036</option>
+                                                                                <option value="2037">2037</option>
+                                                                                <option value="2038">2038</option>
+                                                                                <option value="2039">2039</option>
+                                                                                <option value="2040">2040</option>
+                                                                            </select>
+                                                                            <span style="color:red">{{ErrorExpiryYear}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="formform-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">CVV<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <div class="clearfix"></div>
+                                                                        <input type="text" class="form-control width_70 pull-left mar_rt10" id={{submittedCvNumber}} ng-click="RemoveCvNumber()" maxlength="3" ng-model="$parent.CvNumber" onkeypress="return isNumber(event);">
+                                                                        <img src="images/cvv.png" class="">
+                                                                        <span style="color:red">{{ErrorCvNumber}}</span>
+                                                                    </div>
+                                                                    <div class="col-xs-12">
+                                                                        <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20">
+                                                                            <!--<input ng-disabled="SaveCardDisabled" type="checkbox" id="c5" ng-model="DebitCreditSaveAccountInformationFuture.value"><label for="c5" class="font_color1">Save account information for future payment.</label>-->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div ng-show="SavedBillingAddress" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_top10">
+                                                            <div class="payment_detaiHead">
+                                                                <label>Billing Address Detail</label>
+                                                            </div>
+                                                            <div id="Save_billingaddress" class="accinfo_containerbg">
+                                                                <div class="row mar_top0">
+                                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                                        <h3 class="mar_top0">{{BillingName}} {{BillingLastName}}</h3>
+                                                                        <p title="Address" class=""><i class="fa fa-map-marker mar_rt10 font_color1" aria-hidden="true"></i>{{Address}} {{City}} {{State}} {{Zip}}</p>
+                                                                        <p title="Email" class=""><i class="fa fa-envelope-o mar_rt10 font_color1" aria-hidden="true"></i>{{Email}}</p>
+
+                                                                        <p title="Primary Phone Number" class=""><i class="fa fa-phone mar_rt10 font_color1" aria-hidden="true"></i>{{PrimaryNumber | tel}}</p>
+                                                                    </div>
+                                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-right">
+                                                                        <button ng-click="CardEditBillingAddress()" class="btn btn-default width100" type="button">Edit</button>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div ng-show="BillingAddress" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mar_top10">
+                                                            <div class="payment_detaiHead">
+                                                                <label>Billing Address Detail</label>
+                                                            </div>
+                                                            <div class="accinfo_containerbg">
+                                                                <div class="row mar_top10">
+                                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 pad_rt0">
+                                                                        <div class=" custom_check form-group col-xs-12 pad_lt20">
+                                                                            <input type="checkbox" id="chkuseraddress" ng-model="chkuserProfileaddress.value" ng-change="GetAddress()"><label for="chkuseraddress" class="font_color1"> User Profile Address</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 pad_rt0">
+                                                                        <div class=" custom_check form-group col-xs-12 pad_rt0 pad_lt20">
+                                                                            <input type="checkbox" ng-change="GetAddress()" ng-model="chkLastBillAddress.value" id="chkLastbilling"><label for="chkLastbilling" class="font_color1"> Last Billing Address</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">FIRST NAME<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <input type="text" class="form-control" id={{submittedBillingName}} ng-click="RemoveBillingName()" ng-model="$parent.BillingName">
+                                                                        <span style="color: red">{{ErrorBillingName}}</span>
+                                                                    </div>
+                                                                    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">LAST NAME<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <input type="text" class="form-control" id={{submittedBillinLastgName}} ng-click="RemoveBillingLastName()" ng-model="$parent.BillingLastName">
+                                                                        <span style="color: red">{{ErrorBillingLastName}}</span>
+                                                                    </div>
+
+                                                                    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">Primary Number<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <input phone-input type="text" ng-click="RemovePrimaryNumber()" class="form-control" id={{submittedPrimaryNumber}} maxlength="12" ng-model="$parent.PrimaryNumber">
+                                                                        <span style="color:red">{{ErrorPrimaryNumber}}</span>
+                                                                    </div>
+                                                                    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">Email<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <!--<a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="" data-original-title="This email will be used for payment confirmation" class="red-tooltip">
+                                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                </a>-->
+                                                                        <input type="email" ng-click="RemoveEmail()" ng-model="$parent.Email" class="form-control" id={{submittedEmail}}>
+                                                                        <span style="color:red">{{ErrorEmail}}</span>
+                                                                    </div>
+
+                                                                    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">ADDRESS<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <input ng-click="RemoveAddress()" type="text" class="form-control" id={{submittedAddress}} ng-model="$parent.Address">
+                                                                        <span style="color:red">{{ErrorAddress}}</span>
+                                                                    </div>
+                                                                    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">City<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <input ng-click="RemoveCity()" type="text" class="form-control" id={{submittedCity}} ng-model="$parent.City">
+                                                                        <span style="color:red">{{ErrorCity}}</span>
+                                                                    </div>
+
+                                                                    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">State<span class="font_red font12 line_ht0">*</span></label>
+
+                                                                        <!--<select ng-click="RemoveState()" class="form-control" id={{submittedState}} ng-model="$parent.State">
+                                    <option value="">Please Select</option>
+                                    <option ng-repeat="data in StateList" value="{{data.Value}}">{{data.name}}</option>
+                                </select>-->
+
+                                                                        <ui-select ng-model="$parent.stateSelection.selectedState" ng-change="RemoveState()" theme="bootstrap">
+                                                                            <ui-select-match placeholder="Select state">{{$select.selected.name}}</ui-select-match>
+                                                                            <ui-select-choices repeat="item in $parent.StateList | filter: $select.search">
+                                                                                <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                                                            </ui-select-choices>
+                                                                        </ui-select>
+
+                                                                        <span style="color:red">{{ErrorState}}</span>
+                                                                    </div>
+
+                                                                    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12 text-uppercase">
+                                                                        <label class="font_we500">Zip<span class="font_red font12 line_ht0">*</span></label>
+                                                                        <input ng-click="RemoveZip()" type="text" class="form-control" id={{submittedZip}} ng-model="$parent.Zip">
+                                                                        <span style="color:red">{{ErrorZip}}</span>
+                                                                    </div>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="clearfix"></div>
+                                            <div class="agreement_bg mar_top10 mar_btm20">
+                                                <h3 class="mar_btm20 mar_top0 text-uppercase">AutoPay-Recurring Payment Authorization </h3>
+                                                <p>Thank You for choosing to make AutoPay- Recurring Payment. Please Read carefully.</p>
+                                                <p>I authorize Mid-Atlantic Finance Company to debit the  <b><i>Credit/Debit</i></b>  account indicated in this web form for the noted amount on the schedule indicated. Subscribers to Mid-Atlantic Finance Company's Web payment program have the ability to make auto loan payments held by Mid-Atlantic Finance Company. Payments can be made directly to Mid-Atlantic Finance Company and are processed through CallPass Tech Pay System, an independent third-party. I understand that this authorization will remain in effect until the schedule end date, or until I cancel it in online OPT-OUT or by calling Mid-Atlantic Finance Company's Customer Service Dept at 800.793.9661 ext 600, and I agree to notify the business by calling in or online OPT-OUT of any changes to my account information or termination of this authorization at least 24 hours to the next billing date. If the above noted payment date falls on a weekend or holiday, I understand that the payment may be executed on the next business day. I certify that I am an authorized user of this <b><i>Credit/Debit</i></b>  account and that I will not dispute the payment with my credit card company or bank, so long as the transaction corresponds to the terms indicated in this web form. Only two equivalent payments can be made per calendar day.</p>
+                                                <p>
+                                                    By clicking "Submit" you agree to the Terms and Conditions outlined above.  You have elected to make a payment on your auto loan with Mid-Atlantic Finance Company using the "CallPass ".
+                                                    Subscribers may incur service fees by their financial institution as well as CallPass Tech. Your bank or credit card statement will reflect CallPass Tech as the payee.
+                                                </p>
+                                                <p>
+                                                    There is a convenience fee of <strong>${{CardFee}}</strong> charged by CallPass Tech for the online payment processing. You understand this recurring payment will post to the account number above.  Processing may take up to 48 hours for the payment to post to your account.
+                                                </p>
+                                                <p>Mid-Atlantic Finance Company will not be liable for any delays connected with this program.</p>
+
+                                            </div>
+                                            <div class="custom_check col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt20">
+                                                <input ng-click="RemovePaymentAmounttermsAndConditionsError()" ng-model="checkBoxTermsAndConditionsPaymentAmount.value" type="checkbox" id="c2">
+                                                <label for="c2" class="font_color1">YES, I have read and accepted the terms and conditions of the AutoPay-Recurring Payment authorization form and agree to enrollment in the program.</label>
+                                                <span style="color:red">{{PaymentAmountTermsAndConditionsError}}</span>
+                                            </div>                                                                                                                                                                                                                    
+                                        </div>   
+                                        <div class="clearfix"></div> 
+                                        <div class="mar_top20 pad_top10">                                            
+                                            <button type="button" ng-click="BackAchPaymentAmount()" class="btn btn-default prev-step btn_miniwidth100">Back</button>    
+                                            <span style="color:red">{{ errorCvNumber}}</span>                                        
+                                            <button type="button" ng-click="DebitCreditPaymentAmountContinue()" ng-disabled="btndisabled" class="btn btn-default next-step pull-right btn_miniwidth100 btn_green" data-dismiss="modal">
+                                                <span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>
+                                                Continue
+                                            </button>
+                                            <button type="button" ng-click="Cancel()" class="btn btn-default pull-right mar_rt10 btn_miniwidth100">Cancel</button>
+                                        </div>    
+                                                                             
+                                    </div>
+                                </div>
+                           
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    });
+                </script>
+            </div>
+
+            <!--third div step 3 ACH-->
+            <div ng-switch-when="thirdDivStep3ACH">
+
+
+                <section class="content">
+                    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0 pad_btm90">
+                        <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase"><span class="padrtlt_10 bdr_btmgrn">AutoPay Recurring Payment</span></h2>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_lt0 pad_rt0">
+                            <div class="wizard auto_payWizard">
+                                <div class="wizard-inner">
+                                    <div class="connecting-line"></div>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="disabled"> <a href="javascript:void(0)" aria-controls="step1" role="tab"><span class="round-tab">Step 1 / <br /><span class="font12 mobile_hide1">Choose your Payment Method</span> </span></a> </li>
+                                        <li role="presentation" class="disabled"> <a href="javascript:void(0)" aria-controls="step2" role="tab"><span class="round-tab"> Step 2 / <br /><span class="font12 mobile_hide1">AutoPay Authorization </span> </span></a> </li>
+                                        <li role="presentation" class="active"> <a href="javascript:void(0)" aria-controls="step3" role="tab"><span class="round-tab">Step 3 / <br /><span class="font12 mobile_hide1">AutoPay Confirmation</span> </span></a> </li>
+                                        <!--<li role="presentation" class="disabled"> <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete"> <span class="round-tab"> <i class="glyphicon glyphicon-ok"></i> </span> </a> </li>-->
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+
+                                    <div class="tab-pane active" role="tabpanel" id="step3">
+                                        <div class="login_bg">
+                                            <h3 class="font_color2 mar_top0 text-center"><span class="padrtlt_10 bdr_btmgrn">Review Your AutoPay Settings</span></h3>
+                                            <div class="clearfix"></div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div id="no-more-tables" class="tabel_scroll">
+                                                        <table class="col-md-12 table table-bordered table-striped table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                                            <thead class="cf">
+                                                                <tr>
+                                                                    <th>MAF Account Number</th>
+                                                                    <th>Due Date</th>
+                                                                    <th class="">Due Amount</th>
+                                                                    <th>Scheduled Date</th>
+                                                                    <th class="">Scheduled Amount</th>
+                                                              
+                                                                    <th class="">Payment Frequency</th>
+                                                                    <th class="">Type</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <!--<tr>
+                                                                    <td data-title="MAF Account Number" class="text-center">{{ConfirmationAchMafAccountNumber}}</td>
+                                                                    <td data-title="Due Date" class="text-center">{{ConfirmationAchDueDate | date:'MM/dd/yyyy'}} </td>
+                                                                    <td data-title="Due Amount" class="text-center">${{OtherAmount}}</td>
+                                                                    <td data-title="Scheduled Date" class="text-center">{{ConfirmationAchDueDate | date:'MM/dd/yyyy'}} </td>
+                                                                    <td data-title="Scheduled Amount" class="text-center">${{OtherAmount}}</td>
+
+                                                                    <td data-title="Payment Frequency" class="text-center">
+                                                                        {{ConfirmationDebitCreditFrequency}}
+                                                                    </td>
+                                                                    <td data-title="Type" class="text-center">
+                                                                        <img src="images/ach.png" width="30" />
+                                                                    </td>
+                                                                </tr>-->
+                                                                <tr ng-repeat="data in autopayScheduleGrid">
+                                                                    <td data-title="MAF Account Number" class="text-center">{{ConfirmationAchMafAccountNumber}}</td>
+                                                                    <!--<td class="text-center">{{ConfirmationAchDueDate | date:'MM/dd/yyyy'}} </td>-->
+                                                                    <td data-title="Due Date" class="text-center">{{data.ScheduleDueDate | date |date: 'dd/mm/YYYY'}}</td>
+                                                                    <td data-title="Due Amount" class="text-center">${{OtherAmount}}</td>
+
+                                                                    <td data-title="Scheduled Date" class="text-center">{{data.ScheduleDueDate | date |date: 'dd/mm/YYYY'}}</td>
+                                                                    <td data-title="Scheduled Amount" class="text-center">${{OtherAmount}}</td>
+
+
+                                                                    <td data-title="Payment Frequency" class="text-center">
+                                                                        {{ConfirmationDebitCreditFrequency}}
+                                                                    </td>
+                                                                    <td data-title="Type" class="text-center">
+                                                                        <img src="images/ach.png" width="30" />
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="accinfo_containerbg mar_top10">
+                                                <h3 class="font_color2 mar_top0 text-center"><span class="padrtlt_10 bdr_btmgrn">AutoPay-Recurring Payment Confirmation</span></h3>
+                                                <div class="clearfix"></div>
+                                                <h5 class="mar_btm20" ng-show="AchAmountSubmit"><strong class="font_color1">Your payment transaction has not been completed yet.</strong> Please verify the information below. If this is correct click the submit button to continue.</h5>
+                                                <h5 class="mar_btm20" ng-hide="AchAmountSubmit"><strong class="font_color1">Your payment transaction has been completed.</strong></h5>
+
+                                                 <div class="mar_btm20 col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Date:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ConfirmationAchPavmentDate | date:'MM/dd/yyyy'}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Amount:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{ConfirmationAchAmountDue}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Fee Amount:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{ConfirmationAchFee}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Total Amount:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{ConfirmationAchTotalAmount}} (Amount to be withdrawn from banking account)</label>
+                                                    </div>
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">MAF Account Number:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ConfirmationAchMafAccountNumber}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Name on the ACH:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ConfirmationAchNameOnTheAch}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Bank Name:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ConfirmationAchBankName}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Routing Number:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ConfirmationAchBankRoutingNumber}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Bank Account Number:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ConfirmationAchBankAccountNumberView }}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Account Type:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ConfirmationAchAccountTypeView}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Remaining:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{RemainingTerm}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Frequency:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{ConfirmationDebitCreditFrequency}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="clearfix"></div>  
+                                        <p ng-show="AchAmountSubmit" class="mar_top15"><b>Click Submit if this information is correct if not, click the Back button to update.</b></p>
+                                        <div class="clearfix"></div>    
+                                            <div class="mar_top20">
+                                                <button ng-show="AchAmountSubmit" type="button" ng-click="ACHPaymentConfirmationBack()" class="btn btn-default prev-step">Back</button>
+                                                <span style="color:red">{{Ach3StepError}}</span>
+                                                <span style="color:green">{{confirmation}}</span>
+                                                <button ng-show="AchAmountSubmit" type="button" ng-click="SavedAchAmount()" ng-disabled="btndisabled" class="btn btn-default pull-right btn_green" data-dismiss="modal">
+                                                    <span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>
+                                                    Submit
+                                                </button>
+                                                <button ng-show="AchAmountSubmit" type="button" ng-click="Cancel()" class="btn btn-default pull-right mar_rt10">Cancel</button>
+                                                <button ng-hide="AchAmountSubmit" ng-click="GetConfirmationPayment()" type="button" class="btn btn-default pull-right mar_rt10 btn_green">Finish</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                </section>
+
+            </div>
+
+            <!--third div step 3 DebitCredit-->
+            <div ng-switch-when="thirddivstep3DebitCredit">
+
+                <section class="content">
+                    <div class="col-xs-12 mobile_pdlt0 mobile_pdrt0 pad_btm90">
+                        <h2 class="font_color2 mar_top0 text-center pad_top10 text-uppercase"><span class="padrtlt_10 bdr_btmgrn">AutoPay Recurring Payment</span></h2>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_lt0 pad_rt0">
+                            <div class="wizard auto_payWizard">
+                                <div class="wizard-inner">
+                                    <div class="connecting-line"></div>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="disabled"> <a href="javascript:void(0)" aria-controls="step1" role="tab"> <span class="round-tab">Step 1 / <br /><span class="font12 mobile_hide1">Choose your Payment Method</span> </span> </a> </li>
+                                        <li role="presentation" class="disabled"> <a href="javascript:void(0)" aria-controls="step2" role="tab"> <span class="round-tab"> Step 2 / <br /><span class="font12 mobile_hide1">AutoPay Authorization </span> </span></a> </li>
+                                        <li role="presentation" class="active"> <a href="javascript:void(0)" aria-controls="step3" role="tab"> <span class="round-tab">Step 3 / <br /><span class="font12 mobile_hide1">AutoPay Confirmation</span> </span></a> </li>
+
+                                        <!--<li role="presentation" class="disabled"> <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete"> <span class="round-tab"> <i class="glyphicon glyphicon-ok"></i> </span> </a> </li>-->
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" role="tabpanel" id="step3">
+                                        <div class="login_bg">
+                                            <h3 class="font_color2 mar_top0 text-center mar_btm30"><span class="padrtlt_10 bdr_btmgrn">Review Your AutoPay Settings</span></h3>
+                                            <div class="clearfix"></div>
+                                            
+                                            <div class="accinfo_containerbg">
+                                                <div id="no-more-tables" class="tabel_scroll">
+                                                        <table class="col-md-12 table table-bordered table-striped table-condensed cf mobile_pdlt0 mobile_pdrt0">
+                                                            <thead class="cf">
+                                                                <tr>
+                                                                    <th class="">MAF Account Number</th>
+                                                                    <th class="">Due Date</th>
+                                                                    <th class="">Due Amount</th>
+                                                                    <th class="">Scheduled Date</th>
+                                                                    <th class="">Scheduled Amount</th>
+                                                                    <th class="">Payment Frequency</th>
+                                                                    <th class="">Type</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <!--<tr>
+                                                                <td data-title="MAF Account Number" class="text-center">{{AccountNumber}}</td>
+                                                                <td data-title="Due Date" class="text-center">{{DueDate | date |date: 'dd/mm/YYYY' }}</td>
+
+                                                                <td data-title="Due Amount" class="text-center">${{OtherAmount}}</td>
+                                                                <td data-title="Scheduled Date" class="text-center">{{DueDate | date |date: 'dd/mm/YYYY' }}</td>
+
+                                                                <td data-title="Scheduled Amount" class="text-center">${{OtherAmount}}</td>
+                                                                <td data-title="Payment Frequency" class="text-center">
+                                                                        {{Frequency}}
+                                                                    </td>
+                                                                <td data-title="Type" class="text-center">
+                                                                        <img src="images/{{CardTypeImg}}.jpg" width="30" />
+                                                                    </td>
+                                                                </tr>-->
+
+                                                                <tr ng-repeat="data in autopayScheduleGrid">
+                                                                    <td data-title="MAF Account Number" class="text-center">{{AccountNumber}}</td>
+                                                                    <!--<td data-title="08/01/2016" class="text-center">{{DueDate | date |date: 'dd/mm/YYYY' }}</td>-->
+                                                                    <td data-title="Due Date" class="text-center">{{data.ScheduleDueDate | date |date: 'dd/mm/YYYY'}}</td>
+                                                                    <td data-title="Due Amount" class="text-center">${{OtherAmount}}</td>
+                                                                    <td data-title="Scheduled Date" class="text-center">{{data.ScheduleDueDate | date |date: 'dd/mm/YYYY'}}</td>
+                                                                    <td data-title="Scheduled Amount" class="text-center">${{OtherAmount}}</td>
+                                                                    <td data-title="Payment Frequency" class="text-center">
+                                                                        {{Frequency}}
+                                                                    </td>
+                                                                    <td data-title="Type" class="text-center">
+                                                                        <img src="images/{{CardTypeImg}}.jpg" width="30" />
+                                                                    </td>
+                                                                </tr>
+                                                              
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                         
+                                            <div class="accinfo_containerbg mar_top10">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-6 col-xs-12">
+                                                                <label>MAF Account Number</label>
+                                                                <p>{{AccountNumber}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mar_top20">
+                                                            <div class="col-sm-6 col-xs-12">
+                                                                <label>Card Billing Address</label>
+                                                                <p> {{BillingName}} {{BillingLastName}}<br />{{Address}} {{City}}, {{State}} {{Zip}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-xs-12">
+                                                        <div class="accinfo_containerbg">
+                                                            <div class="col-xs-12 mar_btm20"><img src="images/{{CardTypeImg}}.jpg" /></div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="col-sm-6 col-xs-12">
+                                                                <label>Card Number</label>
+                                                                <p>XXXX-XXXX-XXXX-{{CardNumberView}}</p>
+                                                            </div>
+                                                            <div class="col-sm-6 col-xs-12">
+                                                                <label>Expires</label>
+                                                                <p>{{ConfirmationDebitCreditExpiryDate}}/{{ConfirmationDebitCreditExpiryYear}}</p>
+                                                            </div>
+                                                            <div class="col-sm-6 col-xs-12">
+                                                                <label>Card Holders Name</label>
+                                                                <p>{{ConfirmationDebitCreditCardName}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="accinfo_containerbg mar_top10">
+                                                <h3 class="font_color2 mar_top0 text-center mar_btm30"><span class="padrtlt_10 bdr_btmgrn">AutoPay-Recurring Payment Confirmation</span></h3>
+                                                <div class="clearfix"></div>
+                                                <h5 class="mar_btm20" ng-show="AchAmountSubmit"><strong class="font_color1">Your payment transaction has not been completed yet.</strong> Please verify the information below. If this is correct click the submit button to continue.</h5>
+                                                <h5 class="mar_btm20" ng-hide="AchAmountSubmit"><strong class="font_color1">Your payment transaction has been completed.</strong></h5>        
+                                                <div class="mar_btm20 col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Date:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{TodayDate | date:'MM/dd/yyyy'}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Amount:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{OtherAmount}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Fee Amount:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{CardFee}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Total Amount:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">${{CardTotalAmount}} (Amount charged via credit/debit card)</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Remaining:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{RemainingTerm}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Payment Frequency:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{Frequency}}</label>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_rt0 pad_lt0">
+                                                        <label class="col-lg-3 col-md-4 col-sm-5 col-xs-6 mobile_pdlt0 mobile_pdrt0">Account Type:</label>
+                                                        <label class="col-lg-9 col-md-8 col-sm-7 col-xs-6 mobile_pdrt0">{{CardPaymentType}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>  
+                                        <p class="mar_top15" ng-show="AchAmountSubmit"><b>Click Submit if this information is correct if not, click the Back button to update.</b></p>
+                                        <div class="clearfix"></div>
+                                        <div class="mar_top20">
+                                            <button ng-show="AchAmountSubmit" type="button" ng-click="DebitCreditaymentConfirmationBack()" class="btn btn-default prev-step">Back</button>
+                                            <span style="color:red">{{CardError}}</span>
+                                            <span style="color:green">{{CardMessage}}</span>
+                                            <button ng-show="AchAmountSubmit" type="button" ng-click="SavedCardPayment()" class="btn btn-default pull-right btn_green" ng-disabled="btndisabled" data-dismiss="modal">
+                                                <span class="glyphicon {{Loadname}} glyphicon-refresh-animate"></span>
+                                                Submit
+                                            </button>
+                                            <button ng-show="AchAmountSubmit" type="button" ng-click="Cancel()" class="btn btn-default pull-right mar_rt10">Cancel</button>
+                                            <button ng-hide="AchAmountSubmit" ng-click="GetConfirmationPayment()" type="button" class="btn btn-default pull-right mar_rt10 btn_green">Finish</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+               </div>
+                         </section>
+            </div>
+
+        </div>
+    <div ng-show="loading" class="loadingOverlay"></div>
+
+    <!--ACH Modal Delete-->
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog min-popup">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button"  class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color:red">Delete confirmation </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <p>
+                            Are you sure you want to delete this?
+                        </p>
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer pad_top0">
+                   
+                    <button type="button" ng-click="AchDelete()" id="btncontinue" ng-disabled="btndisabled"  class="btn btn-default width100">
+                        Yes
+                      
+                    </button>
+                    <button type="button" class="btn btn-default width100" data-dismiss="modal">No</button>
+             <span style="color:red">{{AchDelete}}</span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!--Card Modal Delete-->
+
+    <div class="modal fade" id="myModal3" role="dialog">
+        <div class="modal-dialog min-popup">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color:red">Delete confirmation </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <p>
+                            Are you sure you want to delete this?
+                        </p>
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer pad_top0">
+
+                    <button type="button" ng-click="DeleteCard()" class="btn btn-default width100">Yes</button>
+                    <button type="button" class="btn btn-default width100" data-dismiss="modal">No</button>
+                    <span style="color:red">{{CardDelete}}</span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+   
+    <!--Auto Pay Modal Delete-->
+    <div class="modal fade" id="myModal4" role="dialog">
+        <div class="modal-dialog min-popup">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button"  class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color:red">Delete confirmation </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <p>
+                            Are you sure you want to delete AUTOPAY-RECURRING PAYMENT details?
+                        </p>
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer pad_top0">
+                   
+                    <button type="button" ng-click="DeleteAutoPayRecurring()" id="btncontinue" ng-disabled="btndisabled" class="btn btn-default width100">
+                        Yes
+                   
+                    </button>
+                    <button type="button" class="btn btn-default width100" data-dismiss="modal">No</button>
+                    <span style="color:red">{{AutoPayDeleteError}}</span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--Alert payment Confirmation Message-->
+
+    <div class="modal fade" id="ConfirmationPaymentModal" role="dialog">
+        <div class="modal-dialog min-popup">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"> Confirmation </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <p>
+                            AutoPay setup is successful.
+                        </p>
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer pad_top0">
+
+
+                    <button type="button" class="btn btn-default width100" data-dismiss="modal">OK</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="AlertModel" role="dialog">
+        <div class="modal-dialog min-popup">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" ng-click="cancel();AccountOperationFirst()" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color:red">Duplicate Payment Alert </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p ng-show="ShowOneTime">
+                            Our system shows that you already have made this payment before. 
+                        </p>
+                        <p ng-show="ShowScheduled">                            
+                            Our system shows that you have enrolled in a future payment on {{FuturePayDate}}.
+                        </p>
+                        Continuing with this enrollment, your recurring payment schedule will start from {{AutoPayDueDate}}. Do you want to proceed with the
+                        enrollment?
+                    </div>
+                </div>
+                <div class="modal-footer pad_top0">
+                    <button type="button" ng-click="cancelAlert();AutoPayOperation()" class="btn btn-default btn_miniwidth100" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btncontinue" data-dismiss="modal" ng-click="StartAutoPay()" class="btn btn-default btn_miniwidth100  btn_green">Continue</button>
+                    <!--<button type="button" ng-click="MAFAgreement()" class="btn btn-default width100" data-dismiss={{ModalDismiss}}>Continue</button>-->
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!--<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>-->
+<script type="text/javascript">
+    // toggel button disabel Add class
+    $("input[type=checkbox]#autopay_disabel").each(
+        function () {
+            if ($(this).attr('disabled')) {
+                $(this).parent().addClass('disabel_togglebtn');
+            }
+        }
+    );
+    function removeModelClass() {
+        //$('#noTextNumberModal').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+    }
+   </script>
+
